@@ -116,6 +116,21 @@ class ShowcaseHome extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 24),
+          Text('Cards', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 12),
+          UiCard(
+            child: Text(
+              'Solid card using tokens (background/border/radius/spacing).',
+            ),
+          ),
+          const SizedBox(height: 12),
+          UiCard(
+            variant: UiCardVariant.outlined,
+            child: Text(
+              'Outlined card. Useful as the default surface for layouts.',
+            ),
+          ),
         ],
       ),
     );
