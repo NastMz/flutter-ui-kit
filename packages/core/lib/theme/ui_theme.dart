@@ -25,10 +25,7 @@ abstract final class UiTheme {
         surface: data.background,
         onSurface: data.foreground,
       ),
-      extensions: <ThemeExtension<dynamic>>[
-        ...base.extensions.values,
-        UiThemeExtension(data),
-      ],
+      extensions: [...base.extensions.values, UiThemeExtension(data)],
     );
   }
 }

@@ -32,7 +32,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  core:
+    path: ../../packages/core
   components:
     path: ../../packages/components
 
