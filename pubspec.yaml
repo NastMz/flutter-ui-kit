@@ -1,0 +1,23 @@
+name: flutter_ui_kit_workspace
+description: Workspace root (not a package published to pub.dev)
+publish_to: "none"
+
+environment:
+  sdk: "^3.10.4"
+
+dev_dependencies:
+  melos: ^7.0.0
+
+workspace:
+  - packages/core
+  - packages/components
+  - apps/showcase
+
+melos:
+  scripts:
+    analyze:
+      run: melos exec --fail-fast -- flutter analyze
+    test:
+      run: melos exec --fail-fast -- flutter test
+    format:
+      run: melos exec --fail-fast -- dart format .
