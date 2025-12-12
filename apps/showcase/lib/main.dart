@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:core/core.dart';
+import 'package:components/components.dart';
 
 void main() {
   runApp(const ShowcaseApp());
@@ -88,6 +89,32 @@ class ShowcaseHome extends StatelessWidget {
               'the theme infrastructure is wired correctly.',
               style: TextStyle(color: ui.colors.foreground),
             ),
+          ),
+          const SizedBox(height: 24),
+          Text('Buttons', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              UiButton(onPressed: () {}, child: const Text('Solid / MD')),
+              UiButton(
+                onPressed: () {},
+                variant: UiButtonVariant.outline,
+                child: const Text('Outline / MD'),
+              ),
+              UiButton(onPressed: null, child: const Text('Disabled')),
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.sm,
+                child: const Text('SM'),
+              ),
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.lg,
+                child: const Text('LG'),
+              ),
+            ],
           ),
         ],
       ),
