@@ -34,6 +34,8 @@ class UiTextField extends StatelessWidget {
     final focusColor = ui.colors.primary;
     final textColor = ui.colors.foreground;
 
+    final hasError = errorText != null && errorText!.isNotEmpty;
+
     return TextField(
       controller: controller,
       enabled: enabled,
@@ -46,6 +48,7 @@ class UiTextField extends StatelessWidget {
         hintText: hintText,
         helperText: helperText,
         errorText: errorText,
+        errorStyle: ui.typography.body.copyWith(color: ui.colors.danger),
         isDense: true,
         contentPadding: EdgeInsets.symmetric(
           horizontal: ui.spacing.lg,
@@ -57,11 +60,24 @@ class UiTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
-          borderSide: BorderSide(color: borderColor),
+          borderSide: BorderSide(
+            color: hasError ? ui.colors.danger : borderColor,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
-          borderSide: BorderSide(color: focusColor, width: 2),
+          borderSide: BorderSide(
+            color: hasError ? ui.colors.danger : focusColor,
+            width: 2,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+          borderSide: BorderSide(color: ui.colors.danger, width: 1),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+          borderSide: BorderSide(color: ui.colors.danger, width: 2),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
