@@ -21,6 +21,9 @@ melos:
       run: melos exec --fail-fast -- flutter test
     format:
       run: melos exec --fail-fast -- dart format .
+    lint:public-imports:
+      run: >-
+        melos exec --scope="showcase" -- pwsh -NoProfile -Command "if (Select-String -Path lib/**/*.dart -Pattern 'package:components/(?!components\.dart)' -Quiet) { Write-Error 'Showcase must import only package:components/components.dart'; exit 1 }"
     showcase:run:windows:
       run: melos exec --scope="showcase" -- "pwsh -NoProfile -Command \"flutter clean; flutter pub get; flutter run -d windows\""
     showcase:run:chrome:
