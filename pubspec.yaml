@@ -21,5 +21,7 @@ melos:
       run: melos exec --fail-fast -- flutter test
     format:
       run: melos exec --fail-fast -- dart format .
-    showcase:run:
-      run: melos exec --scope="showcase" -- flutter run
+    showcase:run:windows:
+      run: melos exec --scope="showcase" -- "pwsh -NoProfile -Command \"flutter clean; flutter pub get; flutter run -d windows\""
+    showcase:run:chrome:
+      run: melos exec --scope="showcase" -- flutter run -d chrome

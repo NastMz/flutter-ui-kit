@@ -66,10 +66,10 @@ class ShowcaseHome extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 12),
-          _ColorTile(label: 'background', color: ui.background),
-          _ColorTile(label: 'foreground', color: ui.foreground),
-          _ColorTile(label: 'primary', color: ui.primary),
-          _ColorTile(label: 'border', color: ui.border),
+          _ColorTile(label: 'background', color: ui.colors.background),
+          _ColorTile(label: 'foreground', color: ui.colors.foreground),
+          _ColorTile(label: 'primary', color: ui.colors.primary),
+          _ColorTile(label: 'border', color: ui.colors.border),
           const SizedBox(height: 24),
           Text(
             'Sample Surface',
@@ -79,14 +79,14 @@ class ShowcaseHome extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: ui.background,
-              border: Border.all(color: ui.border),
+              color: ui.colors.background,
+              border: Border.all(color: ui.colors.border),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
               'If you can toggle dark/light and these colors change, '
               'the theme infrastructure is wired correctly.',
-              style: TextStyle(color: ui.foreground),
+              style: TextStyle(color: ui.colors.foreground),
             ),
           ),
         ],
@@ -109,7 +109,7 @@ class _ColorTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        border: Border.all(color: ui.border),
+        border: Border.all(color: ui.colors.border),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -119,17 +119,19 @@ class _ColorTile extends StatelessWidget {
             height: 44,
             decoration: BoxDecoration(
               color: color,
-              border: Border.all(color: ui.border),
+              border: Border.all(color: ui.colors.border),
               borderRadius: BorderRadius.circular(10),
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(label, style: TextStyle(color: ui.foreground)),
+            child: Text(label, style: TextStyle(color: ui.colors.foreground)),
           ),
           Text(
-            '#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}',
-            style: TextStyle(color: ui.foreground.withOpacity(0.8)),
+            '#${color.toARGB32().toRadixString(16).padLeft(8, '0').toUpperCase()}',
+            style: TextStyle(
+              color: ui.colors.foreground.withValues(alpha: 0.8),
+            ),
           ),
         ],
       ),

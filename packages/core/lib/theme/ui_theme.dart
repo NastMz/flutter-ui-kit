@@ -18,12 +18,12 @@ abstract final class UiTheme {
   static ThemeData applyTo(ThemeData base, UiThemeData data) {
     return base.copyWith(
       brightness: data.brightness,
-      scaffoldBackgroundColor: data.background,
+      scaffoldBackgroundColor: data.colors.background,
       colorScheme: base.colorScheme.copyWith(
         brightness: data.brightness,
-        primary: data.primary,
-        surface: data.background,
-        onSurface: data.foreground,
+        primary: data.colors.primary,
+        surface: data.colors.background,
+        onSurface: data.colors.foreground,
       ),
       extensions: [...base.extensions.values, UiThemeExtension(data)],
     );
