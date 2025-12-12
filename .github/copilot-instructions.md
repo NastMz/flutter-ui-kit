@@ -31,3 +31,8 @@ Follow docs/component-policy.md for any work in packages/components.
 - For work in packages/core: follow .github/instructions/core.instructions.md
 - For work in packages/components: follow .github/instructions/components.instructions.md
 - For docs changes: follow .github/instructions/docs.instructions.md
+
+## Agent system
+
+The multi-agent workflow is defined in docs/agents.md.
+All agents must follow the role definitions and boundaries described there.
