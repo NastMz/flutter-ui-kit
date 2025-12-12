@@ -34,5 +34,12 @@ Follow docs/component-policy.md for any work in packages/components.
 
 ## Agent system
 
-The multi-agent workflow is defined in docs/agents.md.
+The multi-agent workflow is defined in docs/agents/AGENTS.md.
 All agents must follow the role definitions and boundaries described there.
+
+## Agent execution model
+
+Agents operate sequentially under orchestration by Agent A0.
+Task Groups may involve multiple agents, but execution is always one agent at a time.
+
+See docs/agents/AGENTS.md for details.
