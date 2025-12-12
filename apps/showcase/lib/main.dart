@@ -131,6 +131,26 @@ class ShowcaseHome extends StatelessWidget {
               'Outlined card. Useful as the default surface for layouts.',
             ),
           ),
+          const SizedBox(height: 24),
+          Text('Inputs', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 12),
+          UiTextField(
+            label: 'Email',
+            hintText: 'you@example.com',
+            helperText: 'This is a helper text',
+          ),
+          const SizedBox(height: 12),
+          UiTextField(
+            label: 'Disabled',
+            hintText: 'Disabled field',
+            enabled: false,
+          ),
+          const SizedBox(height: 12),
+          UiTextField(
+            label: 'Error',
+            hintText: 'Bad value',
+            errorText: 'This is an error message',
+          ),
         ],
       ),
     );
