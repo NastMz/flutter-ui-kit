@@ -21,3 +21,7 @@ Build a reusable Flutter UI library with token-first theming and stable public A
 ## Quality bar
 
 - If behavior is unclear, create an issue and add a TODO with exact intent and acceptance criteria.
+
+## Component rules
+
+Follow docs/component-policy.md for any work in packages/components.
