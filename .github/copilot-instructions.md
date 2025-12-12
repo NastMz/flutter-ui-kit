@@ -25,3 +25,9 @@ Build a reusable Flutter UI library with token-first theming and stable public A
 ## Component rules
 
 Follow docs/component-policy.md for any work in packages/components.
+
+## Role instructions
+
+- For work in packages/core: follow .github/instructions/core.instructions.md
+- For work in packages/components: follow .github/instructions/components.instructions.md
+- For docs changes: follow .github/instructions/docs.instructions.md
