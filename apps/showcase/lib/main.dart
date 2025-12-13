@@ -13,8 +13,21 @@ void main() {
   runApp(const ShowcaseApp());
 }
 
-class ShowcaseApp extends StatelessWidget {
+class ShowcaseApp extends StatefulWidget {
   const ShowcaseApp({super.key});
+
+  @override
+  State<ShowcaseApp> createState() => _ShowcaseAppState();
+}
+
+class _ShowcaseAppState extends State<ShowcaseApp> {
+  bool _isDarkMode = false;
+
+  void _toggleTheme() {
+    setState(() {
+      _isDarkMode = !_isDarkMode;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +37,35 @@ class ShowcaseApp extends StatelessWidget {
       theme: UiTheme.applyTo(
         ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.black,
+            brightness: _isDarkMode ? Brightness.dark : Brightness.light,
+          ),
         ),
-        UiThemeData.light(
-          fontSans: GoogleFonts.inter(),
-          fontMono: GoogleFonts.jetBrainsMono(),
-        ),
+        _isDarkMode
+            ? UiThemeData.dark(
+                fontSans: GoogleFonts.inter(),
+                fontMono: GoogleFonts.jetBrainsMono(),
+              )
+            : UiThemeData.light(
+                fontSans: GoogleFonts.inter(),
+                fontMono: GoogleFonts.jetBrainsMono(),
+              ),
       ),
-      home: const ShowcaseHome(),
+      home: ShowcaseHome(isDarkMode: _isDarkMode, onToggleTheme: _toggleTheme),
     );
   }
 }
 
 class ShowcaseHome extends StatefulWidget {
-  const ShowcaseHome({super.key});
+  final bool isDarkMode;
+  final VoidCallback onToggleTheme;
+
+  const ShowcaseHome({
+    super.key,
+    required this.isDarkMode,
+    required this.onToggleTheme,
+  });
 
   @override
   State<ShowcaseHome> createState() => _ShowcaseHomeState();
@@ -65,6 +93,39 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
 
     return Scaffold(
       backgroundColor: ui.colors.background,
+      appBar: AppBar(
+        backgroundColor: ui.colors.background,
+        elevation: 0,
+        title: Text(
+          'Flutter UI Kit Showcase',
+          style: ui.typography.title.copyWith(color: ui.colors.foreground),
+        ),
+        actions: [
+          UiInset(
+            horizontal: UiSpacing.md,
+            child: HStack(
+              gap: UiSpacing.sm,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.light_mode,
+                  size: 20,
+                  color: ui.colors.mutedForeground,
+                ),
+                UiSwitch(
+                  value: widget.isDarkMode,
+                  onChanged: (_) => widget.onToggleTheme(),
+                ),
+                Icon(
+                  Icons.dark_mode,
+                  size: 20,
+                  color: ui.colors.mutedForeground,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       body: Row(
         children: [
           NavigationRail(
