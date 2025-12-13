@@ -82,16 +82,18 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       UiText.h2(_demos[_selectedIndex].label),
-                      const UiGap(8),
+                      const UiGap(UiSpacing.sm),
                       const UiText.muted('Component demonstration'),
-                      const UiGap(32),
+                      const UiGap.manual(32),
                       Container(
-                        padding: const EdgeInsets.all(32),
                         decoration: BoxDecoration(
                           border: Border.all(color: ui.colors.border),
                           borderRadius: BorderRadius.circular(ui.radius.lg),
                         ),
-                        child: _demos[_selectedIndex].demo,
+                        child: UiInset(
+                          all: UiSpacing.xl,
+                          child: _demos[_selectedIndex].demo,
+                        ),
                       ),
                     ],
                   ),

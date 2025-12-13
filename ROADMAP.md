@@ -39,10 +39,10 @@ Initial components:
 
 Layout Basics (ADD):
 
-- [ ] Stack primitives v1 (VStack, HStack, WrapStack)
-- [ ] Inset / Spacing helpers (UiInset, UiGap)
-- [ ] Typography recipes (UiText)
-- [ ] Showcase demos refactor (Replace SizedBox/inline styles)
+- [x] Stack primitives v1 (VStack, HStack, WrapStack)
+- [x] Inset / Spacing helpers (UiInset, UiGap)
+- [x] Typography recipes (UiText)
+- [x] Showcase demos refactor (Replace SizedBox/inline styles)
 
 Definition of Done (Layout Basics):
 
