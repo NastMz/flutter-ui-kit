@@ -9,6 +9,7 @@ import 'demos/card_demo.dart';
 import 'demos/input_additional_demo.dart';
 import 'demos/input_controls_demo.dart';
 import 'demos/input_demo.dart';
+import 'demos/ui_box_demo.dart';
 
 void main() {
   runApp(const ShowcaseApp());
@@ -91,6 +92,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
     (label: 'Cards', icon: Icons.web_asset, demo: const CardDemo()),
     (label: 'Badge', icon: Icons.label, demo: const BadgeDemo()),
     (label: 'Avatar', icon: Icons.person, demo: const AvatarDemo()),
+    (label: 'Box', icon: Icons.border_all, demo: const UiBoxDemo()),
   ];
 
   @override

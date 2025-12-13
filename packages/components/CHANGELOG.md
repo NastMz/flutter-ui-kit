@@ -1,3 +1,26 @@
+## 0.0.5
+
+### Added
+
+- **Phase 3A — Layout Primitives**
+
+  - `UiBox`: Universal container widget with token-based styling
+    - Flexible padding (individual sides or all at once)
+    - Background colors using theme colors
+    - Borders with custom color and width
+    - Border radius using radius tokens
+    - Box shadows using shadow tokens
+    - Width/height constraints
+    - Opacity support
+    - Alignment options
+
+- **Showcase Demos**
+  - Added `ui_box_demo.dart` showcasing all UiBox capabilities
+
+### Changed
+
+- UiBox replaces manual Container + Padding combinations throughout codebase
+
 ## 0.0.4
 
 ### Added
