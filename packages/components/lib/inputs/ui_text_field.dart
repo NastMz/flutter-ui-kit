@@ -1,6 +1,16 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+/// A text field widget that follows the design system.
+///
+/// Example:
+/// ```dart
+/// UiTextField(
+///   label: 'Username',
+///   placeholder: 'Enter your username',
+///   onChanged: (value) => print(value),
+/// )
+/// ```
 class UiTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
@@ -13,6 +23,7 @@ class UiTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
 
+  /// Creates a text field.
   const UiTextField({
     super.key,
     this.controller,

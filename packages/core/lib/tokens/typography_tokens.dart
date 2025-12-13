@@ -2,17 +2,31 @@ import 'package:flutter/material.dart';
 
 import 'font_tokens.dart';
 
+/// Defines the typography styles for the design system.
 @immutable
 class TypographyTokens {
+  /// Small text style (14px).
   final TextStyle textSm;
+
+  /// Base text style (16px).
   final TextStyle textBase;
+
+  /// Large text style (18px).
   final TextStyle textLg;
+
+  /// Extra large text style (20px).
   final TextStyle textXl;
 
+  /// Body text style (alias for textSm).
   final TextStyle body;
+
+  /// Title text style (textBase, bold).
   final TextStyle title;
+
+  /// Headline text style (textXl, bold).
   final TextStyle headline;
 
+  /// Creates a set of typography tokens.
   const TypographyTokens({
     required this.textSm,
     required this.textBase,
@@ -23,6 +37,7 @@ class TypographyTokens {
     required this.headline,
   });
 
+  /// Creates the standard typography tokens based on brightness and font family.
   factory TypographyTokens.standard({
     required Brightness brightness,
     required FontTokens fonts,

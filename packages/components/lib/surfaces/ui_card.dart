@@ -1,10 +1,26 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+/// A card widget that follows the design system.
+///
+/// Cards are used to group related content and actions.
+///
+/// Example:
+/// ```dart
+/// UiCard(
+///   child: Column(
+///     children: [
+///       UiCardHeader(child: UiCardTitle(child: Text('Title'))),
+///       UiCardContent(child: Text('Content')),
+///     ],
+///   ),
+/// )
+/// ```
 class UiCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
 
+  /// Creates a card.
   const UiCard({super.key, required this.child, this.padding});
 
   @override
@@ -27,10 +43,14 @@ class UiCard extends StatelessWidget {
   }
 }
 
+/// A header for [UiCard].
+///
+/// Typically contains a [UiCardTitle] and optional description.
 class UiCardHeader extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
 
+  /// Creates a card header.
   const UiCardHeader({super.key, required this.child, this.padding});
 
   @override
@@ -47,9 +67,13 @@ class UiCardHeader extends StatelessWidget {
   }
 }
 
+/// A title for [UiCard].
+///
+/// Should be used within [UiCardHeader].
 class UiCardTitle extends StatelessWidget {
   final Widget child;
 
+  /// Creates a card title.
   const UiCardTitle({super.key, required this.child});
 
   @override
@@ -65,9 +89,13 @@ class UiCardTitle extends StatelessWidget {
   }
 }
 
+/// A description for [UiCard].
+///
+/// Should be used within [UiCardHeader] to provide additional context.
 class UiCardDescription extends StatelessWidget {
   final Widget child;
 
+  /// Creates a card description.
   const UiCardDescription({super.key, required this.child});
 
   @override
@@ -80,10 +108,12 @@ class UiCardDescription extends StatelessWidget {
   }
 }
 
+/// The main content area of [UiCard].
 class UiCardContent extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
 
+  /// Creates a card content area.
   const UiCardContent({super.key, required this.child, this.padding});
 
   @override

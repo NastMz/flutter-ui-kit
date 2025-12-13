@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'ui_theme_data.dart';
 
+/// A [ThemeExtension] that allows [UiThemeData] to be used with Flutter's [Theme].
 @immutable
 class UiThemeExtension extends ThemeExtension<UiThemeExtension> {
+  /// The design system theme data.
   final UiThemeData data;
 
+  /// Creates a theme extension.
   const UiThemeExtension(this.data);
 
   @override

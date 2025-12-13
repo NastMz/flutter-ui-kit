@@ -9,18 +9,34 @@ import '../tokens/shadow_tokens.dart';
 import '../tokens/spacing_tokens.dart';
 import '../tokens/typography_tokens.dart';
 
+/// Holds all the design tokens for the UI system.
 @immutable
 class UiThemeData {
+  /// The brightness of the theme (light or dark).
   final Brightness brightness;
 
+  /// Color tokens.
   final ColorTokens colors;
+
+  /// Spacing tokens.
   final SpacingTokens spacing;
+
+  /// Radius tokens.
   final RadiusTokens radius;
+
+  /// Typography tokens.
   final TypographyTokens typography;
+
+  /// Focus tokens.
   final FocusTokens focus;
+
+  /// Shadow tokens.
   final ShadowTokens shadows;
+
+  /// Font tokens.
   final FontTokens fonts;
 
+  /// Creates a [UiThemeData] with the given tokens.
   const UiThemeData({
     required this.brightness,
     required this.colors,
@@ -32,6 +48,7 @@ class UiThemeData {
     required this.fonts,
   });
 
+  /// Creates a default light theme.
   factory UiThemeData.light() {
     final colors = ColorTokens.light();
     final fonts = FontTokens.standard();
@@ -50,6 +67,7 @@ class UiThemeData {
     );
   }
 
+  /// Creates a default dark theme.
   factory UiThemeData.dark() {
     final colors = ColorTokens.dark();
     final fonts = FontTokens.standard();
@@ -68,6 +86,7 @@ class UiThemeData {
     );
   }
 
+  /// Creates a copy of this theme but with the given fields replaced with the new values.
   UiThemeData copyWith({
     Brightness? brightness,
     ColorTokens? colors,
@@ -90,6 +109,7 @@ class UiThemeData {
     );
   }
 
+  /// Linearly interpolate between two themes.
   UiThemeData lerp(UiThemeData other, double t) {
     return UiThemeData(
       brightness: t < 0.5 ? brightness : other.brightness,

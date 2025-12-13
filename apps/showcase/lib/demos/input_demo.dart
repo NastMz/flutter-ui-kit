@@ -10,7 +10,7 @@ class InputDemo extends StatelessWidget {
       width: 400,
       child: VStack(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16,
+        gap: UiSpacing.md,
         children: [
           const UiTextField(placeholder: 'Email'),
           const UiTextField(placeholder: 'Password', obscureText: true),

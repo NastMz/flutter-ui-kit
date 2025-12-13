@@ -1,39 +1,78 @@
 import 'package:flutter/material.dart';
 
+/// Defines the color palette for the design system.
+///
+/// These tokens are semantic, meaning they describe *how* a color is used
+/// (e.g., `primary`, `destructive`) rather than *what* the color is (e.g., `red`, `blue`).
 @immutable
 class ColorTokens {
+  /// The background color of the app.
   final Color background;
+
+  /// The foreground color (usually text) on top of the background.
   final Color foreground;
 
+  /// The background color for cards.
   final Color card;
+
+  /// The foreground color for content inside cards.
   final Color cardForeground;
 
+  /// The background color for popovers (dialogs, tooltips).
   final Color popover;
+
+  /// The foreground color for content inside popovers.
   final Color popoverForeground;
 
+  /// The primary brand color.
   final Color primary;
+
+  /// The foreground color for content on top of the primary color.
   final Color onPrimary;
 
+  /// The secondary brand color.
   final Color secondary;
+
+  /// The foreground color for content on top of the secondary color.
   final Color onSecondary;
 
+  /// A muted color for less important content.
   final Color muted;
+
+  /// The foreground color for muted content.
   final Color mutedForeground;
 
+  /// An accent color for highlighting interactive elements.
   final Color accent;
+
+  /// The foreground color for content on top of the accent color.
   final Color accentForeground;
 
+  /// A color indicating destructive actions (e.g., delete).
   final Color destructive;
+
+  /// The foreground color for content on top of the destructive color.
   final Color destructiveForeground;
 
+  /// The color for borders.
   final Color border;
+
+  /// The color for input fields.
   final Color input;
+
+  /// The color for focus rings.
   final Color ring;
 
+  /// A semantic color for danger/error states.
   final Color danger;
+
+  /// A semantic color for warning states.
   final Color warning;
+
+  /// A semantic color for success states.
   final Color success;
 
+  /// Creates a set of color tokens.
   const ColorTokens({
     required this.background,
     required this.foreground,
@@ -59,6 +98,7 @@ class ColorTokens {
     required this.success,
   });
 
+  /// Creates the standard light theme color tokens.
   factory ColorTokens.light() {
     return const ColorTokens(
       background: Color(0xFFFFFFFF),
@@ -86,6 +126,7 @@ class ColorTokens {
     );
   }
 
+  /// Creates the standard dark theme color tokens.
   factory ColorTokens.dark() {
     return const ColorTokens(
       background: Color(0xFF09090B),

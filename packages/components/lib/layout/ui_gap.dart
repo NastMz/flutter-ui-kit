@@ -1,17 +1,32 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'ui_inset.dart';
+import 'ui_spacing.dart';
 
 /// A replacement for [SizedBox] when adding spacing between widgets.
 ///
 /// It consumes space in both directions, making it safe to use in
 /// both [Row] and [Column].
+///
+/// Example:
+/// ```dart
+/// Column(
+///   children: [
+///     Text('Hello'),
+///     UiGap(UiSpacing.md),
+///     Text('World'),
+///   ],
+/// )
+/// ```
 class UiGap extends StatelessWidget {
   final UiSpacing? spacing;
   final double? rawSize;
 
+  /// Creates a gap with a size defined by a [UiSpacing] token.
   const UiGap(this.spacing, {super.key}) : rawSize = null;
 
+  /// Creates a gap with a manual size.
+  ///
+  /// Use this only when standard tokens don't fit the design requirements.
   const UiGap.manual(this.rawSize, {super.key}) : spacing = null;
 
   @override

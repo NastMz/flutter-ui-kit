@@ -16,7 +16,7 @@ class CardDemo extends StatelessWidget {
             UiCardHeader(
               child: VStack(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 4,
+                gap: UiSpacing.xs,
                 children: [
                   UiCardTitle(child: Text('Create project')),
                   UiCardDescription(
@@ -28,10 +28,10 @@ class CardDemo extends StatelessWidget {
             UiCardContent(
               child: VStack(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
+                gap: UiSpacing.md,
                 children: [
                   VStack(
-                    spacing: 8,
+                    gap: UiSpacing.sm,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       UiText.small('Name'),
@@ -39,7 +39,7 @@ class CardDemo extends StatelessWidget {
                     ],
                   ),
                   VStack(
-                    spacing: 8,
+                    gap: UiSpacing.sm,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       UiText.small('Framework'),

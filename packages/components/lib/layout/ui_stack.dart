@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
+import 'ui_gap.dart';
+import 'ui_spacing.dart';
 
-/// A vertical stack of widgets with consistent spacing.
+/// A vertical stack that automatically adds spacing between children.
+///
+/// Replaces [Column] when you need consistent spacing between items.
+///
+/// Example:
+/// ```dart
+/// VStack(
+///   gap: UiSpacing.md,
+///   children: [
+///     Text('Item 1'),
+///     Text('Item 2'),
+///   ],
+/// )
+/// ```
 class VStack extends StatelessWidget {
   final List<Widget> children;
-  final double spacing;
+  final UiSpacing? gap;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final TextDirection? textDirection;
-  final VerticalDirection verticalDirection;
-  final TextBaseline? textBaseline;
 
+  /// Creates a vertical stack.
   const VStack({
     super.key,
-    this.children = const [],
-    this.spacing = 0,
+    required this.children,
+    this.gap,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
-    this.textDirection,
-    this.verticalDirection = VerticalDirection.down,
-    this.textBaseline,
   });
 
   @override
@@ -29,46 +39,40 @@ class VStack extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
-      textDirection: textDirection,
-      verticalDirection: verticalDirection,
-      textBaseline: textBaseline,
-      children: _withSpacing(),
+      children: _withGap(children, gap),
     );
-  }
-
-  List<Widget> _withSpacing() {
-    if (spacing == 0 || children.isEmpty) return children;
-
-    final List<Widget> items = [];
-    for (var i = 0; i < children.length; i++) {
-      if (i > 0) items.add(SizedBox(height: spacing));
-      items.add(children[i]);
-    }
-    return items;
   }
 }
 
-/// A horizontal stack of widgets with consistent spacing.
+/// A horizontal stack that automatically adds spacing between children.
+///
+/// Replaces [Row] when you need consistent spacing between items.
+///
+/// Example:
+/// ```dart
+/// HStack(
+///   gap: UiSpacing.sm,
+///   children: [
+///     Icon(Icons.star),
+///     Text('Rating'),
+///   ],
+/// )
+/// ```
 class HStack extends StatelessWidget {
   final List<Widget> children;
-  final double spacing;
+  final UiSpacing? gap;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final TextDirection? textDirection;
-  final VerticalDirection verticalDirection;
-  final TextBaseline? textBaseline;
 
+  /// Creates a horizontal stack.
   const HStack({
     super.key,
-    this.children = const [],
-    this.spacing = 0,
+    required this.children,
+    this.gap,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
-    this.textDirection,
-    this.verticalDirection = VerticalDirection.down,
-    this.textBaseline,
   });
 
   @override
@@ -77,65 +81,60 @@ class HStack extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
-      textDirection: textDirection,
-      verticalDirection: verticalDirection,
-      textBaseline: textBaseline,
-      children: _withSpacing(),
+      children: _withGap(children, gap),
     );
-  }
-
-  List<Widget> _withSpacing() {
-    if (spacing == 0 || children.isEmpty) return children;
-
-    final List<Widget> items = [];
-    for (var i = 0; i < children.length; i++) {
-      if (i > 0) items.add(SizedBox(width: spacing));
-      items.add(children[i]);
-    }
-    return items;
   }
 }
 
-/// A wrapping stack of widgets with consistent spacing.
+/// A wrap layout that automatically adds spacing between children.
+///
+/// Replaces [Wrap] when you need consistent spacing between items.
+///
+/// Example:
+/// ```dart
+/// WrapStack(
+///   gap: UiSpacing.sm,
+///   children: [
+///     Chip(label: Text('Tag 1')),
+///     Chip(label: Text('Tag 2')),
+///   ],
+/// )
+/// ```
 class WrapStack extends StatelessWidget {
   final List<Widget> children;
-  final double gap;
-  final double runGap;
-  final Axis direction;
+  final UiSpacing? gap;
   final WrapAlignment alignment;
-  final WrapAlignment runAlignment;
   final WrapCrossAlignment crossAxisAlignment;
-  final TextDirection? textDirection;
-  final VerticalDirection verticalDirection;
-  final Clip clipBehavior;
 
+  /// Creates a wrap stack.
   const WrapStack({
     super.key,
-    this.children = const [],
-    this.gap = 0,
-    this.runGap = 0,
-    this.direction = Axis.horizontal,
+    required this.children,
+    this.gap,
     this.alignment = WrapAlignment.start,
-    this.runAlignment = WrapAlignment.start,
     this.crossAxisAlignment = WrapCrossAlignment.start,
-    this.textDirection,
-    this.verticalDirection = VerticalDirection.down,
-    this.clipBehavior = Clip.none,
   });
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      direction: direction,
       alignment: alignment,
-      spacing: gap,
-      runAlignment: runAlignment,
-      runSpacing: runGap,
       crossAxisAlignment: crossAxisAlignment,
-      textDirection: textDirection,
-      verticalDirection: verticalDirection,
-      clipBehavior: clipBehavior,
-      children: children,
+      children: _withGap(children, gap),
     );
   }
+}
+
+List<Widget> _withGap(List<Widget> children, UiSpacing? gap) {
+  if (gap == null) return children;
+  if (children.isEmpty) return children;
+
+  final List<Widget> result = [];
+  for (int i = 0; i < children.length; i++) {
+    result.add(children[i]);
+    if (i != children.length - 1) {
+      result.add(UiGap(gap));
+    }
+  }
+  return result;
 }

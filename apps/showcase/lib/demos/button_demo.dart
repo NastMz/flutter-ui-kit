@@ -7,8 +7,7 @@ class ButtonDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WrapStack(
-      gap: 16,
-      runGap: 16,
+      gap: UiSpacing.md,
       children: [
         _buildVariantColumn('Primary', UiButtonVariant.primary),
         _buildVariantColumn('Secondary', UiButtonVariant.secondary),
@@ -26,7 +25,7 @@ class ButtonDemo extends StatelessWidget {
     return VStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      spacing: 8,
+      gap: UiSpacing.sm,
       children: [
         UiText.muted(label),
         UiButton(onPressed: () {}, variant: variant, child: Text(label)),
@@ -39,12 +38,12 @@ class ButtonDemo extends StatelessWidget {
     return VStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      spacing: 8,
+      gap: UiSpacing.sm,
       children: [
         const UiText.muted('Sizes'),
         HStack(
           crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 8,
+          gap: UiSpacing.sm,
           children: [
             UiButton(
               onPressed: () {},
@@ -71,11 +70,11 @@ class ButtonDemo extends StatelessWidget {
     return VStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      spacing: 8,
+      gap: UiSpacing.sm,
       children: [
         const UiText.muted('Icon'),
         HStack(
-          spacing: 8,
+          gap: UiSpacing.sm,
           children: [
             UiButton(
               onPressed: () {},

@@ -1,8 +1,18 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'ui_spacing.dart';
 
-enum UiSpacing { xs, sm, md, lg, xl }
-
+/// A container that applies padding using [UiSpacing] tokens.
+///
+/// This widget enforces consistency by using design tokens instead of raw doubles.
+///
+/// Example:
+/// ```dart
+/// UiInset(
+///   all: UiSpacing.md,
+///   child: Text('Content'),
+/// )
+/// ```
 class UiInset extends StatelessWidget {
   final Widget child;
   final UiSpacing? all;
@@ -13,6 +23,9 @@ class UiInset extends StatelessWidget {
   final UiSpacing? left;
   final UiSpacing? right;
 
+  /// Creates an inset with optional padding for each side.
+  ///
+  /// If [all] is provided, it overrides other values.
   const UiInset({
     super.key,
     required this.child,

@@ -1,16 +1,59 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-enum UiButtonVariant { primary, secondary, destructive, outline, ghost, link }
+/// Variants for [UiButton] that determine its visual style.
+enum UiButtonVariant {
+  /// Primary button style (solid background, contrasting text).
+  primary,
 
-enum UiButtonSize { sm, md, lg, icon }
+  /// Secondary button style (muted background, contrasting text).
+  secondary,
 
+  /// Destructive button style (red background, white text).
+  destructive,
+
+  /// Outline button style (transparent background, bordered).
+  outline,
+
+  /// Ghost button style (transparent background, no border).
+  ghost,
+
+  /// Link button style (looks like a text link).
+  link,
+}
+
+/// Sizes for [UiButton].
+enum UiButtonSize {
+  /// Small button size.
+  sm,
+
+  /// Medium button size (default).
+  md,
+
+  /// Large button size.
+  lg,
+
+  /// Icon button size (square).
+  icon,
+}
+
+/// A button widget that follows the design system.
+///
+/// Example:
+/// ```dart
+/// UiButton(
+///   onPressed: () {},
+///   variant: UiButtonVariant.primary,
+///   child: Text('Click me'),
+/// )
+/// ```
 class UiButton extends StatelessWidget {
   final Widget child;
   final VoidCallback? onPressed;
   final UiButtonVariant variant;
   final UiButtonSize size;
 
+  /// Creates a button.
   const UiButton({
     super.key,
     required this.child,
