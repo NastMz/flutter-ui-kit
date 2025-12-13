@@ -30,3 +30,10 @@ Follow docs/component-policy.md for any work in packages/components.
 - For work in packages/core: follow .github/instructions/core.instructions.md
 - For work in packages/components: follow .github/instructions/components.instructions.md
 - For docs changes: follow .github/instructions/docs.instructions.md
+
+## Roadmap
+
+- Use ROADMAP.md to understand current phase goals and deliverables.
+- Prioritize work that advances the current phase.
+- Avoid skipping phases unless explicitly instructed.
+- Update ROADMAP.md when completing deliverables.
