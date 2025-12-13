@@ -63,7 +63,7 @@ class ShowcaseHome extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
         itemBuilder: (context, index) => sections[index],
-        separatorBuilder: (_, __) => const SizedBox(height: 24),
+        separatorBuilder: (context, index) => const SizedBox(height: 24),
         itemCount: sections.length,
       ),
     );
