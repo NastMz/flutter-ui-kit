@@ -6,9 +6,9 @@ class ButtonDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 16,
-      runSpacing: 16,
+    return WrapStack(
+      gap: 16,
+      runGap: 16,
       children: [
         _buildVariantColumn('Primary', UiButtonVariant.primary),
         _buildVariantColumn('Secondary', UiButtonVariant.secondary),
@@ -23,41 +23,39 @@ class ButtonDemo extends StatelessWidget {
   }
 
   Widget _buildVariantColumn(String label, UiButtonVariant variant) {
-    return Column(
+    return VStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      spacing: 8,
       children: [
-        Text(label, style: const TextStyle(fontSize: 12, color: Colors.grey)),
-        const SizedBox(height: 8),
+        UiText.muted(label),
         UiButton(onPressed: () {}, variant: variant, child: Text(label)),
-        const SizedBox(height: 8),
         UiButton(onPressed: null, variant: variant, child: Text(label)),
       ],
     );
   }
 
   Widget _buildSizesColumn() {
-    return Column(
+    return VStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      spacing: 8,
       children: [
-        const Text('Sizes', style: TextStyle(fontSize: 12, color: Colors.grey)),
-        const SizedBox(height: 8),
-        Row(
+        const UiText.muted('Sizes'),
+        HStack(
           crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 8,
           children: [
             UiButton(
               onPressed: () {},
               size: UiButtonSize.sm,
               child: const Text('Small'),
             ),
-            const SizedBox(width: 8),
             UiButton(
               onPressed: () {},
               size: UiButtonSize.md,
               child: const Text('Default'),
             ),
-            const SizedBox(width: 8),
             UiButton(
               onPressed: () {},
               size: UiButtonSize.lg,
@@ -70,13 +68,14 @@ class ButtonDemo extends StatelessWidget {
   }
 
   Widget _buildIconButtons() {
-    return Column(
+    return VStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      spacing: 8,
       children: [
-        const Text('Icon', style: TextStyle(fontSize: 12, color: Colors.grey)),
-        const SizedBox(height: 8),
-        Row(
+        const UiText.muted('Icon'),
+        HStack(
+          spacing: 8,
           children: [
             UiButton(
               onPressed: () {},
@@ -84,7 +83,6 @@ class ButtonDemo extends StatelessWidget {
               variant: UiButtonVariant.outline,
               child: const Icon(Icons.chevron_right, size: 16),
             ),
-            const SizedBox(width: 8),
             UiButton(
               onPressed: () {},
               size: UiButtonSize.icon,

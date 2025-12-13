@@ -1,5 +1,4 @@
 import 'package:components/components.dart';
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class CardDemo extends StatelessWidget {
@@ -7,21 +6,19 @@ class CardDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ui = UiTheme.of(context);
-
     return SizedBox(
       width: 350,
       child: UiCard(
-        child: Column(
+        child: VStack(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             UiCardHeader(
-              child: Column(
+              child: VStack(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 4,
                 children: [
                   UiCardTitle(child: Text('Create project')),
-                  const SizedBox(height: 4),
                   UiCardDescription(
                     child: Text('Deploy your new project in one-click.'),
                   ),
@@ -29,31 +26,31 @@ class CardDemo extends StatelessWidget {
               ),
             ),
             UiCardContent(
-              child: Column(
+              child: VStack(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 16,
                 children: [
-                  Text(
-                    'Name',
-                    style: ui.typography.textSm.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
+                  VStack(
+                    spacing: 8,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      UiText.small('Name'),
+                      const UiTextField(placeholder: 'Name of your project'),
+                    ],
                   ),
-                  const SizedBox(height: 8),
-                  const UiTextField(placeholder: 'Name of your project'),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Framework',
-                    style: ui.typography.textSm.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
+                  VStack(
+                    spacing: 8,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      UiText.small('Framework'),
+                      const UiTextField(placeholder: 'Select'),
+                    ],
                   ),
-                  const SizedBox(height: 8),
-                  const UiTextField(placeholder: 'Select'),
                 ],
               ),
             ),
             UiCardFooter(
-              child: Row(
+              child: HStack(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   UiButton(

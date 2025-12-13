@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'demos/button_demo.dart';
@@ -77,21 +78,13 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
               child: Center(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(32),
-                  child: Column(
+                  child: VStack(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        _demos[_selectedIndex].label,
-                        style: ui.typography.headline,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Component demonstration',
-                        style: ui.typography.textSm.copyWith(
-                          color: ui.colors.mutedForeground,
-                        ),
-                      ),
-                      const SizedBox(height: 32),
+                      UiText.h2(_demos[_selectedIndex].label),
+                      const UiGap(8),
+                      const UiText.muted('Component demonstration'),
+                      const UiGap(32),
                       Container(
                         padding: const EdgeInsets.all(32),
                         decoration: BoxDecoration(
