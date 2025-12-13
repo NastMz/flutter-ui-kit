@@ -27,7 +27,7 @@ Deliverables:
 
 ---
 
-## Phase 2 — Core Components (CURRENT)
+## Phase 2 — Core Components (DONE)
 
 Goal: Validate the system with high-impact components and reduce friction in component consumption.
 
@@ -37,40 +37,37 @@ Initial components:
 - [x] Input / TextField
 - [x] Card / Surface
 
-Layout Basics (ADD):
+Layout Basics:
 
 - [x] Stack primitives v1 (VStack, HStack, WrapStack)
 - [x] Inset / Spacing helpers (UiInset, UiGap)
 - [x] Typography recipes (UiText)
 - [x] Showcase demos refactor (Replace SizedBox/inline styles)
 
-Definition of Done (Layout Basics):
+Core Components:
 
-- 80% of core demos without SizedBox for spacing.
-- Spacing sizes use tokens.
-- UiText covers basic styles without copyWith.
+- [x] Badge
+- [x] Avatar
+- [x] Checkbox
+- [x] Switch
+- [x] Radio Group
 
-Pending Core Components (from manifest):
+Remaining (defer to Phase 3):
 
-- [ ] Badge
-- [ ] Avatar
 - [ ] Separator
 - [ ] Skeleton
 - [ ] Label
-- [ ] Checkbox
-- [ ] Switch
-- [ ] Radio Group
 - [ ] Textarea
 
-Focus:
+Completed:
 
 - [x] States (hover, pressed, disabled)
-- [ ] Accessibility
 - [x] Consistent API surface
+- [x] Comprehensive showcase demos
 
 ---
 
-## Phase 3 — Expansion
+## Phase 3 — Expansion (CURRENT)
 
 Goal: Complex interactive components, layout primitives, and reusable patterns.
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../tokens/color_tokens.dart';
 import '../tokens/focus_tokens.dart';
 import '../tokens/radius_tokens.dart';
@@ -52,10 +51,7 @@ class UiThemeData {
   });
 
   /// Creates a default light theme.
-  factory UiThemeData.light({
-    TextStyle? fontSans,
-    TextStyle? fontMono,
-  }) {
+  factory UiThemeData.light({TextStyle? fontSans, TextStyle? fontMono}) {
     final colors = ColorTokens.light();
     final sans = fontSans ?? const TextStyle();
     final mono = fontMono ?? const TextStyle();
@@ -78,10 +74,7 @@ class UiThemeData {
   }
 
   /// Creates a default dark theme.
-  factory UiThemeData.dark({
-    TextStyle? fontSans,
-    TextStyle? fontMono,
-  }) {
+  factory UiThemeData.dark({TextStyle? fontSans, TextStyle? fontMono}) {
     final colors = ColorTokens.dark();
     final sans = fontSans ?? const TextStyle();
     final mono = fontMono ?? const TextStyle();

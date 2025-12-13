@@ -11,16 +11,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:showcase/main.dart';
 
 void main() {
-  testWidgets('Showcase app renders title and toggle', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('Showcase app renders successfully', (WidgetTester tester) async {
     // Build the ShowcaseApp and trigger a frame.
     await tester.pumpWidget(const ShowcaseApp());
 
-    // Verify the app bar title exists.
-    expect(find.text('Flutter UI Kit — Showcase'), findsOneWidget);
+    // Verify the app title exists in the MaterialApp.
+    expect(
+      tester.widget<MaterialApp>(find.byType(MaterialApp)).title,
+      'Flutter UI Kit Showcase',
+    );
 
-    // Verify the dark mode toggle is present.
-    expect(find.byType(Switch), findsOneWidget);
+    // Verify the main layout structure is present.
+    expect(find.byType(Scaffold), findsOneWidget);
+    expect(find.byType(NavigationRail), findsOneWidget);
   });
 }

@@ -2,8 +2,11 @@ import 'package:components/components.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'demos/avatar_demo.dart';
+import 'demos/badge_demo.dart';
 import 'demos/button_demo.dart';
 import 'demos/card_demo.dart';
+import 'demos/input_controls_demo.dart';
 import 'demos/input_demo.dart';
 
 void main() {
@@ -46,7 +49,14 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
   final List<({String label, IconData icon, Widget demo})> _demos = [
     (label: 'Buttons', icon: Icons.smart_button, demo: const ButtonDemo()),
     (label: 'Inputs', icon: Icons.input, demo: const InputDemo()),
+    (
+      label: 'Input Controls',
+      icon: Icons.check_box,
+      demo: const InputControlsDemo(),
+    ),
     (label: 'Cards', icon: Icons.web_asset, demo: const CardDemo()),
+    (label: 'Badge', icon: Icons.label, demo: const BadgeDemo()),
+    (label: 'Avatar', icon: Icons.person, demo: const AvatarDemo()),
   ];
 
   @override

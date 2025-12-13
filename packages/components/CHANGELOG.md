@@ -1,3 +1,35 @@
+## 0.0.3
+
+### Added
+
+- **Input Controls**
+
+  - `UiCheckbox`: Checkbox widget with optional label
+  - `UiSwitch`: Toggle switch with animation and optional label
+  - `UiRadio<T>`: Generic radio button widget
+  - `UiRadioGroup<T>`: Grouped radio buttons with horizontal/vertical layout support
+
+- **Feedback Components**
+
+  - `UiBadge`: Badge widget with multiple variants (primary, secondary, destructive, outline)
+
+- **Surface Components**
+
+  - `UiAvatar`: Profile avatar with image support and text fallback (initials)
+  - `UiAvatarGroup`: Overlapping avatar group display
+  - `UiAvatarSize` enum: Multiple size options (sm, md, lg, xl)
+
+- **Showcase Demos**
+  - Added `input_controls_demo.dart` showcasing Checkbox, Switch, and Radio
+  - Added `badge_demo.dart` with all badge variants
+  - Added `avatar_demo.dart` with sizes and grouping
+
+### Changed
+
+- All input controls use token-based colors, spacing, and styling
+- Avatar group uses white borders for visual separation
+- Badge padding and styling aligned with design system
+
 ## 0.0.2
 
 ### Added
