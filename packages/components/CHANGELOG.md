@@ -1,3 +1,40 @@
+## 0.0.2
+
+### Added
+
+- **Layout Primitives**
+
+  - `VStack`: Vertical column with token-based spacing
+  - `HStack`: Horizontal row with token-based spacing
+  - `WrapStack`: Wrapping layout with token-based spacing
+  - `UiGap`: Token-safe spacing widget (replaces raw SizedBox)
+  - `UiInset`: Token-based padding container
+  - `UiSpacing` enum: xs, sm, md, lg, xl spacing tokens
+
+- **Typography Utilities**
+
+  - `UiText` widget with semantic constructors: `.h1`, `.h2`, `.h3`, `.h4`, `.p`, `.blockquote`, `.list`, `.lead`, `.large`, `.small`, `.muted`
+  - Eliminates need for manual `copyWith()` on theme typography
+
+- **Documentation**
+  - Added comprehensive JSDoc-style documentation to all components
+  - Documented `UiButton`, `UiButtonVariant`, `UiButtonSize`
+  - Documented `UiTextField` with all parameters
+  - Documented `UiCard`, `UiCardHeader`, `UiCardTitle`, `UiCardDescription`, `UiCardContent`, `UiCardFooter`
+  - Added usage examples to layout primitives
+
+### Changed
+
+- Refactored demo code to use layout primitives (`VStack`, `HStack`, `WrapStack`)
+- Replaced manual `SizedBox` spacing with `UiGap` and token-based spacing
+- Simplified showcase main layout using `UiInset` and `UiText`
+- Updated all demos (`button_demo.dart`, `input_demo.dart`, `card_demo.dart`) to use new layout system
+
+### Fixed
+
+- Removed undefined `WrapClip` type (replaced with standard Flutter `Clip` enum)
+- Fixed unused variable warnings in demo components
+
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Initial component library setup with Button, TextField, and Card

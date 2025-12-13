@@ -37,3 +37,10 @@ Follow docs/component-policy.md for any work in packages/components.
 - Prioritize work that advances the current phase.
 - Avoid skipping phases unless explicitly instructed.
 - Update ROADMAP.md when completing deliverables.
+
+## Changelog
+
+- Follow the format in CHANGELOG.md for documenting changes.
+- Ensure all public API changes are reflected in the changelog.
+- Use semantic versioning principles for version bumps.
+- Review past changelog entries for style and structure guidance.
