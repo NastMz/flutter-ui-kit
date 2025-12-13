@@ -7,13 +7,11 @@ enum UiCardPadding { none, sm, md, lg }
 
 class UiCard extends StatelessWidget {
   final Widget child;
-  final UiCardVariant variant;
   final UiCardPadding padding;
 
   const UiCard({
     super.key,
     required this.child,
-    this.variant = UiCardVariant.solid,
     this.padding = UiCardPadding.md,
   });
 
@@ -21,21 +19,18 @@ class UiCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
 
-    final bg = ui.colors.background;
-    final border = ui.colors.border;
-    final radius = ui.radius.md;
-
     return Container(
       padding: _padding(ui),
       decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(radius),
-        border: variant == UiCardVariant.outlined
-            ? Border.all(color: border)
-            : null,
+        color: ui.colors.card,
+        borderRadius: BorderRadius.circular(ui.radius.lg),
+        border: Border.all(color: ui.colors.border),
+        boxShadow: ui.shadows.sm,
       ),
       child: DefaultTextStyle.merge(
-        style: TextStyle(color: ui.colors.foreground),
+        style: ui.typography.textBase.copyWith(
+          color: ui.colors.cardForeground,
+        ),
         child: child,
       ),
     );
@@ -44,7 +39,7 @@ class UiCard extends StatelessWidget {
   EdgeInsets _padding(UiThemeData ui) {
     return switch (padding) {
       UiCardPadding.none => EdgeInsets.zero,
-      UiCardPadding.sm => EdgeInsets.all(ui.spacing.sm),
+      UiCardPadding.sm => EdgeInsets.all(ui.spacing.md),
       UiCardPadding.md => EdgeInsets.all(ui.spacing.lg),
       UiCardPadding.lg => EdgeInsets.all(ui.spacing.xl),
     };

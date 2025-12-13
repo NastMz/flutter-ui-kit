@@ -1,9 +1,16 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-enum UiButtonVariant { solid, outline }
+enum UiButtonVariant {
+  primary,
+  secondary,
+  destructive,
+  outline,
+  ghost,
+  link,
+}
 
-enum UiButtonSize { sm, md, lg }
+enum UiButtonSize { sm, md, lg, icon }
 
 class UiButton extends StatelessWidget {
   final Widget child;
@@ -15,7 +22,7 @@ class UiButton extends StatelessWidget {
     super.key,
     required this.child,
     required this.onPressed,
-    this.variant = UiButtonVariant.solid,
+    this.variant = UiButtonVariant.primary,
     this.size = UiButtonSize.md,
   });
 
@@ -29,6 +36,8 @@ class UiButton extends StatelessWidget {
     final background = _background(ui);
     final foreground = _foreground(ui);
     final border = _border(ui);
+    final overlay = _overlay(ui);
+    final textStyle = _textStyle(ui);
 
     return TextButton(
       onPressed: onPressed,
@@ -39,9 +48,10 @@ class UiButton extends StatelessWidget {
         ),
         backgroundColor: background,
         foregroundColor: foreground,
-        overlayColor: _overlay(ui),
+        overlayColor: overlay,
         side: border,
-        textStyle: WidgetStatePropertyAll(ui.typography.title),
+        textStyle: textStyle,
+        elevation: _elevation(ui),
       ),
       child: child,
     );
@@ -51,33 +61,57 @@ class UiButton extends StatelessWidget {
     return switch (size) {
       UiButtonSize.sm => EdgeInsets.symmetric(
         horizontal: ui.spacing.md,
-        vertical: ui.spacing.sm,
+        vertical: 0,
       ),
       UiButtonSize.md => EdgeInsets.symmetric(
         horizontal: ui.spacing.lg,
-        vertical: ui.spacing.md,
+        vertical: ui.spacing.sm,
       ),
       UiButtonSize.lg => EdgeInsets.symmetric(
         horizontal: ui.spacing.xl,
-        vertical: ui.spacing.lg,
+        vertical: ui.spacing.md,
       ),
+      UiButtonSize.icon => EdgeInsets.all(ui.spacing.sm),
     };
+  }
+
+  WidgetStateProperty<TextStyle?> _textStyle(UiThemeData ui) {
+    return WidgetStatePropertyAll(
+      ui.typography.textSm.copyWith(fontWeight: FontWeight.w500),
+    );
+  }
+
+  WidgetStateProperty<double?> _elevation(UiThemeData ui) {
+    return WidgetStatePropertyAll(0);
   }
 
   WidgetStateProperty<Color?> _background(UiThemeData ui) {
     return WidgetStateProperty.resolveWith((states) {
       final disabled = states.contains(WidgetState.disabled);
-      final pressed = states.contains(WidgetState.pressed);
       final hovered = states.contains(WidgetState.hovered);
 
-      if (variant == UiButtonVariant.outline) {
-        return Colors.transparent;
+      if (disabled) {
+        return ui.colors.muted.withValues(alpha: 0.5);
       }
 
-      if (disabled) return ui.colors.border;
-      if (pressed) return ui.colors.primary.withValues(alpha: 0.85);
-      if (hovered) return ui.colors.primary.withValues(alpha: 0.92);
-      return ui.colors.primary;
+      return switch (variant) {
+        UiButtonVariant.primary => hovered
+            ? ui.colors.primary.withValues(alpha: 0.9)
+            : ui.colors.primary,
+        UiButtonVariant.secondary => hovered
+            ? ui.colors.secondary.withValues(alpha: 0.8)
+            : ui.colors.secondary,
+        UiButtonVariant.destructive => hovered
+            ? ui.colors.destructive.withValues(alpha: 0.9)
+            : ui.colors.destructive,
+        UiButtonVariant.outline => hovered
+            ? ui.colors.accent
+            : Colors.transparent,
+        UiButtonVariant.ghost => hovered
+            ? ui.colors.accent
+            : Colors.transparent,
+        UiButtonVariant.link => Colors.transparent,
+      };
     });
   }
 
@@ -85,36 +119,36 @@ class UiButton extends StatelessWidget {
     return WidgetStateProperty.resolveWith((states) {
       final disabled = states.contains(WidgetState.disabled);
 
-      if (variant == UiButtonVariant.outline) {
-        return disabled ? ui.colors.border : ui.colors.primary;
+      if (disabled) {
+        return ui.colors.mutedForeground;
       }
 
-      return disabled
-          ? ui.colors.foreground.withValues(alpha: 0.5)
-          : Colors.white;
+      return switch (variant) {
+        UiButtonVariant.primary => ui.colors.onPrimary,
+        UiButtonVariant.secondary => ui.colors.onSecondary,
+        UiButtonVariant.destructive => ui.colors.destructiveForeground,
+        UiButtonVariant.outline => ui.colors.primary, // Usually foreground
+        UiButtonVariant.ghost => ui.colors.primary,
+        UiButtonVariant.link => ui.colors.primary,
+      };
     });
   }
 
   WidgetStateProperty<BorderSide?> _border(UiThemeData ui) {
     return WidgetStateProperty.resolveWith((states) {
-      final disabled = states.contains(WidgetState.disabled);
-
-      if (variant == UiButtonVariant.solid) return null;
-
-      return BorderSide(
-        color: disabled ? ui.colors.border : ui.colors.primary,
-        width: 1,
-      );
+      if (variant == UiButtonVariant.outline) {
+        return BorderSide(color: ui.colors.input, width: 1);
+      }
+      return null;
     });
   }
 
   WidgetStateProperty<Color?> _overlay(UiThemeData ui) {
     return WidgetStateProperty.resolveWith((states) {
+      // We handle hover in background for most variants to match shadcn exact colors
+      // But for ripple effect (pressed), we can keep a subtle overlay
       if (states.contains(WidgetState.pressed)) {
-        return ui.colors.foreground.withValues(alpha: 0.08);
-      }
-      if (states.contains(WidgetState.hovered)) {
-        return ui.colors.foreground.withValues(alpha: 0.04);
+        return ui.colors.foreground.withValues(alpha: 0.1);
       }
       return null;
     });

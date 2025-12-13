@@ -31,36 +31,36 @@ This document defines the rules for building and evolving UI components in this 
 
 | shadcn token | Ui token | Status | Notes |
 | --- | --- | --- | --- |
-| `--color-accent` | UiColorTokens.accent | ☐ | Accent background |
-| `--color-accent-foreground` | UiColorTokens.accentForeground | ☐ | Text on accent |
+| `--color-accent` | UiColorTokens.accent | ✅ | Accent background |
+| `--color-accent-foreground` | UiColorTokens.accentForeground | ✅ | Text on accent |
 | `--color-background` | UiColorTokens.background | ✅ | App background surface |
 | `--color-border` | UiColorTokens.border | ✅ | Default border color |
-| `--color-card` | UiColorTokens.card | ☐ | Card background |
-| `--color-card-foreground` | UiColorTokens.cardForeground | ☐ | Text on card |
+| `--color-card` | UiColorTokens.card | ✅ | Card background |
+| `--color-card-foreground` | UiColorTokens.cardForeground | ✅ | Text on card |
 | `--color-destructive` | UiColorTokens.destructive | ✅ | Destructive background (mapped to danger) |
-| `--color-destructive-foreground` | UiColorTokens.destructiveForeground | ☐ | Text on destructive |
+| `--color-destructive-foreground` | UiColorTokens.destructiveForeground | ✅ | Text on destructive |
 | `--color-foreground` | UiColorTokens.foreground | ✅ | Default text color |
-| `--color-input` | UiColorTokens.input | ☐ | Input border color |
-| `--color-muted` | UiColorTokens.muted | ☐ | Muted/secondary text and borders |
-| `--color-muted-foreground` | UiColorTokens.mutedForeground | ☐ | Muted text |
-| `--color-popover` | UiColorTokens.popover | ☐ | Popover background |
-| `--color-popover-foreground` | UiColorTokens.popoverForeground | ☐ | Text on popover |
+| `--color-input` | UiColorTokens.input | ✅ | Input border color |
+| `--color-muted` | UiColorTokens.muted | ✅ | Muted/secondary text and borders |
+| `--color-muted-foreground` | UiColorTokens.mutedForeground | ✅ | Muted text |
+| `--color-popover` | UiColorTokens.popover | ✅ | Popover background |
+| `--color-popover-foreground` | UiColorTokens.popoverForeground | ✅ | Text on popover |
 | `--color-primary` | UiColorTokens.primary | ✅ | Primary brand color |
-| `--color-primary-foreground` | UiColorTokens.onPrimary | ☐ | Text/icon on primary surfaces |
-| `--color-secondary` | UiColorTokens.secondary | ☐ | Secondary background |
-| `--color-secondary-foreground` | UiColorTokens.secondaryForeground | ☐ | Text on secondary |
-| `--font-sans` | UiTypeTokens.fontFamilySans | ☐ | Default font family |
+| `--color-primary-foreground` | UiColorTokens.onPrimary | ✅ | Text/icon on primary surfaces |
+| `--color-secondary` | UiColorTokens.secondary | ✅ | Secondary background |
+| `--color-secondary-foreground` | UiColorTokens.secondaryForeground | ✅ | Text on secondary |
+| `--font-sans` | UiFontTokens.sans | ✅ | Default font family |
 | `--radius-lg` | UiRadiusTokens.lg | ✅ | Large corners for modals |
 | `--radius-md` | UiRadiusTokens.md | ✅ | Default corners for inputs/cards |
 | `--radius-sm` | UiRadiusTokens.sm | ✅ | Keeps button corner radius aligned |
-| `--ring` | UiFocusTokens.ringColor | ☐ | Focus ring color |
-| `--ring-offset` | _TODO_ | ☐ | Add tokens before shipping focus rings |
-| `--ring-offset-width` | UiFocusTokens.ringOffsetWidth | ☐ | Focus ring offset width |
-| `--shadow-md` | UiShadowTokens.md | ☐ | Default elevation |
-| `--shadow-sm` | UiShadowTokens.sm | ☐ | Small elevation |
+| `--ring` | UiColorTokens.ring | ✅ | Focus ring color |
+| `--ring-offset` | UiFocusTokens.ringOffsetWidth | ✅ | Add tokens before shipping focus rings |
+| `--ring-offset-width` | UiFocusTokens.ringOffsetWidth | ✅ | Focus ring offset width |
+| `--shadow-md` | UiShadowTokens.md | ✅ | Default elevation |
+| `--shadow-sm` | UiShadowTokens.sm | ✅ | Small elevation |
 | `--spacing-1` | UiSpaceTokens.xs | ✅ | Base spacing scale mapping |
 | `--spacing-2` | UiSpaceTokens.sm | ✅ | Small spacing |
-| `--text-sm` | UiTypeTokens.textSm | ☐ | Small text size |
+| `--text-sm` | UiTypeTokens.textSm | ✅ | Small text size |
 
 <!-- END:token-mapping -->
 

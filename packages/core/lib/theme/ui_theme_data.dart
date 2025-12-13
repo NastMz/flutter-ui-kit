@@ -2,7 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../tokens/color_tokens.dart';
+import '../tokens/focus_tokens.dart';
+import '../tokens/font_tokens.dart';
 import '../tokens/radius_tokens.dart';
+import '../tokens/shadow_tokens.dart';
 import '../tokens/spacing_tokens.dart';
 import '../tokens/typography_tokens.dart';
 
@@ -14,6 +17,9 @@ class UiThemeData {
   final SpacingTokens spacing;
   final RadiusTokens radius;
   final TypographyTokens typography;
+  final FocusTokens focus;
+  final ShadowTokens shadows;
+  final FontTokens fonts;
 
   const UiThemeData({
     required this.brightness,
@@ -21,25 +27,44 @@ class UiThemeData {
     required this.spacing,
     required this.radius,
     required this.typography,
+    required this.focus,
+    required this.shadows,
+    required this.fonts,
   });
 
   factory UiThemeData.light() {
+    final colors = ColorTokens.light();
+    final fonts = FontTokens.standard();
     return UiThemeData(
       brightness: Brightness.light,
-      colors: ColorTokens.light(),
+      colors: colors,
       spacing: SpacingTokens.standard(),
       radius: RadiusTokens.standard(),
-      typography: TypographyTokens.standard(brightness: Brightness.light),
+      typography: TypographyTokens.standard(
+        brightness: Brightness.light,
+        fonts: fonts,
+      ),
+      focus: FocusTokens.standard(ringColor: colors.ring),
+      shadows: ShadowTokens.light(),
+      fonts: fonts,
     );
   }
 
   factory UiThemeData.dark() {
+    final colors = ColorTokens.dark();
+    final fonts = FontTokens.standard();
     return UiThemeData(
       brightness: Brightness.dark,
-      colors: ColorTokens.dark(),
+      colors: colors,
       spacing: SpacingTokens.standard(),
       radius: RadiusTokens.standard(),
-      typography: TypographyTokens.standard(brightness: Brightness.dark),
+      typography: TypographyTokens.standard(
+        brightness: Brightness.dark,
+        fonts: fonts,
+      ),
+      focus: FocusTokens.standard(ringColor: colors.ring),
+      shadows: ShadowTokens.dark(),
+      fonts: fonts,
     );
   }
 
@@ -49,6 +74,9 @@ class UiThemeData {
     SpacingTokens? spacing,
     RadiusTokens? radius,
     TypographyTokens? typography,
+    FocusTokens? focus,
+    ShadowTokens? shadows,
+    FontTokens? fonts,
   }) {
     return UiThemeData(
       brightness: brightness ?? this.brightness,
@@ -56,6 +84,9 @@ class UiThemeData {
       spacing: spacing ?? this.spacing,
       radius: radius ?? this.radius,
       typography: typography ?? this.typography,
+      focus: focus ?? this.focus,
+      shadows: shadows ?? this.shadows,
+      fonts: fonts ?? this.fonts,
     );
   }
 
@@ -66,6 +97,12 @@ class UiThemeData {
       spacing: t < 0.5 ? spacing : other.spacing,
       radius: t < 0.5 ? radius : other.radius,
       typography: t < 0.5 ? typography : other.typography,
+      focus: focus.lerp(other.focus, t),
+      shadows: shadows.lerp(other.shadows, t),
+      fonts: fonts.lerp(other.fonts, t),
     );
   }
 }
+
+
+

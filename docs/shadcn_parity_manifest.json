@@ -8,8 +8,8 @@
     },
     {
       "id": "--ring-offset",
-      "uiToken": null,
-      "status": "todo",
+      "uiToken": "UiFocusTokens.ringOffsetWidth",
+      "status": "done",
       "notes": "Add tokens before shipping focus rings"
     },
     {
@@ -45,7 +45,7 @@
     {
       "id": "--color-primary-foreground",
       "uiToken": "UiColorTokens.onPrimary",
-      "status": "todo",
+      "status": "done",
       "notes": "Text/icon on primary surfaces"
     },
     {
@@ -57,43 +57,43 @@
     {
       "id": "--color-muted",
       "uiToken": "UiColorTokens.muted",
-      "status": "todo",
+      "status": "done",
       "notes": "Muted/secondary text and borders"
     },
     {
       "id": "--ring",
-      "uiToken": "UiFocusTokens.ringColor",
-      "status": "todo",
+      "uiToken": "UiColorTokens.ring",
+      "status": "done",
       "notes": "Focus ring color"
     },
     {
       "id": "--ring-offset-width",
       "uiToken": "UiFocusTokens.ringOffsetWidth",
-      "status": "todo",
+      "status": "done",
       "notes": "Focus ring offset width"
     },
     {
       "id": "--shadow-sm",
       "uiToken": "UiShadowTokens.sm",
-      "status": "todo",
+      "status": "done",
       "notes": "Small elevation"
     },
     {
       "id": "--shadow-md",
       "uiToken": "UiShadowTokens.md",
-      "status": "todo",
+      "status": "done",
       "notes": "Default elevation"
     },
     {
       "id": "--font-sans",
-      "uiToken": "UiTypeTokens.fontFamilySans",
-      "status": "todo",
+      "uiToken": "UiFontTokens.sans",
+      "status": "done",
       "notes": "Default font family"
     },
     {
       "id": "--text-sm",
       "uiToken": "UiTypeTokens.textSm",
-      "status": "todo",
+      "status": "done",
       "notes": "Small text size"
     },
     {
@@ -105,55 +105,55 @@
     {
       "id": "--color-card",
       "uiToken": "UiColorTokens.card",
-      "status": "todo",
+      "status": "done",
       "notes": "Card background"
     },
     {
       "id": "--color-card-foreground",
       "uiToken": "UiColorTokens.cardForeground",
-      "status": "todo",
+      "status": "done",
       "notes": "Text on card"
     },
     {
       "id": "--color-popover",
       "uiToken": "UiColorTokens.popover",
-      "status": "todo",
+      "status": "done",
       "notes": "Popover background"
     },
     {
       "id": "--color-popover-foreground",
       "uiToken": "UiColorTokens.popoverForeground",
-      "status": "todo",
+      "status": "done",
       "notes": "Text on popover"
     },
     {
       "id": "--color-secondary",
       "uiToken": "UiColorTokens.secondary",
-      "status": "todo",
+      "status": "done",
       "notes": "Secondary background"
     },
     {
       "id": "--color-secondary-foreground",
       "uiToken": "UiColorTokens.secondaryForeground",
-      "status": "todo",
+      "status": "done",
       "notes": "Text on secondary"
     },
     {
       "id": "--color-muted-foreground",
       "uiToken": "UiColorTokens.mutedForeground",
-      "status": "todo",
+      "status": "done",
       "notes": "Muted text"
     },
     {
       "id": "--color-accent",
       "uiToken": "UiColorTokens.accent",
-      "status": "todo",
+      "status": "done",
       "notes": "Accent background"
     },
     {
       "id": "--color-accent-foreground",
       "uiToken": "UiColorTokens.accentForeground",
-      "status": "todo",
+      "status": "done",
       "notes": "Text on accent"
     },
     {
@@ -165,7 +165,7 @@
     {
       "id": "--color-destructive-foreground",
       "uiToken": "UiColorTokens.destructiveForeground",
-      "status": "todo",
+      "status": "done",
       "notes": "Text on destructive"
     },
     {
@@ -177,7 +177,7 @@
     {
       "id": "--color-input",
       "uiToken": "UiColorTokens.input",
-      "status": "todo",
+      "status": "done",
       "notes": "Input border color"
     }
   ],
