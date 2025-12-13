@@ -40,7 +40,11 @@ void main(List<String> args) {
     _buildComponentTable(components),
   );
 
-  policyFile.writeAsStringSync(updatedContent);
+  policyFile.writeAsStringSync(
+    updatedContent,
+    mode: FileMode.write,
+    encoding: utf8,
+  );
 }
 
 String _buildTokenTable(List<Map<String, dynamic>> tokens) {
@@ -54,7 +58,9 @@ String _buildTokenTable(List<Map<String, dynamic>> tokens) {
   for (final token in sorted) {
     final id = token['id'] as String? ?? '';
     final uiToken = _formatValue(token['uiToken'] as String?);
-    final status = statusSymbols[token['status']] ?? token['status'] ?? '☐';
+    final statusKey =
+        (token['status'] as String?)?.trim().toLowerCase() ?? 'todo';
+    final status = statusSymbols[statusKey] ?? '☐';
     final notes = _formatValue(token['notes'] as String?);
     buffer.writeln('| `$id` | $uiToken | $status | $notes |');
   }
@@ -73,8 +79,9 @@ String _buildComponentTable(List<Map<String, dynamic>> components) {
   for (final component in sorted) {
     final id = _capitalized(component['id'] as String? ?? '');
     final widget = _formatValue(component['widget'] as String?);
-    final status =
-        statusSymbols[component['status']] ?? component['status'] ?? '☐';
+    final statusKey =
+        (component['status'] as String?)?.trim().toLowerCase() ?? 'todo';
+    final status = statusSymbols[statusKey] ?? '☐';
     final notes = _formatValue(component['notes'] as String?);
     buffer.writeln('| $id | $widget | $status | $notes |');
   }

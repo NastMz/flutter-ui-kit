@@ -115,10 +115,10 @@ This document defines the rules for building and evolving UI components in this 
 | Avatar | _TODO_ | ☐ | Initials/fallback; sizes; radius |
 | Badge | _TODO_ | ☐ | Track design + tokens |
 | Breadcrumb | _TODO_ | ☐ | Separators; overflow; accessibility |
-| Button | UiButton | ✅ | Parity with solid/outline/ghost |
+| Button | UiButton | ✅ | Parity with primary/secondary/destructive/outline/ghost/link variants and sizes |
 | Button-group | _TODO_ | ☐ | Grouped buttons; spacing; selection |
 | Calendar | _TODO_ | ☐ | Date grid; range; keyboard |
-| Card | _TODO_ | ☐ | Surface tokens; header/footer slots |
+| Card | UiCard | ✅ | Surface tokens; header/footer slots |
 | Carousel | _TODO_ | ☐ | Slides; controls; autoplay |
 | Chart | _TODO_ | ☐ | Tokens for colors/lines; accessibility |
 | Checkbox | _TODO_ | ☐ | States: checked/indeterminate/disabled; keyboard: Space |
@@ -135,7 +135,7 @@ This document defines the rules for building and evolving UI components in this 
 | Form | _TODO_ | ☐ | Form wrapper and field context |
 | Hover-card | _TODO_ | ☐ | Hover-triggered info card; delay & placement |
 | Image | _TODO_ | ☐ | Responsive images; fallback |
-| Input | UiTextField | ☐ | Define icon slot, error/helper mapping, sizes |
+| Input | UiTextField | ✅ | Uses correct tokens (input, ring, destructive, mutedForeground) and typography |
 | Input-otp | _TODO_ | ☐ | Multi-field OTP; paste handling |
 | Kbd | _TODO_ | ☐ | Keyboard key badge |
 | Label | _TODO_ | ☐ | Form control labels |

@@ -186,13 +186,13 @@
       "id": "button",
       "widget": "UiButton",
       "status": "done",
-      "notes": "Parity with solid/outline/ghost"
+      "notes": "Parity with primary/secondary/destructive/outline/ghost/link variants and sizes"
     },
     {
       "id": "input",
       "widget": "UiTextField",
-      "status": "todo",
-      "notes": "Define icon slot, error/helper mapping, sizes"
+      "status": "done",
+      "notes": "Uses correct tokens (input, ring, destructive, mutedForeground) and typography"
     },
     {
       "id": "alert",
@@ -467,8 +467,8 @@
     },
     {
       "id": "card",
-      "widget": null,
-      "status": "todo",
+      "widget": "UiCard",
+      "status": "done",
       "notes": "Surface tokens; header/footer slots"
     },
     {
