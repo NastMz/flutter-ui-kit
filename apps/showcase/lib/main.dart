@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'demos/button_demo.dart';
 import 'demos/card_demo.dart';
 import 'demos/input_demo.dart';
@@ -19,11 +20,13 @@ class ShowcaseApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: UiTheme.applyTo(
         ThemeData(
-          fontFamily: 'GeistSans',
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         ),
-        UiThemeData.light(),
+        UiThemeData.light(
+          fontSans: GoogleFonts.inter(),
+          fontMono: GoogleFonts.jetBrainsMono(),
+        ),
       ),
       home: const ShowcaseHome(),
     );

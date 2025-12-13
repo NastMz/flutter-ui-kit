@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'font_tokens.dart';
-
 /// Defines the typography styles for the design system.
 @immutable
 class TypographyTokens {
@@ -26,6 +24,9 @@ class TypographyTokens {
   /// Headline text style (textXl, bold).
   final TextStyle headline;
 
+  /// Monospace text style (14px).
+  final TextStyle mono;
+
   /// Creates a set of typography tokens.
   const TypographyTokens({
     required this.textSm,
@@ -35,42 +36,46 @@ class TypographyTokens {
     required this.body,
     required this.title,
     required this.headline,
+    required this.mono,
   });
 
   /// Creates the standard typography tokens based on brightness and font family.
   factory TypographyTokens.standard({
     required Brightness brightness,
-    required FontTokens fonts,
+    required TextStyle fontSans,
+    required TextStyle fontMono,
   }) {
     final baseColor = brightness == Brightness.dark
         ? const Color(0xFFFAFAFA)
         : const Color(0xFF09090B);
 
-    final textSm = TextStyle(
-      fontFamily: fonts.sans,
+    final textSm = fontSans.copyWith(
       fontSize: 14,
       height: 1.42,
       color: baseColor,
     );
 
-    final textBase = TextStyle(
-      fontFamily: fonts.sans,
+    final textBase = fontSans.copyWith(
       fontSize: 16,
       height: 1.5,
       color: baseColor,
     );
 
-    final textLg = TextStyle(
-      fontFamily: fonts.sans,
+    final textLg = fontSans.copyWith(
       fontSize: 18,
       height: 1.55,
       color: baseColor,
     );
 
-    final textXl = TextStyle(
-      fontFamily: fonts.sans,
+    final textXl = fontSans.copyWith(
       fontSize: 20,
       height: 1.4,
+      color: baseColor,
+    );
+
+    final mono = fontMono.copyWith(
+      fontSize: 14,
+      height: 1.42,
       color: baseColor,
     );
 
@@ -82,6 +87,7 @@ class TypographyTokens {
       body: textSm,
       title: textBase.copyWith(fontWeight: FontWeight.w600),
       headline: textXl.copyWith(fontWeight: FontWeight.w700),
+      mono: mono,
     );
   }
 }

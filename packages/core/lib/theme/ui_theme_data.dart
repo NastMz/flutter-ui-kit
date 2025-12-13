@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 
 import '../tokens/color_tokens.dart';
 import '../tokens/focus_tokens.dart';
-import '../tokens/font_tokens.dart';
 import '../tokens/radius_tokens.dart';
 import '../tokens/shadow_tokens.dart';
 import '../tokens/spacing_tokens.dart';
@@ -33,8 +32,11 @@ class UiThemeData {
   /// Shadow tokens.
   final ShadowTokens shadows;
 
-  /// Font tokens.
-  final FontTokens fonts;
+  /// The primary sans-serif font style.
+  final TextStyle fontSans;
+
+  /// The monospaced font style.
+  final TextStyle fontMono;
 
   /// Creates a [UiThemeData] with the given tokens.
   const UiThemeData({
@@ -45,13 +47,19 @@ class UiThemeData {
     required this.typography,
     required this.focus,
     required this.shadows,
-    required this.fonts,
+    required this.fontSans,
+    required this.fontMono,
   });
 
   /// Creates a default light theme.
-  factory UiThemeData.light() {
+  factory UiThemeData.light({
+    TextStyle? fontSans,
+    TextStyle? fontMono,
+  }) {
     final colors = ColorTokens.light();
-    final fonts = FontTokens.standard();
+    final sans = fontSans ?? const TextStyle();
+    final mono = fontMono ?? const TextStyle();
+
     return UiThemeData(
       brightness: Brightness.light,
       colors: colors,
@@ -59,18 +67,25 @@ class UiThemeData {
       radius: RadiusTokens.standard(),
       typography: TypographyTokens.standard(
         brightness: Brightness.light,
-        fonts: fonts,
+        fontSans: sans,
+        fontMono: mono,
       ),
       focus: FocusTokens.standard(ringColor: colors.ring),
       shadows: ShadowTokens.light(),
-      fonts: fonts,
+      fontSans: sans,
+      fontMono: mono,
     );
   }
 
   /// Creates a default dark theme.
-  factory UiThemeData.dark() {
+  factory UiThemeData.dark({
+    TextStyle? fontSans,
+    TextStyle? fontMono,
+  }) {
     final colors = ColorTokens.dark();
-    final fonts = FontTokens.standard();
+    final sans = fontSans ?? const TextStyle();
+    final mono = fontMono ?? const TextStyle();
+
     return UiThemeData(
       brightness: Brightness.dark,
       colors: colors,
@@ -78,11 +93,13 @@ class UiThemeData {
       radius: RadiusTokens.standard(),
       typography: TypographyTokens.standard(
         brightness: Brightness.dark,
-        fonts: fonts,
+        fontSans: sans,
+        fontMono: mono,
       ),
       focus: FocusTokens.standard(ringColor: colors.ring),
       shadows: ShadowTokens.dark(),
-      fonts: fonts,
+      fontSans: sans,
+      fontMono: mono,
     );
   }
 
@@ -95,7 +112,8 @@ class UiThemeData {
     TypographyTokens? typography,
     FocusTokens? focus,
     ShadowTokens? shadows,
-    FontTokens? fonts,
+    TextStyle? fontSans,
+    TextStyle? fontMono,
   }) {
     return UiThemeData(
       brightness: brightness ?? this.brightness,
@@ -105,7 +123,8 @@ class UiThemeData {
       typography: typography ?? this.typography,
       focus: focus ?? this.focus,
       shadows: shadows ?? this.shadows,
-      fonts: fonts ?? this.fonts,
+      fontSans: fontSans ?? this.fontSans,
+      fontMono: fontMono ?? this.fontMono,
     );
   }
 
@@ -119,7 +138,8 @@ class UiThemeData {
       typography: t < 0.5 ? typography : other.typography,
       focus: focus.lerp(other.focus, t),
       shadows: shadows.lerp(other.shadows, t),
-      fonts: fonts.lerp(other.fonts, t),
+      fontSans: TextStyle.lerp(fontSans, other.fontSans, t)!,
+      fontMono: TextStyle.lerp(fontMono, other.fontMono, t)!,
     );
   }
 }
