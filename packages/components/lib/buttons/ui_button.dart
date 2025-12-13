@@ -96,6 +96,10 @@ class UiButton extends StatelessWidget {
   }
 
   EdgeInsets _padding(UiThemeData ui) {
+    // Link variant should have no extra padding to look like inline text
+    if (variant == UiButtonVariant.link) {
+      return EdgeInsets.zero;
+    }
     return switch (size) {
       UiButtonSize.sm => EdgeInsets.symmetric(horizontal: ui.spacing.md),
       UiButtonSize.md => EdgeInsets.symmetric(horizontal: ui.spacing.lg),
@@ -107,6 +111,10 @@ class UiButton extends StatelessWidget {
   }
 
   Size _minimumSize(UiThemeData ui) {
+    // Link variant should not enforce a minimum height
+    if (variant == UiButtonVariant.link) {
+      return const Size(0, 0);
+    }
     return switch (size) {
       UiButtonSize.sm => const Size(0, 36),
       UiButtonSize.md => const Size(0, 40),
@@ -121,6 +129,7 @@ class UiButton extends StatelessWidget {
         fontWeight: FontWeight.w500,
       );
 
+      // shadcn: link shows underline only on hover
       if (variant == UiButtonVariant.link &&
           states.contains(WidgetState.hovered)) {
         return baseStyle.copyWith(decoration: TextDecoration.underline);
@@ -138,6 +147,11 @@ class UiButton extends StatelessWidget {
     return WidgetStateProperty.resolveWith((states) {
       final disabled = states.contains(WidgetState.disabled);
       final hovered = states.contains(WidgetState.hovered);
+
+      // Link always has transparent background (including disabled)
+      if (variant == UiButtonVariant.link) {
+        return Colors.transparent;
+      }
 
       if (disabled) {
         return ui.colors.muted.withValues(alpha: 0.5);
@@ -198,9 +212,14 @@ class UiButton extends StatelessWidget {
 
   WidgetStateProperty<Color?> _overlay(UiThemeData ui) {
     return WidgetStateProperty.resolveWith((states) {
+      // Ensure link variant has no hover/pressed/focus overlay (matches shadcn)
+      if (variant == UiButtonVariant.link) {
+        return Colors.transparent;
+      }
       // We handle hover in background for most variants to match shadcn exact colors
       // But for ripple effect (pressed), we can keep a subtle overlay
-      if (states.contains(WidgetState.pressed)) {
+      if (variant != UiButtonVariant.link &&
+          states.contains(WidgetState.pressed)) {
         return ui.colors.foreground.withValues(alpha: 0.1);
       }
       return null;

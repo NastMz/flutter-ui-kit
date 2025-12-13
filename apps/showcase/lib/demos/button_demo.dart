@@ -6,18 +6,33 @@ class ButtonDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WrapStack(
-      gap: UiSpacing.md,
+    return VStack(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      gap: UiSpacing.lg,
       children: [
-        _buildVariantColumn('Primary', UiButtonVariant.primary),
-        _buildVariantColumn('Secondary', UiButtonVariant.secondary),
-        _buildVariantColumn('Destructive', UiButtonVariant.destructive),
-        _buildVariantColumn('Outline', UiButtonVariant.outline),
-        _buildVariantColumn('Ghost', UiButtonVariant.ghost),
-        _buildVariantColumn('Link', UiButtonVariant.link),
+        // Variants in grid layout
+        _buildVariantsGrid(),
         _buildSizesColumn(),
         _buildIconButtons(),
       ],
+    );
+  }
+
+  Widget _buildVariantsGrid() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: HStack(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        gap: UiSpacing.md,
+        children: [
+          _buildVariantColumn('Primary', UiButtonVariant.primary),
+          _buildVariantColumn('Secondary', UiButtonVariant.secondary),
+          _buildVariantColumn('Destructive', UiButtonVariant.destructive),
+          _buildVariantColumn('Outline', UiButtonVariant.outline),
+          _buildVariantColumn('Ghost', UiButtonVariant.ghost),
+          _buildVariantColumn('Link', UiButtonVariant.link),
+        ],
+      ),
     );
   }
 
@@ -28,8 +43,29 @@ class ButtonDemo extends StatelessWidget {
       gap: UiSpacing.sm,
       children: [
         UiText.muted(label),
-        UiButton(onPressed: () {}, variant: variant, child: Text(label)),
-        UiButton(onPressed: null, variant: variant, child: Text(label)),
+        // Grid row with fixed height for alignment
+        UiBox(
+          height: 40,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: UiButton(
+              onPressed: () {},
+              variant: variant,
+              child: Text(label),
+            ),
+          ),
+        ),
+        UiBox(
+          height: 40,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: UiButton(
+              onPressed: null,
+              variant: variant,
+              child: Text(label),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -87,6 +123,39 @@ class ButtonDemo extends StatelessWidget {
               size: UiButtonSize.icon,
               variant: UiButtonVariant.ghost,
               child: const Icon(Icons.more_horiz, size: 16),
+            ),
+          ],
+        ),
+        // Icon + text example
+        HStack(
+          gap: UiSpacing.sm,
+          children: [
+            UiButton(
+              onPressed: () {},
+              variant: UiButtonVariant.primary,
+              child: HStack(
+                gap: UiSpacing.xs,
+                children: const [
+                  Icon(Icons.download, size: 16),
+                  Text('Download'),
+                ],
+              ),
+            ),
+            UiButton(
+              onPressed: () {},
+              variant: UiButtonVariant.outline,
+              child: HStack(
+                gap: UiSpacing.xs,
+                children: const [Icon(Icons.edit, size: 16), Text('Edit')],
+              ),
+            ),
+            UiButton(
+              onPressed: () {},
+              variant: UiButtonVariant.link,
+              child: HStack(
+                gap: UiSpacing.xs,
+                children: const [Icon(Icons.link, size: 16), Text('View docs')],
+              ),
             ),
           ],
         ),
