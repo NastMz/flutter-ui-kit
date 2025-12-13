@@ -1,8 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-enum UiCardVariant { solid, outlined }
-
 enum UiCardPadding { none, sm, md, lg }
 
 class UiCard extends StatelessWidget {
@@ -28,9 +26,7 @@ class UiCard extends StatelessWidget {
         boxShadow: ui.shadows.sm,
       ),
       child: DefaultTextStyle.merge(
-        style: ui.typography.textBase.copyWith(
-          color: ui.colors.cardForeground,
-        ),
+        style: ui.typography.textBase.copyWith(color: ui.colors.cardForeground),
         child: child,
       ),
     );

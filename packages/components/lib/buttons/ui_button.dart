@@ -1,14 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-enum UiButtonVariant {
-  primary,
-  secondary,
-  destructive,
-  outline,
-  ghost,
-  link,
-}
+enum UiButtonVariant { primary, secondary, destructive, outline, ghost, link }
 
 enum UiButtonSize { sm, md, lg, icon }
 
@@ -95,21 +88,22 @@ class UiButton extends StatelessWidget {
       }
 
       return switch (variant) {
-        UiButtonVariant.primary => hovered
-            ? ui.colors.primary.withValues(alpha: 0.9)
-            : ui.colors.primary,
-        UiButtonVariant.secondary => hovered
-            ? ui.colors.secondary.withValues(alpha: 0.8)
-            : ui.colors.secondary,
-        UiButtonVariant.destructive => hovered
-            ? ui.colors.destructive.withValues(alpha: 0.9)
-            : ui.colors.destructive,
-        UiButtonVariant.outline => hovered
-            ? ui.colors.accent
-            : Colors.transparent,
-        UiButtonVariant.ghost => hovered
-            ? ui.colors.accent
-            : Colors.transparent,
+        UiButtonVariant.primary =>
+          hovered
+              ? ui.colors.primary.withValues(alpha: 0.9)
+              : ui.colors.primary,
+        UiButtonVariant.secondary =>
+          hovered
+              ? ui.colors.secondary.withValues(alpha: 0.8)
+              : ui.colors.secondary,
+        UiButtonVariant.destructive =>
+          hovered
+              ? ui.colors.destructive.withValues(alpha: 0.9)
+              : ui.colors.destructive,
+        UiButtonVariant.outline =>
+          hovered ? ui.colors.accent : Colors.transparent,
+        UiButtonVariant.ghost =>
+          hovered ? ui.colors.accent : Colors.transparent,
         UiButtonVariant.link => Colors.transparent,
       };
     });

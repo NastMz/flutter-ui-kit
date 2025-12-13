@@ -108,11 +108,31 @@ class ShowcaseHome extends StatelessWidget {
           spacing: 12,
           runSpacing: 12,
           children: [
-            UiButton(onPressed: () {}, child: const Text('Solid / MD')),
+            UiButton(onPressed: () {}, child: const Text('Primary / MD')),
+            UiButton(
+              onPressed: () {},
+              variant: UiButtonVariant.secondary,
+              child: const Text('Secondary'),
+            ),
+            UiButton(
+              onPressed: () {},
+              variant: UiButtonVariant.destructive,
+              child: const Text('Destructive'),
+            ),
             UiButton(
               onPressed: () {},
               variant: UiButtonVariant.outline,
-              child: const Text('Outline / MD'),
+              child: const Text('Outline'),
+            ),
+            UiButton(
+              onPressed: () {},
+              variant: UiButtonVariant.ghost,
+              child: const Text('Ghost'),
+            ),
+            UiButton(
+              onPressed: () {},
+              variant: UiButtonVariant.link,
+              child: const Text('Link'),
             ),
             UiButton(onPressed: null, child: const Text('Disabled')),
             UiButton(
@@ -125,6 +145,11 @@ class ShowcaseHome extends StatelessWidget {
               size: UiButtonSize.lg,
               child: const Text('LG'),
             ),
+            UiButton(
+              onPressed: () {},
+              size: UiButtonSize.icon,
+              child: const Icon(Icons.add, size: 16),
+            ),
           ],
         ),
       ),
@@ -134,15 +159,13 @@ class ShowcaseHome extends StatelessWidget {
           children: const [
             UiCard(
               child: Text(
-                'Solid card using tokens (background/border/radius/spacing).',
+                'Default card using tokens (background/border/radius/spacing/shadow).',
               ),
             ),
             SizedBox(height: 12),
             UiCard(
-              variant: UiCardVariant.outlined,
-              child: Text(
-                'Outlined card. Useful as the default surface for layouts.',
-              ),
+              padding: UiCardPadding.lg,
+              child: Text('Card with large padding.'),
             ),
           ],
         ),
