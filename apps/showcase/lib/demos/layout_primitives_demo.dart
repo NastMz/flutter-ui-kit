@@ -24,11 +24,7 @@ class LayoutPrimitivesDemo extends StatelessWidget {
               backgroundColor: ui.colors.muted,
               borderRadius: ui.radius.md,
               child: HStack(
-                children: [
-                  _Badge('Left'),
-                  UiSpacer(),
-                  _Badge('Right'),
-                ],
+                children: [_Badge('Left'), UiSpacer(), _Badge('Right')],
               ),
             ),
           ),
@@ -63,7 +59,9 @@ class LayoutPrimitivesDemo extends StatelessWidget {
                   showAbove: UiBreakpoints.md,
                   fallback: UiBox(
                     padding: UiSpacing.md,
-                    backgroundColor: ui.colors.destructive.withValues(alpha: 0.1),
+                    backgroundColor: ui.colors.destructive.withValues(
+                      alpha: 0.1,
+                    ),
                     borderRadius: ui.radius.md,
                     child: Text(
                       '❌ Hidden (screen < 1024px)',
