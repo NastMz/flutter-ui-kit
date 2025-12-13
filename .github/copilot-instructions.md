@@ -13,7 +13,6 @@ Build a reusable Flutter UI library with token-first theming and stable public A
 
 ## Commands
 
-- Bootstrap: `melos bootstrap`
 - Analyze: `melos run analyze`
 - Test: `melos run test`
 - Format: `melos run format`

@@ -29,10 +29,38 @@ This document defines the rules for building and evolving UI components in this 
 
 <!-- BEGIN:token-mapping -->
 
-| shadcn token    | Ui token          | Status | Notes                                  |
-| --------------- | ----------------- | ------ | -------------------------------------- |
-| `--radius-sm`   | UiRadiusTokens.sm | ✅     | Keeps button corner radius aligned     |
-| `--ring-offset` | _TODO_            | ☐      | Add tokens before shipping focus rings |
+| shadcn token | Ui token | Status | Notes |
+| --- | --- | --- | --- |
+| `--color-accent` | UiColorTokens.accent | ☐ | Accent background |
+| `--color-accent-foreground` | UiColorTokens.accentForeground | ☐ | Text on accent |
+| `--color-background` | UiColorTokens.background | ✅ | App background surface |
+| `--color-border` | UiColorTokens.border | ✅ | Default border color |
+| `--color-card` | UiColorTokens.card | ☐ | Card background |
+| `--color-card-foreground` | UiColorTokens.cardForeground | ☐ | Text on card |
+| `--color-destructive` | UiColorTokens.destructive | ✅ | Destructive background (mapped to danger) |
+| `--color-destructive-foreground` | UiColorTokens.destructiveForeground | ☐ | Text on destructive |
+| `--color-foreground` | UiColorTokens.foreground | ✅ | Default text color |
+| `--color-input` | UiColorTokens.input | ☐ | Input border color |
+| `--color-muted` | UiColorTokens.muted | ☐ | Muted/secondary text and borders |
+| `--color-muted-foreground` | UiColorTokens.mutedForeground | ☐ | Muted text |
+| `--color-popover` | UiColorTokens.popover | ☐ | Popover background |
+| `--color-popover-foreground` | UiColorTokens.popoverForeground | ☐ | Text on popover |
+| `--color-primary` | UiColorTokens.primary | ✅ | Primary brand color |
+| `--color-primary-foreground` | UiColorTokens.onPrimary | ☐ | Text/icon on primary surfaces |
+| `--color-secondary` | UiColorTokens.secondary | ☐ | Secondary background |
+| `--color-secondary-foreground` | UiColorTokens.secondaryForeground | ☐ | Text on secondary |
+| `--font-sans` | UiTypeTokens.fontFamilySans | ☐ | Default font family |
+| `--radius-lg` | UiRadiusTokens.lg | ✅ | Large corners for modals |
+| `--radius-md` | UiRadiusTokens.md | ✅ | Default corners for inputs/cards |
+| `--radius-sm` | UiRadiusTokens.sm | ✅ | Keeps button corner radius aligned |
+| `--ring` | UiFocusTokens.ringColor | ☐ | Focus ring color |
+| `--ring-offset` | _TODO_ | ☐ | Add tokens before shipping focus rings |
+| `--ring-offset-width` | UiFocusTokens.ringOffsetWidth | ☐ | Focus ring offset width |
+| `--shadow-md` | UiShadowTokens.md | ☐ | Default elevation |
+| `--shadow-sm` | UiShadowTokens.sm | ☐ | Small elevation |
+| `--spacing-1` | UiSpaceTokens.xs | ✅ | Base spacing scale mapping |
+| `--spacing-2` | UiSpaceTokens.sm | ✅ | Small spacing |
+| `--text-sm` | UiTypeTokens.textSm | ☐ | Small text size |
 
 <!-- END:token-mapping -->
 
@@ -78,12 +106,65 @@ This document defines the rules for building and evolving UI components in this 
 
 <!-- BEGIN:component-coverage -->
 
-| Component | Flutter widget | Status | Notes                                       |
-| --------- | -------------- | ------ | ------------------------------------------- |
-| Alert     | UiAlert        | ☐      | Pending implementation                      |
-| Badge     | _TODO_         | ☐      | Track design + tokens                       |
-| Button    | UiButton       | ✅     | Parity with solid/outline/ghost             |
-| Input     | UiTextField    | ⚙️     | Needs icon slot + error helper text mapping |
+| Component | Flutter widget | Status | Notes |
+| --- | --- | --- | --- |
+| Accordion | _TODO_ | ☐ | Single/multiple; animations; keyboard |
+| Alert | UiAlert | ☐ | Pending implementation |
+| Alert-dialog | _TODO_ | ☐ | Modal dialog variant with actions |
+| Aspect-ratio | _TODO_ | ☐ | Media containers maintain ratio |
+| Avatar | _TODO_ | ☐ | Initials/fallback; sizes; radius |
+| Badge | _TODO_ | ☐ | Track design + tokens |
+| Breadcrumb | _TODO_ | ☐ | Separators; overflow; accessibility |
+| Button | UiButton | ✅ | Parity with solid/outline/ghost |
+| Button-group | _TODO_ | ☐ | Grouped buttons; spacing; selection |
+| Calendar | _TODO_ | ☐ | Date grid; range; keyboard |
+| Card | _TODO_ | ☐ | Surface tokens; header/footer slots |
+| Carousel | _TODO_ | ☐ | Slides; controls; autoplay |
+| Chart | _TODO_ | ☐ | Tokens for colors/lines; accessibility |
+| Checkbox | _TODO_ | ☐ | States: checked/indeterminate/disabled; keyboard: Space |
+| Collapsible | _TODO_ | ☐ | Show/hide content; animations |
+| Combobox | _TODO_ | ☐ | Typeahead; async data; keyboard |
+| Command | _TODO_ | ☐ | Command palette; fuzzy search |
+| Context-menu | _TODO_ | ☐ | Right-click menu; shortcuts |
+| Data-table | _TODO_ | ☐ | Sorting, filtering, selection, pagination |
+| Date-picker | _TODO_ | ☐ | Single/range selection; keyboard; locales |
+| Dialog | _TODO_ | ☐ | Modal/non-modal; ARIA; focus trap; animations |
+| Drawer | _TODO_ | ☐ | Bottom sheet/drawer variant |
+| Dropdown-menu | _TODO_ | ☐ | Menu button; nested items |
+| File-input | _TODO_ | ☐ | Drag & drop; accept types; previews |
+| Form | _TODO_ | ☐ | Form wrapper and field context |
+| Hover-card | _TODO_ | ☐ | Hover-triggered info card; delay & placement |
+| Image | _TODO_ | ☐ | Responsive images; fallback |
+| Input | UiTextField | ☐ | Define icon slot, error/helper mapping, sizes |
+| Input-otp | _TODO_ | ☐ | Multi-field OTP; paste handling |
+| Kbd | _TODO_ | ☐ | Keyboard key badge |
+| Label | _TODO_ | ☐ | Form control labels |
+| Menubar | _TODO_ | ☐ | Top-level menus; keyboard |
+| Navigation-menu | _TODO_ | ☐ | Complex nav; indicators |
+| Pagination | _TODO_ | ☐ | Prev/next; page sizes |
+| Popover | _TODO_ | ☐ | Anchoring; escape to close; focus trap; portals |
+| Progress | _TODO_ | ☐ | Determinate/indeterminate; accessible labels |
+| Progress-circular | _TODO_ | ☐ | Circular progress variant |
+| Radio | _TODO_ | ☐ | Group behavior; focus management; keyboard: Arrow keys |
+| Radio-group | _TODO_ | ☐ | Managed group with roving tabindex |
+| Resizable | _TODO_ | ☐ | Split panes; drag handles |
+| Scroll-area | _TODO_ | ☐ | Custom scrollbars |
+| Select | _TODO_ | ☐ | Listbox w/ typeahead; sizes; disabled items; keyboard |
+| Separator | _TODO_ | ☐ | Horizontal/vertical lines |
+| Sheet | _TODO_ | ☐ | Bottom/side panels; overlay |
+| Sidebar | _TODO_ | ☐ | Collapsible navigation |
+| Skeleton | _TODO_ | ☐ | Animation tokens; radius variants |
+| Slider | _TODO_ | ☐ | Range; keyboard; marks; sizes |
+| Sonner | _TODO_ | ☐ | Toast library integration |
+| Steps | _TODO_ | ☐ | Wizard steps; progress |
+| Switch | _TODO_ | ☐ | Tokens for track/thumb; focus ring; keyboard: Space |
+| Table | _TODO_ | ☐ | Sortable; selectable; density; tokens |
+| Tabs | _TODO_ | ☐ | Keyboard: Arrow/Home/End; indicator; sizes |
+| Textarea | _TODO_ | ☐ | Auto-size; counters; error/helper mapping |
+| Toast | _TODO_ | ☐ | Stacking; auto-dismiss; focus management |
+| Toggle | _TODO_ | ☐ | Pressed state; icons; sizes |
+| Toggle-group | _TODO_ | ☐ | Group of toggle buttons |
+| Tooltip | _TODO_ | ☐ | Delay open/close; accessible labels; placement |
 
 <!-- END:component-coverage -->
 

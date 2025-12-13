@@ -11,6 +11,174 @@
       "uiToken": null,
       "status": "todo",
       "notes": "Add tokens before shipping focus rings"
+    },
+    {
+      "id": "--spacing-1",
+      "uiToken": "UiSpaceTokens.xs",
+      "status": "done",
+      "notes": "Base spacing scale mapping"
+    },
+    {
+      "id": "--spacing-2",
+      "uiToken": "UiSpaceTokens.sm",
+      "status": "done",
+      "notes": "Small spacing"
+    },
+    {
+      "id": "--radius-md",
+      "uiToken": "UiRadiusTokens.md",
+      "status": "done",
+      "notes": "Default corners for inputs/cards"
+    },
+    {
+      "id": "--radius-lg",
+      "uiToken": "UiRadiusTokens.lg",
+      "status": "done",
+      "notes": "Large corners for modals"
+    },
+    {
+      "id": "--color-primary",
+      "uiToken": "UiColorTokens.primary",
+      "status": "done",
+      "notes": "Primary brand color"
+    },
+    {
+      "id": "--color-primary-foreground",
+      "uiToken": "UiColorTokens.onPrimary",
+      "status": "todo",
+      "notes": "Text/icon on primary surfaces"
+    },
+    {
+      "id": "--color-background",
+      "uiToken": "UiColorTokens.background",
+      "status": "done",
+      "notes": "App background surface"
+    },
+    {
+      "id": "--color-muted",
+      "uiToken": "UiColorTokens.muted",
+      "status": "todo",
+      "notes": "Muted/secondary text and borders"
+    },
+    {
+      "id": "--ring",
+      "uiToken": "UiFocusTokens.ringColor",
+      "status": "todo",
+      "notes": "Focus ring color"
+    },
+    {
+      "id": "--ring-offset-width",
+      "uiToken": "UiFocusTokens.ringOffsetWidth",
+      "status": "todo",
+      "notes": "Focus ring offset width"
+    },
+    {
+      "id": "--shadow-sm",
+      "uiToken": "UiShadowTokens.sm",
+      "status": "todo",
+      "notes": "Small elevation"
+    },
+    {
+      "id": "--shadow-md",
+      "uiToken": "UiShadowTokens.md",
+      "status": "todo",
+      "notes": "Default elevation"
+    },
+    {
+      "id": "--font-sans",
+      "uiToken": "UiTypeTokens.fontFamilySans",
+      "status": "todo",
+      "notes": "Default font family"
+    },
+    {
+      "id": "--text-sm",
+      "uiToken": "UiTypeTokens.textSm",
+      "status": "todo",
+      "notes": "Small text size"
+    },
+    {
+      "id": "--color-foreground",
+      "uiToken": "UiColorTokens.foreground",
+      "status": "done",
+      "notes": "Default text color"
+    },
+    {
+      "id": "--color-card",
+      "uiToken": "UiColorTokens.card",
+      "status": "todo",
+      "notes": "Card background"
+    },
+    {
+      "id": "--color-card-foreground",
+      "uiToken": "UiColorTokens.cardForeground",
+      "status": "todo",
+      "notes": "Text on card"
+    },
+    {
+      "id": "--color-popover",
+      "uiToken": "UiColorTokens.popover",
+      "status": "todo",
+      "notes": "Popover background"
+    },
+    {
+      "id": "--color-popover-foreground",
+      "uiToken": "UiColorTokens.popoverForeground",
+      "status": "todo",
+      "notes": "Text on popover"
+    },
+    {
+      "id": "--color-secondary",
+      "uiToken": "UiColorTokens.secondary",
+      "status": "todo",
+      "notes": "Secondary background"
+    },
+    {
+      "id": "--color-secondary-foreground",
+      "uiToken": "UiColorTokens.secondaryForeground",
+      "status": "todo",
+      "notes": "Text on secondary"
+    },
+    {
+      "id": "--color-muted-foreground",
+      "uiToken": "UiColorTokens.mutedForeground",
+      "status": "todo",
+      "notes": "Muted text"
+    },
+    {
+      "id": "--color-accent",
+      "uiToken": "UiColorTokens.accent",
+      "status": "todo",
+      "notes": "Accent background"
+    },
+    {
+      "id": "--color-accent-foreground",
+      "uiToken": "UiColorTokens.accentForeground",
+      "status": "todo",
+      "notes": "Text on accent"
+    },
+    {
+      "id": "--color-destructive",
+      "uiToken": "UiColorTokens.destructive",
+      "status": "done",
+      "notes": "Destructive background (mapped to danger)"
+    },
+    {
+      "id": "--color-destructive-foreground",
+      "uiToken": "UiColorTokens.destructiveForeground",
+      "status": "todo",
+      "notes": "Text on destructive"
+    },
+    {
+      "id": "--color-border",
+      "uiToken": "UiColorTokens.border",
+      "status": "done",
+      "notes": "Default border color"
+    },
+    {
+      "id": "--color-input",
+      "uiToken": "UiColorTokens.input",
+      "status": "todo",
+      "notes": "Input border color"
     }
   ],
   "components": [
@@ -23,8 +191,8 @@
     {
       "id": "input",
       "widget": "UiTextField",
-      "status": "in-progress",
-      "notes": "Needs icon slot + error helper text mapping"
+      "status": "todo",
+      "notes": "Define icon slot, error/helper mapping, sizes"
     },
     {
       "id": "alert",
@@ -37,6 +205,325 @@
       "widget": null,
       "status": "todo",
       "notes": "Track design + tokens"
+    },
+    {
+      "id": "checkbox",
+      "widget": null,
+      "status": "todo",
+      "notes": "States: checked/indeterminate/disabled; keyboard: Space"
+    },
+    {
+      "id": "switch",
+      "widget": null,
+      "status": "todo",
+      "notes": "Tokens for track/thumb; focus ring; keyboard: Space"
+    },
+    {
+      "id": "radio",
+      "widget": null,
+      "status": "todo",
+      "notes": "Group behavior; focus management; keyboard: Arrow keys"
+    },
+    {
+      "id": "select",
+      "widget": null,
+      "status": "todo",
+      "notes": "Listbox w/ typeahead; sizes; disabled items; keyboard"
+    },
+    {
+      "id": "popover",
+      "widget": null,
+      "status": "todo",
+      "notes": "Anchoring; escape to close; focus trap; portals"
+    },
+    {
+      "id": "dialog",
+      "widget": null,
+      "status": "todo",
+      "notes": "Modal/non-modal; ARIA; focus trap; animations"
+    },
+    {
+      "id": "tooltip",
+      "widget": null,
+      "status": "todo",
+      "notes": "Delay open/close; accessible labels; placement"
+    },
+    {
+      "id": "alert-dialog",
+      "widget": null,
+      "status": "todo",
+      "notes": "Modal dialog variant with actions"
+    },
+    {
+      "id": "aspect-ratio",
+      "widget": null,
+      "status": "todo",
+      "notes": "Media containers maintain ratio"
+    },
+    {
+      "id": "avatar",
+      "widget": null,
+      "status": "todo",
+      "notes": "Initials/fallback; sizes; radius"
+    },
+    {
+      "id": "button-group",
+      "widget": null,
+      "status": "todo",
+      "notes": "Grouped buttons; spacing; selection"
+    },
+    {
+      "id": "calendar",
+      "widget": null,
+      "status": "todo",
+      "notes": "Date grid; range; keyboard"
+    },
+    {
+      "id": "carousel",
+      "widget": null,
+      "status": "todo",
+      "notes": "Slides; controls; autoplay"
+    },
+    {
+      "id": "chart",
+      "widget": null,
+      "status": "todo",
+      "notes": "Tokens for colors/lines; accessibility"
+    },
+    {
+      "id": "collapsible",
+      "widget": null,
+      "status": "todo",
+      "notes": "Show/hide content; animations"
+    },
+    {
+      "id": "combobox",
+      "widget": null,
+      "status": "todo",
+      "notes": "Typeahead; async data; keyboard"
+    },
+    {
+      "id": "command",
+      "widget": null,
+      "status": "todo",
+      "notes": "Command palette; fuzzy search"
+    },
+    {
+      "id": "context-menu",
+      "widget": null,
+      "status": "todo",
+      "notes": "Right-click menu; shortcuts"
+    },
+    {
+      "id": "dropdown-menu",
+      "widget": null,
+      "status": "todo",
+      "notes": "Menu button; nested items"
+    },
+    {
+      "id": "input-otp",
+      "widget": null,
+      "status": "todo",
+      "notes": "Multi-field OTP; paste handling"
+    },
+    {
+      "id": "kbd",
+      "widget": null,
+      "status": "todo",
+      "notes": "Keyboard key badge"
+    },
+    {
+      "id": "label",
+      "widget": null,
+      "status": "todo",
+      "notes": "Form control labels"
+    },
+    {
+      "id": "menubar",
+      "widget": null,
+      "status": "todo",
+      "notes": "Top-level menus; keyboard"
+    },
+    {
+      "id": "navigation-menu",
+      "widget": null,
+      "status": "todo",
+      "notes": "Complex nav; indicators"
+    },
+    {
+      "id": "pagination",
+      "widget": null,
+      "status": "todo",
+      "notes": "Prev/next; page sizes"
+    },
+    {
+      "id": "progress-circular",
+      "widget": null,
+      "status": "todo",
+      "notes": "Circular progress variant"
+    },
+    {
+      "id": "resizable",
+      "widget": null,
+      "status": "todo",
+      "notes": "Split panes; drag handles"
+    },
+    {
+      "id": "scroll-area",
+      "widget": null,
+      "status": "todo",
+      "notes": "Custom scrollbars"
+    },
+    {
+      "id": "separator",
+      "widget": null,
+      "status": "todo",
+      "notes": "Horizontal/vertical lines"
+    },
+    {
+      "id": "sheet",
+      "widget": null,
+      "status": "todo",
+      "notes": "Bottom/side panels; overlay"
+    },
+    {
+      "id": "sidebar",
+      "widget": null,
+      "status": "todo",
+      "notes": "Collapsible navigation"
+    },
+    {
+      "id": "sonner",
+      "widget": null,
+      "status": "todo",
+      "notes": "Toast library integration"
+    },
+    {
+      "id": "steps",
+      "widget": null,
+      "status": "todo",
+      "notes": "Wizard steps; progress"
+    },
+    {
+      "id": "hover-card",
+      "widget": null,
+      "status": "todo",
+      "notes": "Hover-triggered info card; delay & placement"
+    },
+    {
+      "id": "date-picker",
+      "widget": null,
+      "status": "todo",
+      "notes": "Single/range selection; keyboard; locales"
+    },
+    {
+      "id": "data-table",
+      "widget": null,
+      "status": "todo",
+      "notes": "Sorting, filtering, selection, pagination"
+    },
+    {
+      "id": "toggle",
+      "widget": null,
+      "status": "todo",
+      "notes": "Pressed state; icons; sizes"
+    },
+    {
+      "id": "radio-group",
+      "widget": null,
+      "status": "todo",
+      "notes": "Managed group with roving tabindex"
+    },
+    {
+      "id": "file-input",
+      "widget": null,
+      "status": "todo",
+      "notes": "Drag & drop; accept types; previews"
+    },
+    {
+      "id": "image",
+      "widget": null,
+      "status": "todo",
+      "notes": "Responsive images; fallback"
+    },
+
+    {
+      "id": "tabs",
+      "widget": null,
+      "status": "todo",
+      "notes": "Keyboard: Arrow/Home/End; indicator; sizes"
+    },
+    {
+      "id": "accordion",
+      "widget": null,
+      "status": "todo",
+      "notes": "Single/multiple; animations; keyboard"
+    },
+    {
+      "id": "breadcrumb",
+      "widget": null,
+      "status": "todo",
+      "notes": "Separators; overflow; accessibility"
+    },
+    {
+      "id": "card",
+      "widget": null,
+      "status": "todo",
+      "notes": "Surface tokens; header/footer slots"
+    },
+    {
+      "id": "skeleton",
+      "widget": null,
+      "status": "todo",
+      "notes": "Animation tokens; radius variants"
+    },
+    {
+      "id": "toast",
+      "widget": null,
+      "status": "todo",
+      "notes": "Stacking; auto-dismiss; focus management"
+    },
+    {
+      "id": "progress",
+      "widget": null,
+      "status": "todo",
+      "notes": "Determinate/indeterminate; accessible labels"
+    },
+    {
+      "id": "slider",
+      "widget": null,
+      "status": "todo",
+      "notes": "Range; keyboard; marks; sizes"
+    },
+    {
+      "id": "textarea",
+      "widget": null,
+      "status": "todo",
+      "notes": "Auto-size; counters; error/helper mapping"
+    },
+    {
+      "id": "table",
+      "widget": null,
+      "status": "todo",
+      "notes": "Sortable; selectable; density; tokens"
+    },
+    {
+      "id": "drawer",
+      "widget": null,
+      "status": "todo",
+      "notes": "Bottom sheet/drawer variant"
+    },
+    {
+      "id": "toggle-group",
+      "widget": null,
+      "status": "todo",
+      "notes": "Group of toggle buttons"
+    },
+    {
+      "id": "form",
+      "widget": null,
+      "status": "todo",
+      "notes": "Form wrapper and field context"
     }
   ]
 }

@@ -28,7 +28,7 @@
     {
       "label": "showcase: run",
       "type": "shell",
-      "command": "dart run melos run showcase:run",
+      "command": "dart run melos run showcase:run:windows",
       "problemMatcher": []
     }
   ]
