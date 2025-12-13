@@ -6,6 +6,7 @@ import 'demos/avatar_demo.dart';
 import 'demos/badge_demo.dart';
 import 'demos/button_demo.dart';
 import 'demos/card_demo.dart';
+import 'demos/form_field_demo.dart';
 import 'demos/input_additional_demo.dart';
 import 'demos/input_controls_demo.dart';
 import 'demos/input_demo.dart';
@@ -99,6 +100,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
       icon: Icons.dashboard,
       demo: const LayoutPrimitivesDemo(),
     ),
+    (label: 'Form Field', icon: Icons.input, demo: const FormFieldDemo()),
   ];
 
   @override
