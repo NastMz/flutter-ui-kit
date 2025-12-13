@@ -14,43 +14,130 @@ This roadmap defines **intentional phases**. Skipping phases is discouraged.
 
 ---
 
-## Phase 1 — Foundations (CURRENT)
+## Phase 1 — Foundations (DONE)
 
 Goal: Establish a stable visual language.
 
 Deliverables:
 
-- Design tokens (color, spacing, typography, radius)
-- Theme infrastructure
-- Light/Dark theme support
-- Token preview in showcase
+- [x] Design tokens (color, spacing, typography, radius)
+- [x] Theme infrastructure
+- [x] Light/Dark theme support
+- [x] Token preview in showcase
 
 ---
 
-## Phase 2 — Core Components
+## Phase 2 — Core Components (CURRENT)
 
-Goal: Validate the system with high-impact components.
+Goal: Validate the system with high-impact components and reduce friction in component consumption.
 
 Initial components:
 
-- Button
-- Input / TextField
-- Card / Surface
+- [x] Button
+- [x] Input / TextField
+- [x] Card / Surface
+
+Layout Basics (ADD):
+
+- [ ] Stack primitives v1 (VStack, HStack, WrapStack)
+- [ ] Inset / Spacing helpers (UiInset, UiGap)
+- [ ] Typography recipes (UiText)
+- [ ] Showcase demos refactor (Replace SizedBox/inline styles)
+
+Definition of Done (Layout Basics):
+
+- 80% of core demos without SizedBox for spacing.
+- Spacing sizes use tokens.
+- UiText covers basic styles without copyWith.
+
+Pending Core Components (from manifest):
+
+- [ ] Badge
+- [ ] Avatar
+- [ ] Separator
+- [ ] Skeleton
+- [ ] Label
+- [ ] Checkbox
+- [ ] Switch
+- [ ] Radio Group
+- [ ] Textarea
 
 Focus:
 
-- States (hover, pressed, disabled)
-- Accessibility
-- Consistent API surface
+- [x] States (hover, pressed, disabled)
+- [ ] Accessibility
+- [x] Consistent API surface
 
 ---
 
 ## Phase 3 — Expansion
 
-- Layout primitives
-- Feedback components (toast, alert)
-- Icons integration
-- Motion tokens
+Goal: Complex interactive components, layout primitives, and reusable patterns.
+
+### Phase 3A — Layout Primitives
+
+- [ ] UiBox (The "CSS container")
+- [ ] UiStack / UiPositioned sugar
+- [ ] Divider/Separator layout rules
+- [ ] Responsive helpers
+
+Definition of Done:
+
+- Any surface can be built without repeated Container/Padding/DefaultTextStyle.
+- Controlled layout without CSS-like cascades.
+- Escape hatch: accept native Widget in any slot.
+
+### Phase 3B — Layout Patterns
+
+- [ ] Page Scaffolds (UiPage, UiSection)
+- [ ] Form patterns (UiFormField / FieldGroup)
+- [ ] List patterns (UiList, UiListItem)
+
+Definition of Done:
+
+- Complex demos (Dialog, Sheet, Form) built without excessive "widget glue".
+- Patterns documented with showcase examples.
+
+### Phase 3C — Interactive Components
+
+- [ ] Accordion
+- [ ] Alert
+- [ ] Alert Dialog
+- [ ] Aspect Ratio
+- [ ] Breadcrumb
+- [ ] Calendar
+- [ ] Carousel
+- [ ] Chart
+- [ ] Collapsible
+- [ ] Combobox
+- [ ] Command
+- [ ] Context Menu
+- [ ] Data Table
+- [ ] Date Picker
+- [ ] Dialog
+- [ ] Drawer
+- [ ] Dropdown Menu
+- [ ] Form
+- [ ] Hover Card
+- [ ] Input OTP
+- [ ] Menubar
+- [ ] Navigation Menu
+- [ ] Pagination
+- [ ] Popover
+- [ ] Progress
+- [ ] Resizable
+- [ ] Scroll Area
+- [ ] Select
+- [ ] Sheet
+- [ ] Sidebar
+- [ ] Slider
+- [ ] Sonner / Toast
+- [ ] Steps
+- [ ] Table
+- [ ] Tabs
+- [ ] Toggle
+- [ ] Toggle Group
+- [ ] Tooltip
 
 ---
 
