@@ -1,0 +1,42 @@
+{
+  "tokens": [
+    {
+      "id": "--radius-sm",
+      "uiToken": "UiRadiusTokens.sm",
+      "status": "done",
+      "notes": "Keeps button corner radius aligned"
+    },
+    {
+      "id": "--ring-offset",
+      "uiToken": null,
+      "status": "todo",
+      "notes": "Add tokens before shipping focus rings"
+    }
+  ],
+  "components": [
+    {
+      "id": "button",
+      "widget": "UiButton",
+      "status": "done",
+      "notes": "Parity with solid/outline/ghost"
+    },
+    {
+      "id": "input",
+      "widget": "UiTextField",
+      "status": "in-progress",
+      "notes": "Needs icon slot + error helper text mapping"
+    },
+    {
+      "id": "alert",
+      "widget": "UiAlert",
+      "status": "todo",
+      "notes": "Pending implementation"
+    },
+    {
+      "id": "badge",
+      "widget": null,
+      "status": "todo",
+      "notes": "Track design + tokens"
+    }
+  ]
+}
