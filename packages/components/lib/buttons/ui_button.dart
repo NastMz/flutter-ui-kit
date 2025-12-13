@@ -31,11 +31,13 @@ class UiButton extends StatelessWidget {
     final border = _border(ui);
     final overlay = _overlay(ui);
     final textStyle = _textStyle(ui);
+    final minimumSize = _minimumSize(ui);
 
     return TextButton(
       onPressed: onPressed,
       style: ButtonStyle(
         padding: WidgetStatePropertyAll(padding),
+        minimumSize: WidgetStatePropertyAll(minimumSize),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         ),
@@ -52,26 +54,37 @@ class UiButton extends StatelessWidget {
 
   EdgeInsets _padding(UiThemeData ui) {
     return switch (size) {
-      UiButtonSize.sm => EdgeInsets.symmetric(
-        horizontal: ui.spacing.md,
-        vertical: 0,
-      ),
-      UiButtonSize.md => EdgeInsets.symmetric(
-        horizontal: ui.spacing.lg,
-        vertical: ui.spacing.sm,
-      ),
+      UiButtonSize.sm => EdgeInsets.symmetric(horizontal: ui.spacing.md),
+      UiButtonSize.md => EdgeInsets.symmetric(horizontal: ui.spacing.lg),
       UiButtonSize.lg => EdgeInsets.symmetric(
-        horizontal: ui.spacing.xl,
-        vertical: ui.spacing.md,
-      ),
-      UiButtonSize.icon => EdgeInsets.all(ui.spacing.sm),
+        horizontal: ui.spacing.xl * 1.33,
+      ), // approx 32
+      UiButtonSize.icon => EdgeInsets.zero,
+    };
+  }
+
+  Size _minimumSize(UiThemeData ui) {
+    return switch (size) {
+      UiButtonSize.sm => const Size(0, 36),
+      UiButtonSize.md => const Size(0, 40),
+      UiButtonSize.lg => const Size(0, 44),
+      UiButtonSize.icon => const Size(40, 40),
     };
   }
 
   WidgetStateProperty<TextStyle?> _textStyle(UiThemeData ui) {
-    return WidgetStatePropertyAll(
-      ui.typography.textSm.copyWith(fontWeight: FontWeight.w500),
-    );
+    return WidgetStateProperty.resolveWith((states) {
+      final baseStyle = ui.typography.textSm.copyWith(
+        fontWeight: FontWeight.w500,
+      );
+
+      if (variant == UiButtonVariant.link &&
+          states.contains(WidgetState.hovered)) {
+        return baseStyle.copyWith(decoration: TextDecoration.underline);
+      }
+
+      return baseStyle;
+    });
   }
 
   WidgetStateProperty<double?> _elevation(UiThemeData ui) {
@@ -122,7 +135,10 @@ class UiButton extends StatelessWidget {
         UiButtonVariant.secondary => ui.colors.onSecondary,
         UiButtonVariant.destructive => ui.colors.destructiveForeground,
         UiButtonVariant.outline => ui.colors.primary, // Usually foreground
-        UiButtonVariant.ghost => ui.colors.primary,
+        UiButtonVariant.ghost =>
+          states.contains(WidgetState.hovered)
+              ? ui.colors.accentForeground
+              : ui.colors.primary,
         UiButtonVariant.link => ui.colors.primary,
       };
     });
