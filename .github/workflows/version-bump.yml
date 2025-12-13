@@ -1,0 +1,46 @@
+name: Version Bump
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "packages/*/CHANGELOG.md"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    version-bump:
+        name: Bump Versions
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Dart
+              uses: dart-lang/setup-dart@v1
+
+            - name: Run version bump script
+              run: dart tooling/version_bump.dart .
+
+            - name: Check for changes
+              id: git-check
+              run: |
+                  if git diff --exit-code --quiet; then
+                    echo "has-changes=false" >> $GITHUB_OUTPUT
+                  else
+                    echo "has-changes=true" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Commit and Push
+              if: steps.git-check.outputs.has-changes == 'true'
+              run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Actions"
+                  git add packages/*/pubspec.yaml
+                  git commit -m "chore: bump versions from CHANGELOG"
+                  git push
