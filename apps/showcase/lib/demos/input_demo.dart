@@ -21,6 +21,11 @@ class InputDemo extends StatelessWidget {
             placeholder: 'With Label',
             controller: TextEditingController(text: 'Initial Value'),
           ),
+          const SizedBox(height: 16),
+          const UiTextField(
+            placeholder: 'With Error',
+            errorText: 'Invalid email address',
+          ),
         ],
       ),
     );
