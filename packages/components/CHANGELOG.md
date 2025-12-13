@@ -1,3 +1,24 @@
+## 0.0.4
+
+### Added
+
+- **Additional Input Components**
+
+  - `UiLabel`: Form label with required indicator and hint text
+  - `UiTextarea`: Multi-line text input with configurable min/max lines
+
+- **Layout Components**
+
+  - `UiSeparator`: Horizontal or vertical divider with token-based styling
+
+- **Showcase Demos**
+  - Added `input_additional_demo.dart` showcasing Label, Textarea, and Separator
+
+### Changed
+
+- Textarea maintains same styling consistency as UiTextField
+- Separator supports both directions (horizontal/vertical)
+
 ## 0.0.3
 
 ### Added

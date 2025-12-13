@@ -6,6 +6,7 @@ import 'demos/avatar_demo.dart';
 import 'demos/badge_demo.dart';
 import 'demos/button_demo.dart';
 import 'demos/card_demo.dart';
+import 'demos/input_additional_demo.dart';
 import 'demos/input_controls_demo.dart';
 import 'demos/input_demo.dart';
 
@@ -81,6 +82,11 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
       label: 'Input Controls',
       icon: Icons.check_box,
       demo: const InputControlsDemo(),
+    ),
+    (
+      label: 'Input Additional',
+      icon: Icons.text_fields,
+      demo: const InputAdditionalDemo(),
     ),
     (label: 'Cards', icon: Icons.web_asset, demo: const CardDemo()),
     (label: 'Badge', icon: Icons.label, demo: const BadgeDemo()),
