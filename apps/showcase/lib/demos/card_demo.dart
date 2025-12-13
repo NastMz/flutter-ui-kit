@@ -6,7 +6,7 @@ class CardDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return UiBox(
       width: 350,
       child: UiCard(
         child: VStack(

@@ -20,7 +20,7 @@ class _InputControlsDemoState extends State<InputControlsDemo> {
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
 
-    return SizedBox(
+    return UiBox(
       width: 400,
       child: VStack(
         crossAxisAlignment: CrossAxisAlignment.start,

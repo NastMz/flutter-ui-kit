@@ -1,3 +1,39 @@
+## 0.0.6
+
+### Added
+
+- **Phase 3A — Layout Primitives (Complete)**
+
+  - `UiSpacer`: Flexible or fixed spacing widget
+
+    - Fixed spacing using UiSpacing tokens
+    - Flexible spacing with customizable flex factor
+    - Works in both row and column contexts
+
+  - `UiResponsive`: Show widget on specific screen sizes
+
+    - Show above breakpoint
+    - Show below breakpoint
+    - Optional fallback widget
+
+  - `UiHidden`: Hide widget on specific screen sizes
+
+    - Hide below breakpoint
+    - Hide above breakpoint
+
+  - `UiBreakpoints`: Responsive breakpoint constants
+    - Small (640px)
+    - Medium (1024px)
+    - Large (1280px)
+    - Extra Large (1536px)
+
+- **Showcase Demos**
+  - Added `layout_primitives_demo.dart` showcasing Spacer and Responsive
+
+### Changed
+
+- Phase 3A is now complete with full layout primitive support
+
 ## 0.0.5
 
 ### Added

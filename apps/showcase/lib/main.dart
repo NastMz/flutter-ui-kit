@@ -9,6 +9,7 @@ import 'demos/card_demo.dart';
 import 'demos/input_additional_demo.dart';
 import 'demos/input_controls_demo.dart';
 import 'demos/input_demo.dart';
+import 'demos/layout_primitives_demo.dart';
 import 'demos/ui_box_demo.dart';
 
 void main() {
@@ -93,6 +94,11 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
     (label: 'Badge', icon: Icons.label, demo: const BadgeDemo()),
     (label: 'Avatar', icon: Icons.person, demo: const AvatarDemo()),
     (label: 'Box', icon: Icons.border_all, demo: const UiBoxDemo()),
+    (
+      label: 'Layout Primitives',
+      icon: Icons.dashboard,
+      demo: const LayoutPrimitivesDemo(),
+    ),
   ];
 
   @override
@@ -143,7 +149,7 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
                 _selectedIndex = index;
               });
             },
-            labelType: NavigationRailLabelType.all,
+            labelType: NavigationRailLabelType.selected,
             backgroundColor: ui.colors.background,
             indicatorColor: ui.colors.primary.withValues(alpha: 0.1),
             destinations: _demos.map((demo) {
@@ -155,29 +161,30 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
           ),
           const VerticalDivider(thickness: 1, width: 1),
           Expanded(
-            child: Container(
-              color: ui.colors.background,
+            child: UiBox(
+              backgroundColor: ui.colors.background,
               child: Center(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(32),
-                  child: VStack(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      UiText.h2(_demos[_selectedIndex].label),
-                      const UiGap(UiSpacing.sm),
-                      const UiText.muted('Component demonstration'),
-                      const UiGap.manual(32),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: ui.colors.border),
-                          borderRadius: BorderRadius.circular(ui.radius.lg),
+                  child: UiInset(
+                    all: UiSpacing.xl,
+                    child: VStack(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        UiText.h2(_demos[_selectedIndex].label),
+                        const UiGap(UiSpacing.sm),
+                        const UiText.muted('Component demonstration'),
+                        const UiGap.manual(32),
+                        UiBox(
+                          borderColor: ui.colors.border,
+                          borderWidth: 1,
+                          borderRadius: ui.radius.lg,
+                          child: UiInset(
+                            all: UiSpacing.xl,
+                            child: _demos[_selectedIndex].demo,
+                          ),
                         ),
-                        child: UiInset(
-                          all: UiSpacing.xl,
-                          child: _demos[_selectedIndex].demo,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -67,22 +67,23 @@ Completed:
 
 ---
 
-## Phase 3 — Expansion (CURRENT)
+## Phase 3 — Expansion (IN PROGRESS)
 
 Goal: Complex interactive components, layout primitives, and reusable patterns.
 
-### Phase 3A — Layout Primitives
+### Phase 3A — Layout Primitives (DONE)
 
-- [ ] UiBox (The "CSS container")
-- [ ] UiStack / UiPositioned sugar
-- [ ] Divider/Separator layout rules
-- [ ] Responsive helpers
+- [x] UiBox (The "CSS container")
+- [x] UiStack / UiPositioned sugar
+- [x] Divider/Separator layout rules
+- [x] Responsive helpers (UiResponsive, UiHidden, UiBreakpoints)
+- [x] UiSpacer (flexible and fixed spacing)
 
 Definition of Done:
 
-- Any surface can be built without repeated Container/Padding/DefaultTextStyle.
-- Controlled layout without CSS-like cascades.
-- Escape hatch: accept native Widget in any slot.
+- Any surface can be built without repeated Container/Padding/DefaultTextStyle. ✅
+- Controlled layout without CSS-like cascades. ✅
+- Escape hatch: accept native Widget in any slot. ✅
 
 ### Phase 3B — Layout Patterns
 

@@ -6,7 +6,7 @@ class InputDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return UiBox(
       width: 400,
       child: VStack(
         crossAxisAlignment: CrossAxisAlignment.start,
