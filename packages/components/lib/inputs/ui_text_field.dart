@@ -5,6 +5,7 @@ class UiTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final String? hintText;
+  final String? placeholder;
   final String? helperText;
   final String? errorText;
   final bool enabled;
@@ -17,6 +18,7 @@ class UiTextField extends StatelessWidget {
     this.controller,
     this.label,
     this.hintText,
+    this.placeholder,
     this.helperText,
     this.errorText,
     this.enabled = true,
@@ -48,7 +50,7 @@ class UiTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: ui.typography.textSm.copyWith(color: mutedColor),
-        hintText: hintText,
+        hintText: placeholder ?? hintText,
         hintStyle: ui.typography.textSm.copyWith(color: mutedColor),
         helperText: helperText,
         helperStyle: ui.typography.textSm.copyWith(color: mutedColor),

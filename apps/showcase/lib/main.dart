@@ -1,274 +1,113 @@
-import 'package:flutter/material.dart';
 import 'package:core/core.dart';
-import 'package:components/components.dart';
+import 'package:flutter/material.dart';
+import 'demos/button_demo.dart';
+import 'demos/card_demo.dart';
+import 'demos/input_demo.dart';
 
 void main() {
   runApp(const ShowcaseApp());
 }
 
-class ShowcaseApp extends StatefulWidget {
+class ShowcaseApp extends StatelessWidget {
   const ShowcaseApp({super.key});
 
   @override
-  State<ShowcaseApp> createState() => _ShowcaseAppState();
-}
-
-class _ShowcaseAppState extends State<ShowcaseApp> {
-  bool _dark = false;
-
-  @override
   Widget build(BuildContext context) {
-    final ui = _dark ? UiThemeData.dark() : UiThemeData.light();
-    final base = ThemeData(useMaterial3: true);
-
     return MaterialApp(
+      title: 'Flutter UI Kit Showcase',
       debugShowCheckedModeBanner: false,
-      theme: UiTheme.applyTo(base, ui),
-      home: ShowcaseHome(
-        dark: _dark,
-        onToggleDark: (v) => setState(() => _dark = v),
+      theme: UiTheme.applyTo(
+        ThemeData(
+          fontFamily: 'GeistSans',
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        ),
+        UiThemeData.light(),
       ),
+      home: const ShowcaseHome(),
     );
   }
 }
 
-class ShowcaseHome extends StatelessWidget {
-  final bool dark;
-  final ValueChanged<bool> onToggleDark;
+class ShowcaseHome extends StatefulWidget {
+  const ShowcaseHome({super.key});
 
-  const ShowcaseHome({
-    super.key,
-    required this.dark,
-    required this.onToggleDark,
-  });
+  @override
+  State<ShowcaseHome> createState() => _ShowcaseHomeState();
+}
+
+class _ShowcaseHomeState extends State<ShowcaseHome> {
+  int _selectedIndex = 0;
+
+  final List<({String label, IconData icon, Widget demo})> _demos = [
+    (label: 'Buttons', icon: Icons.smart_button, demo: const ButtonDemo()),
+    (label: 'Inputs', icon: Icons.input, demo: const InputDemo()),
+    (label: 'Cards', icon: Icons.web_asset, demo: const CardDemo()),
+  ];
 
   @override
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
-    final sections = _buildSections(context, ui);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter UI Kit — Showcase'),
-        actions: [
-          Row(
-            children: [
-              const Text('Dark'),
-              Switch(value: dark, onChanged: onToggleDark),
-              const SizedBox(width: 8),
-            ],
+      backgroundColor: ui.colors.background,
+      body: Row(
+        children: [
+          NavigationRail(
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: (int index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            labelType: NavigationRailLabelType.all,
+            backgroundColor: ui.colors.background,
+            indicatorColor: ui.colors.primary.withValues(alpha: 0.1),
+            destinations: _demos.map((demo) {
+              return NavigationRailDestination(
+                icon: Icon(demo.icon),
+                label: Text(demo.label),
+              );
+            }).toList(),
           ),
-        ],
-      ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(16),
-        itemBuilder: (context, index) => sections[index],
-        separatorBuilder: (context, index) => const SizedBox(height: 24),
-        itemCount: sections.length,
-      ),
-    );
-  }
-
-  List<Widget> _buildSections(BuildContext context, UiThemeData ui) {
-    return [
-      ShowcaseSection(
-        title: 'Theme Preview',
-        description: 'Core tokens applied to base surfaces.',
-        child: Column(
-          children: [
-            _ColorTile(label: 'background', color: ui.colors.background),
-            _ColorTile(label: 'foreground', color: ui.colors.foreground),
-            _ColorTile(label: 'primary', color: ui.colors.primary),
-            _ColorTile(label: 'border', color: ui.colors.border),
-          ],
-        ),
-      ),
-      ShowcaseSection(
-        title: 'Sample Surface',
-        description: 'Use this to validate elevation, borders, and copy.',
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: ui.colors.background,
-            border: Border.all(color: ui.colors.border),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            'If you can toggle dark/light and these colors change, '
-            'the theme infrastructure is wired correctly.',
-            style: TextStyle(color: ui.colors.foreground),
-          ),
-        ),
-      ),
-      ShowcaseSection(
-        title: 'Buttons',
-        description:
-            'Variants share tokens; add your own by extending UiButton.',
-        child: Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            UiButton(onPressed: () {}, child: const Text('Primary / MD')),
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.secondary,
-              child: const Text('Secondary'),
-            ),
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.destructive,
-              child: const Text('Destructive'),
-            ),
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.outline,
-              child: const Text('Outline'),
-            ),
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.ghost,
-              child: const Text('Ghost'),
-            ),
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.link,
-              child: const Text('Link'),
-            ),
-            UiButton(onPressed: null, child: const Text('Disabled')),
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.sm,
-              child: const Text('SM'),
-            ),
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.lg,
-              child: const Text('LG'),
-            ),
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.icon,
-              child: const Icon(Icons.add, size: 16),
-            ),
-          ],
-        ),
-      ),
-      ShowcaseSection(
-        title: 'Cards',
-        child: Column(
-          children: const [
-            UiCard(
-              child: Text(
-                'Default card using tokens (background/border/radius/spacing/shadow).',
+          const VerticalDivider(thickness: 1, width: 1),
+          Expanded(
+            child: Container(
+              color: ui.colors.background,
+              child: Center(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _demos[_selectedIndex].label,
+                        style: ui.typography.headline,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Component demonstration',
+                        style: ui.typography.textSm.copyWith(
+                          color: ui.colors.mutedForeground,
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      Container(
+                        padding: const EdgeInsets.all(32),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: ui.colors.border),
+                          borderRadius: BorderRadius.circular(ui.radius.lg),
+                        ),
+                        child: _demos[_selectedIndex].demo,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-            SizedBox(height: 12),
-            UiCard(
-              padding: UiCardPadding.lg,
-              child: Text('Card with large padding.'),
-            ),
-          ],
-        ),
-      ),
-      ShowcaseSection(
-        title: 'Inputs',
-        child: Column(
-          children: const [
-            UiTextField(
-              label: 'Email',
-              hintText: 'you@example.com',
-              helperText: 'This is a helper text',
-            ),
-            SizedBox(height: 12),
-            UiTextField(
-              label: 'Disabled',
-              hintText: 'Disabled field',
-              enabled: false,
-            ),
-            SizedBox(height: 12),
-            UiTextField(
-              label: 'Error',
-              hintText: 'Bad value',
-              errorText: 'This is an error message',
-            ),
-          ],
-        ),
-      ),
-    ];
-  }
-}
-
-class _ColorTile extends StatelessWidget {
-  final String label;
-  final Color color;
-
-  const _ColorTile({required this.label, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    final ui = UiTheme.of(context);
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        border: Border.all(color: ui.colors.border),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: color,
-              border: Border.all(color: ui.colors.border),
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(label, style: TextStyle(color: ui.colors.foreground)),
-          ),
-          Text(
-            '#${color.toARGB32().toRadixString(16).padLeft(8, '0').toUpperCase()}',
-            style: TextStyle(
-              color: ui.colors.foreground.withValues(alpha: 0.8),
-            ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class ShowcaseSection extends StatelessWidget {
-  final String title;
-  final Widget child;
-  final String? description;
-
-  const ShowcaseSection({
-    super.key,
-    required this.title,
-    required this.child,
-    this.description,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title, style: textTheme.titleMedium),
-        if (description != null) ...[
-          const SizedBox(height: 4),
-          Text(description!, style: textTheme.bodyMedium),
-        ],
-        const SizedBox(height: 12),
-        child,
-      ],
     );
   }
 }
