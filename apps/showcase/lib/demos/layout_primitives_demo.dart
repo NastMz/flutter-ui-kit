@@ -63,23 +63,18 @@ class LayoutPrimitivesDemo extends StatelessWidget {
                       alpha: 0.1,
                     ),
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       '❌ Hidden (screen < 1024px)',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.destructiveForeground,
-                      ),
+                      style: TextStyle(color: ui.colors.destructiveForeground),
                     ),
                   ),
                   child: UiBox(
                     padding: UiSpacing.md,
                     backgroundColor: ui.colors.primary.withValues(alpha: 0.1),
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       '✓ Visible (screen ≥ 1024px)',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: TextStyle(color: ui.colors.primary),
                     ),
                   ),
                 ),
@@ -89,11 +84,9 @@ class LayoutPrimitivesDemo extends StatelessWidget {
                     padding: UiSpacing.md,
                     backgroundColor: ui.colors.accent.withValues(alpha: 0.1),
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       '✓ Hidden when screen < 640px',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.accentForeground,
-                      ),
+                      style: TextStyle(color: ui.colors.accentForeground),
                     ),
                   ),
                 ),
@@ -166,13 +159,7 @@ class _Badge extends StatelessWidget {
       padding: UiSpacing.sm,
       backgroundColor: ui.colors.primary,
       borderRadius: ui.radius.sm,
-      child: Text(
-        text,
-        style: ui.typography.textSm.copyWith(
-          color: ui.colors.onPrimary,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      child: UiText.small(text, style: TextStyle(color: ui.colors.onPrimary)),
     );
   }
 }
@@ -194,32 +181,10 @@ class _BreakpointRow extends StatelessWidget {
       borderRadius: ui.radius.sm,
       child: HStack(
         children: [
-          UiBox(
-            width: 40,
-            child: Text(
-              label,
-              style: ui.typography.textSm.copyWith(
-                fontWeight: FontWeight.w600,
-                fontFamily: 'monospace',
-              ),
-            ),
-          ),
-          UiBox(
-            width: 60,
-            child: Text(
-              '${value.toInt()}px',
-              style: ui.typography.textSm.copyWith(
-                color: ui.colors.mutedForeground,
-              ),
-            ),
-          ),
+          UiBox(width: 40, child: UiText.small(label)),
+          UiBox(width: 60, child: UiText.muted('${value.toInt()}px')),
           UiSpacer(),
-          Text(
-            description,
-            style: ui.typography.textSm.copyWith(
-              color: ui.colors.mutedForeground,
-            ),
-          ),
+          UiText.muted(description),
         ],
       ),
     );

@@ -51,7 +51,7 @@ class ButtonDemo extends StatelessWidget {
             child: UiButton(
               onPressed: () {},
               variant: variant,
-              child: Text(label),
+              child: UiText.p(label),
             ),
           ),
         ),
@@ -62,7 +62,7 @@ class ButtonDemo extends StatelessWidget {
             child: UiButton(
               onPressed: null,
               variant: variant,
-              child: Text(label),
+              child: UiText.p(label),
             ),
           ),
         ),
@@ -77,26 +77,29 @@ class ButtonDemo extends StatelessWidget {
       gap: UiSpacing.sm,
       children: [
         const UiText.muted('Sizes'),
-        HStack(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          gap: UiSpacing.sm,
-          children: [
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.sm,
-              child: const Text('Small'),
-            ),
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.md,
-              child: const Text('Default'),
-            ),
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.lg,
-              child: const Text('Large'),
-            ),
-          ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: HStack(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            gap: UiSpacing.sm,
+            children: [
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.sm,
+                child: const UiText.p('Small'),
+              ),
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.md,
+                child: const UiText.p('Default'),
+              ),
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.lg,
+                child: const UiText.p('Large'),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -109,55 +112,67 @@ class ButtonDemo extends StatelessWidget {
       gap: UiSpacing.sm,
       children: [
         const UiText.muted('Icon'),
-        HStack(
-          gap: UiSpacing.sm,
-          children: [
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.icon,
-              variant: UiButtonVariant.outline,
-              child: const Icon(Icons.chevron_right, size: 16),
-            ),
-            UiButton(
-              onPressed: () {},
-              size: UiButtonSize.icon,
-              variant: UiButtonVariant.ghost,
-              child: const Icon(Icons.more_horiz, size: 16),
-            ),
-          ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: HStack(
+            gap: UiSpacing.sm,
+            children: [
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.icon,
+                variant: UiButtonVariant.outline,
+                child: const Icon(Icons.chevron_right, size: 16),
+              ),
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.icon,
+                variant: UiButtonVariant.ghost,
+                child: const Icon(Icons.more_horiz, size: 16),
+              ),
+            ],
+          ),
         ),
         // Icon + text example
-        HStack(
-          gap: UiSpacing.sm,
-          children: [
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.primary,
-              child: HStack(
-                gap: UiSpacing.xs,
-                children: const [
-                  Icon(Icons.download, size: 16),
-                  Text('Download'),
-                ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: HStack(
+            gap: UiSpacing.sm,
+            children: [
+              UiButton(
+                onPressed: () {},
+                variant: UiButtonVariant.primary,
+                child: HStack(
+                  gap: UiSpacing.xs,
+                  children: const [
+                    Icon(Icons.download, size: 16),
+                    UiText.p('Download'),
+                  ],
+                ),
               ),
-            ),
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.outline,
-              child: HStack(
-                gap: UiSpacing.xs,
-                children: const [Icon(Icons.edit, size: 16), Text('Edit')],
+              UiButton(
+                onPressed: () {},
+                variant: UiButtonVariant.outline,
+                child: HStack(
+                  gap: UiSpacing.xs,
+                  children: const [
+                    Icon(Icons.edit, size: 16),
+                    UiText.p('Edit'),
+                  ],
+                ),
               ),
-            ),
-            UiButton(
-              onPressed: () {},
-              variant: UiButtonVariant.link,
-              child: HStack(
-                gap: UiSpacing.xs,
-                children: const [Icon(Icons.link, size: 16), Text('View docs')],
+              UiButton(
+                onPressed: () {},
+                variant: UiButtonVariant.link,
+                child: HStack(
+                  gap: UiSpacing.xs,
+                  children: const [
+                    Icon(Icons.link, size: 16),
+                    UiText.p('View docs'),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

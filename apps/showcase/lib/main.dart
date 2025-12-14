@@ -113,91 +113,84 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
 
+    // Navigation sidebar (Note: NavigationRail from Flutter, waiting for UiSidebar in Phase 3C)
+    final sidebar = NavigationRail(
+      selectedIndex: _selectedIndex,
+      onDestinationSelected: (int index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      labelType: NavigationRailLabelType.selected,
+      backgroundColor: ui.colors.background,
+      indicatorColor: ui.colors.primary.withValues(alpha: 0.1),
+      destinations: _demos.map((demo) {
+        return NavigationRailDestination(
+          icon: Icon(demo.icon),
+          label: Text(demo.label),
+        );
+      }).toList(),
+    );
+
+    // Main content area (Note: Expanded, SingleChildScrollView from Flutter, waiting for Phase 3C)
+    final mainContent = Expanded(
+      child: UiBox(
+        backgroundColor: ui.colors.background,
+        child: Center(
+          child: SingleChildScrollView(
+            child: UiInset(
+              all: UiSpacing.xl,
+              child: VStack(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  UiText.h2(_demos[_selectedIndex].label),
+                  const UiGap(UiSpacing.sm),
+                  const UiText.muted('Component demonstration'),
+                  const UiGap.manual(32),
+                  UiBox(
+                    borderColor: ui.colors.border,
+                    borderWidth: 1,
+                    borderRadius: ui.radius.lg,
+                    child: UiInset(
+                      all: UiSpacing.xl,
+                      child: _demos[_selectedIndex].demo,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    // AppBar with theme toggle
+    final appBarContent = HStack(
+      gap: UiSpacing.sm,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(Icons.light_mode, size: 20, color: ui.colors.mutedForeground),
+        UiSwitch(
+          value: widget.isDarkMode,
+          onChanged: (_) => widget.onToggleTheme(),
+        ),
+        Icon(Icons.dark_mode, size: 20, color: ui.colors.mutedForeground),
+      ],
+    );
+
     return Scaffold(
       backgroundColor: ui.colors.background,
       appBar: AppBar(
         backgroundColor: ui.colors.background,
         elevation: 0,
-        title: Text(
-          'Flutter UI Kit Showcase',
-          style: ui.typography.title.copyWith(color: ui.colors.foreground),
-        ),
-        actions: [
-          UiInset(
-            horizontal: UiSpacing.md,
-            child: HStack(
-              gap: UiSpacing.sm,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.light_mode,
-                  size: 20,
-                  color: ui.colors.mutedForeground,
-                ),
-                UiSwitch(
-                  value: widget.isDarkMode,
-                  onChanged: (_) => widget.onToggleTheme(),
-                ),
-                Icon(
-                  Icons.dark_mode,
-                  size: 20,
-                  color: ui.colors.mutedForeground,
-                ),
-              ],
-            ),
-          ),
-        ],
+        title: const UiText.p('Flutter UI Kit Showcase'),
+        actions: [UiInset(horizontal: UiSpacing.md, child: appBarContent)],
       ),
       body: Row(
         children: [
-          NavigationRail(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: (int index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            labelType: NavigationRailLabelType.selected,
-            backgroundColor: ui.colors.background,
-            indicatorColor: ui.colors.primary.withValues(alpha: 0.1),
-            destinations: _demos.map((demo) {
-              return NavigationRailDestination(
-                icon: Icon(demo.icon),
-                label: Text(demo.label),
-              );
-            }).toList(),
-          ),
-          const VerticalDivider(thickness: 1, width: 1),
-          Expanded(
-            child: UiBox(
-              backgroundColor: ui.colors.background,
-              child: Center(
-                child: SingleChildScrollView(
-                  child: UiInset(
-                    all: UiSpacing.xl,
-                    child: VStack(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        UiText.h2(_demos[_selectedIndex].label),
-                        const UiGap(UiSpacing.sm),
-                        const UiText.muted('Component demonstration'),
-                        const UiGap.manual(32),
-                        UiBox(
-                          borderColor: ui.colors.border,
-                          borderWidth: 1,
-                          borderRadius: ui.radius.lg,
-                          child: UiInset(
-                            all: UiSpacing.xl,
-                            child: _demos[_selectedIndex].demo,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          sidebar,
+          UiSeparator(direction: UiSeparatorDirection.vertical),
+          mainContent,
         ],
       ),
     );

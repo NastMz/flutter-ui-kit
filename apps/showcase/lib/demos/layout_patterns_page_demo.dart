@@ -34,13 +34,7 @@ class LayoutPatternsPageDemo extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         gap: UiSpacing.sm,
                         children: [
-                          Text(
-                            'Name',
-                            style: ui.typography.textSm.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: ui.colors.foreground,
-                            ),
-                          ),
+                          UiText.small('Name'),
                           const UiTextField(placeholder: 'John Doe'),
                         ],
                       ),
@@ -48,13 +42,7 @@ class LayoutPatternsPageDemo extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         gap: UiSpacing.sm,
                         children: [
-                          Text(
-                            'Email',
-                            style: ui.typography.textSm.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: ui.colors.foreground,
-                            ),
-                          ),
+                          UiText.small('Email'),
                           const UiTextField(placeholder: 'john@example.com'),
                         ],
                       ),
@@ -70,13 +58,13 @@ class LayoutPatternsPageDemo extends StatelessWidget {
                     children: [
                       HStack(
                         children: [
-                          Expanded(child: Text('Email Notifications')),
+                          Expanded(child: UiText.p('Email Notifications')),
                           UiSwitch(value: true),
                         ],
                       ),
                       HStack(
                         children: [
-                          Expanded(child: Text('Dark Mode')),
+                          Expanded(child: UiText.p('Dark Mode')),
                           UiSwitch(value: false),
                         ],
                       ),

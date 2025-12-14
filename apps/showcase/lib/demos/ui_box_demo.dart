@@ -25,20 +25,14 @@ class UiBoxDemo extends StatelessWidget {
                 padding: UiSpacing.md,
                 backgroundColor: ui.colors.muted,
                 borderRadius: ui.radius.sm,
-                child: Text(
-                  'Box with padding (all sides)',
-                  style: ui.typography.textSm,
-                ),
+                child: UiText.small('Box with padding (all sides)'),
               ),
               UiBox(
                 paddingHorizontal: UiSpacing.lg,
                 paddingVertical: UiSpacing.sm,
                 backgroundColor: ui.colors.muted,
                 borderRadius: ui.radius.sm,
-                child: Text(
-                  'Custom horizontal/vertical padding',
-                  style: ui.typography.textSm,
-                ),
+                child: UiText.small('Custom horizontal/vertical padding'),
               ),
             ],
           ),
@@ -56,22 +50,18 @@ class UiBoxDemo extends StatelessWidget {
                     padding: UiSpacing.md,
                     backgroundColor: ui.colors.primary,
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       'Primary',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.onPrimary,
-                      ),
+                      style: TextStyle(color: ui.colors.onPrimary),
                     ),
                   ),
                   UiBox(
                     padding: UiSpacing.md,
                     backgroundColor: ui.colors.secondary,
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       'Secondary',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.onSecondary,
-                      ),
+                      style: TextStyle(color: ui.colors.onSecondary),
                     ),
                   ),
                 ],
@@ -90,7 +80,7 @@ class UiBoxDemo extends StatelessWidget {
                 borderColor: ui.colors.primary,
                 borderWidth: 2,
                 borderRadius: ui.radius.md,
-                child: Text('Box with border', style: ui.typography.textSm),
+                child: UiText.small('Box with border'),
               ),
               UiBox(
                 padding: UiSpacing.md,
@@ -98,11 +88,9 @@ class UiBoxDemo extends StatelessWidget {
                 borderWidth: 1,
                 borderRadius: ui.radius.sm,
                 backgroundColor: ui.colors.destructive.withValues(alpha: 0.1),
-                child: Text(
+                child: UiText.small(
                   'Error state',
-                  style: ui.typography.textSm.copyWith(
-                    color: ui.colors.destructive,
-                  ),
+                  style: TextStyle(color: ui.colors.destructive),
                 ),
               ),
             ],
@@ -121,11 +109,9 @@ class UiBoxDemo extends StatelessWidget {
                 backgroundColor: ui.colors.accent,
                 borderRadius: ui.radius.md,
                 alignment: Alignment.center,
-                child: Text(
+                child: UiText.small(
                   'Fixed size',
-                  style: ui.typography.textSm.copyWith(
-                    color: ui.colors.accentForeground,
-                  ),
+                  style: TextStyle(color: ui.colors.accentForeground),
                 ),
               ),
             ],
@@ -145,11 +131,9 @@ class UiBoxDemo extends StatelessWidget {
                     padding: UiSpacing.md,
                     backgroundColor: ui.colors.primary,
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       '100%',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.onPrimary,
-                      ),
+                      style: TextStyle(color: ui.colors.onPrimary),
                     ),
                   ),
                   UiBox(
@@ -157,11 +141,9 @@ class UiBoxDemo extends StatelessWidget {
                     padding: UiSpacing.md,
                     backgroundColor: ui.colors.primary,
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       '50%',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.onPrimary,
-                      ),
+                      style: TextStyle(color: ui.colors.onPrimary),
                     ),
                   ),
                   UiBox(
@@ -169,11 +151,9 @@ class UiBoxDemo extends StatelessWidget {
                     padding: UiSpacing.md,
                     backgroundColor: ui.colors.primary,
                     borderRadius: ui.radius.md,
-                    child: Text(
+                    child: UiText.small(
                       '25%',
-                      style: ui.typography.textSm.copyWith(
-                        color: ui.colors.onPrimary,
-                      ),
+                      style: TextStyle(color: ui.colors.onPrimary),
                     ),
                   ),
                 ],
