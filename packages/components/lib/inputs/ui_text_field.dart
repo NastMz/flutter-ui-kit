@@ -1,13 +1,13 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// A text field widget that follows the design system.
 ///
 /// Example:
 /// ```dart
 /// UiTextField(
-///   label: 'Username',
-///   placeholder: 'Enter your username',
+///   placeholder: 'Enter your email',
 ///   onChanged: (value) => print(value),
 /// )
 /// ```
@@ -22,6 +22,9 @@ class UiTextField extends StatelessWidget {
   final bool obscureText;
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onSubmitted;
+  final FocusNode? focusNode;
+  final List<TextInputFormatter>? inputFormatters;
 
   /// Creates a text field.
   const UiTextField({
@@ -36,6 +39,9 @@ class UiTextField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType,
     this.onChanged,
+    this.onSubmitted,
+    this.focusNode,
+    this.inputFormatters,
   });
 
   @override
@@ -52,10 +58,13 @@ class UiTextField extends StatelessWidget {
 
     return TextField(
       controller: controller,
+      focusNode: focusNode,
       enabled: enabled,
       obscureText: obscureText,
       keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
       onChanged: onChanged,
+      onSubmitted: onSubmitted,
       style: ui.typography.textSm.copyWith(color: textColor),
       cursorColor: ui.colors.primary,
       decoration: InputDecoration(

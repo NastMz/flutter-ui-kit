@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../inputs/label/ui_label.dart';
 import '../inputs/ui_text_field.dart';
 import '../typography/ui_text.dart';
@@ -146,16 +147,36 @@ class UiFormField extends StatelessWidget {
 
 /// Convenience builder for UiFormField with embedded UiTextField.
 ///
-/// Simplifies the common case of label + text input.
-class UiFormFieldInput extends StatelessWidget {
+/// Supports both controlled (value + onChanged) and uncontrolled (controller) patterns.
+///
+/// Example (controlled - recommended):
+/// ```dart
+/// UiFormFieldInput(
+///   label: 'Email',
+///   value: email,
+///   onChanged: (value) => setState(() => email = value),
+/// )
+/// ```
+///
+/// Example (uncontrolled):
+/// ```dart
+/// UiFormFieldInput(
+///   label: 'Email',
+///   controller: emailController,
+/// )
+/// ```
+class UiFormFieldInput extends StatefulWidget {
   /// The label displayed above the input
   final String label;
 
   /// Whether the field is required
   final bool required;
 
-  /// The text controller
+  /// The text controller (uncontrolled mode)
   final TextEditingController? controller;
+
+  /// The current value (controlled mode)
+  final String? value;
 
   /// Placeholder text
   final String placeholder;
@@ -175,6 +196,18 @@ class UiFormFieldInput extends StatelessWidget {
   /// Input type (text, email, password, etc)
   final TextInputType keyboardType;
 
+  /// Called when text changes (controlled mode)
+  final ValueChanged<String>? onChanged;
+
+  /// Called when the user submits (e.g., presses Enter)
+  final ValueChanged<String>? onSubmitted;
+
+  /// Called when the field loses focus (blur)
+  final ValueChanged<String>? onBlur;
+
+  /// Input formatters (e.g., digits only, max length)
+  final List<TextInputFormatter>? inputFormatters;
+
   /// Gap between label and input
   final UiSpacing? labelGap;
 
@@ -184,31 +217,186 @@ class UiFormFieldInput extends StatelessWidget {
     required this.label,
     this.required = false,
     this.controller,
+    this.value,
     this.placeholder = '',
     this.errorText,
     this.helperText,
     this.enabled = true,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
+    this.onChanged,
+    this.onSubmitted,
+    this.onBlur,
+    this.inputFormatters,
     this.labelGap = UiSpacing.sm,
-  });
+  }) : assert(
+         controller == null || value == null,
+         'Cannot provide both controller and value',
+       );
+
+  /// Email input helper
+  UiFormFieldInput.email({
+    Key? key,
+    required String label,
+    bool required = false,
+    TextEditingController? controller,
+    String? value,
+    String placeholder = '',
+    String? errorText,
+    String? helperText,
+    bool enabled = true,
+    ValueChanged<String>? onChanged,
+    ValueChanged<String>? onSubmitted,
+    ValueChanged<String>? onBlur,
+    List<TextInputFormatter>? inputFormatters,
+    UiSpacing? labelGap = UiSpacing.sm,
+  }) : this(
+         key: key,
+         label: label,
+         required: required,
+         controller: controller,
+         value: value,
+         placeholder: placeholder,
+         errorText: errorText,
+         helperText: helperText,
+         enabled: enabled,
+         keyboardType: TextInputType.emailAddress,
+         onChanged: onChanged,
+         onSubmitted: onSubmitted,
+         onBlur: onBlur,
+         inputFormatters: inputFormatters,
+         labelGap: labelGap,
+       );
+
+  /// Password input helper
+  UiFormFieldInput.password({
+    Key? key,
+    required String label,
+    bool required = false,
+    TextEditingController? controller,
+    String? value,
+    String placeholder = '••••••••',
+    String? errorText,
+    String? helperText,
+    bool enabled = true,
+    ValueChanged<String>? onChanged,
+    ValueChanged<String>? onSubmitted,
+    ValueChanged<String>? onBlur,
+    List<TextInputFormatter>? inputFormatters,
+    UiSpacing? labelGap = UiSpacing.sm,
+  }) : this(
+         key: key,
+         label: label,
+         required: required,
+         controller: controller,
+         value: value,
+         placeholder: placeholder,
+         errorText: errorText,
+         helperText: helperText,
+         enabled: enabled,
+         obscureText: true,
+         keyboardType: TextInputType.visiblePassword,
+         onChanged: onChanged,
+         onSubmitted: onSubmitted,
+         onBlur: onBlur,
+         inputFormatters: inputFormatters,
+         labelGap: labelGap,
+       );
+
+  /// Number input helper
+  UiFormFieldInput.number({
+    Key? key,
+    required String label,
+    bool required = false,
+    TextEditingController? controller,
+    String? value,
+    String placeholder = '',
+    String? errorText,
+    String? helperText,
+    bool enabled = true,
+    ValueChanged<String>? onChanged,
+    ValueChanged<String>? onSubmitted,
+    ValueChanged<String>? onBlur,
+    List<TextInputFormatter>? inputFormatters,
+    UiSpacing? labelGap = UiSpacing.sm,
+  }) : this(
+         key: key,
+         label: label,
+         required: required,
+         controller: controller,
+         value: value,
+         placeholder: placeholder,
+         errorText: errorText,
+         helperText: helperText,
+         enabled: enabled,
+         keyboardType: const TextInputType.numberWithOptions(
+           signed: false,
+           decimal: false,
+         ),
+         onChanged: onChanged,
+         onSubmitted: onSubmitted,
+         onBlur: onBlur,
+         inputFormatters:
+             inputFormatters ?? [FilteringTextInputFormatter.digitsOnly],
+         labelGap: labelGap,
+       );
+  @override
+  State<UiFormFieldInput> createState() => _UiFormFieldInputState();
+}
+
+class _UiFormFieldInputState extends State<UiFormFieldInput> {
+  late TextEditingController _internalController;
+  FocusNode? _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _internalController = TextEditingController(text: widget.value ?? '');
+    if (widget.onBlur != null) {
+      _focusNode = FocusNode();
+      _focusNode!.addListener(_handleFocusChange);
+    }
+  }
+
+  @override
+  void dispose() {
+    // Only dispose if using controlled mode (no external controller)
+    if (widget.controller == null) {
+      _internalController.dispose();
+    }
+    _focusNode?.removeListener(_handleFocusChange);
+    _focusNode?.dispose();
+    super.dispose();
+  }
+
+  void _handleFocusChange() {
+    if (_focusNode?.hasFocus == false && widget.onBlur != null) {
+      widget.onBlur!(_internalController.text);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final controller = widget.controller ?? _internalController;
+
     return UiFormField(
-      label: label,
-      required: required,
-      errorText: errorText,
-      helperText: helperText,
-      labelGap: labelGap,
-      enabled: enabled,
+      label: widget.label,
+      required: widget.required,
+      errorText: widget.errorText,
+      helperText: widget.helperText,
+      labelGap: widget.labelGap,
+      enabled: widget.enabled,
       child: UiTextField(
         controller: controller,
-        placeholder: placeholder,
-        enabled: enabled,
-        obscureText: obscureText,
-        keyboardType: keyboardType,
-        errorText: errorText,
+        focusNode: _focusNode,
+        placeholder: widget.placeholder,
+        enabled: widget.enabled,
+        obscureText: widget.obscureText,
+        keyboardType: widget.keyboardType,
+        inputFormatters: widget.inputFormatters,
+        onChanged: widget.onChanged,
+        onSubmitted: widget.onSubmitted,
+        errorText: widget.errorText,
       ),
     );
   }
