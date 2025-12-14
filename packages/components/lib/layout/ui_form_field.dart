@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../inputs/label/ui_label.dart';
+import '../inputs/textarea/ui_textarea.dart';
 import '../inputs/ui_text_field.dart';
 import '../typography/ui_text.dart';
 import 'ui_spacing.dart';
@@ -235,6 +236,7 @@ class UiFormFieldInput extends StatefulWidget {
        );
 
   /// Email input helper
+  // ignore: prefer_const_constructors_in_immutables
   UiFormFieldInput.email({
     Key? key,
     required String label,
@@ -269,6 +271,7 @@ class UiFormFieldInput extends StatefulWidget {
        );
 
   /// Password input helper
+  // ignore: prefer_const_constructors_in_immutables
   UiFormFieldInput.password({
     Key? key,
     required String label,
@@ -393,6 +396,151 @@ class _UiFormFieldInputState extends State<UiFormFieldInput> {
         enabled: widget.enabled,
         obscureText: widget.obscureText,
         keyboardType: widget.keyboardType,
+        inputFormatters: widget.inputFormatters,
+        onChanged: widget.onChanged,
+        onSubmitted: widget.onSubmitted,
+        errorText: widget.errorText,
+      ),
+    );
+  }
+}
+
+/// Convenience builder for UiFormField with embedded UiTextarea.
+///
+/// Supports both controlled (value + onChanged) and uncontrolled (controller) patterns.
+///
+/// Example (controlled - recommended):
+/// ```dart
+/// UiFormFieldTextarea(
+///   label: 'Description',
+///   value: description,
+///   onChanged: (value) => setState(() => description = value),
+/// )
+/// ```
+class UiFormFieldTextarea extends StatefulWidget {
+  /// Label for the field
+  final String label;
+
+  /// Whether the field is required
+  final bool required;
+
+  /// Controller for uncontrolled mode
+  final TextEditingController? controller;
+
+  /// Value for controlled mode
+  final String? value;
+
+  /// Placeholder text
+  final String placeholder;
+
+  /// Error message to display
+  final String? errorText;
+
+  /// Helper text to display
+  final String? helperText;
+
+  /// Whether the field is enabled
+  final bool enabled;
+
+  /// Minimum number of lines
+  final int minLines;
+
+  /// Maximum number of lines
+  final int maxLines;
+
+  /// Called when value changes
+  final ValueChanged<String>? onChanged;
+
+  /// Called when the user submits
+  final ValueChanged<String>? onSubmitted;
+
+  /// Called when the field loses focus (blur)
+  final ValueChanged<String>? onBlur;
+
+  /// Input formatters (e.g., max length)
+  final List<TextInputFormatter>? inputFormatters;
+
+  /// Gap between label and input
+  final UiSpacing? labelGap;
+
+  /// Creates a form field textarea.
+  const UiFormFieldTextarea({
+    super.key,
+    required this.label,
+    this.required = false,
+    this.controller,
+    this.value,
+    this.placeholder = '',
+    this.errorText,
+    this.helperText,
+    this.enabled = true,
+    this.minLines = 3,
+    this.maxLines = 5,
+    this.onChanged,
+    this.onSubmitted,
+    this.onBlur,
+    this.inputFormatters,
+    this.labelGap = UiSpacing.sm,
+  }) : assert(
+         controller == null || value == null,
+         'Cannot provide both controller and value',
+       );
+
+  @override
+  State<UiFormFieldTextarea> createState() => _UiFormFieldTextareaState();
+}
+
+class _UiFormFieldTextareaState extends State<UiFormFieldTextarea> {
+  late TextEditingController _internalController;
+  FocusNode? _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _internalController =
+        widget.controller ?? TextEditingController(text: widget.value ?? '');
+
+    // Create internal focus node if onBlur is provided
+    if (widget.onBlur != null) {
+      _focusNode = FocusNode();
+      _focusNode!.addListener(_handleFocusChange);
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusNode?.removeListener(_handleFocusChange);
+    _focusNode?.dispose();
+    if (widget.controller == null) {
+      _internalController.dispose();
+    }
+    super.dispose();
+  }
+
+  void _handleFocusChange() {
+    if (_focusNode?.hasFocus == false && widget.onBlur != null) {
+      widget.onBlur!(_internalController.text);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = widget.controller ?? _internalController;
+
+    return UiFormField(
+      label: widget.label,
+      required: widget.required,
+      errorText: widget.errorText,
+      helperText: widget.helperText,
+      labelGap: widget.labelGap,
+      enabled: widget.enabled,
+      child: UiTextarea(
+        controller: controller,
+        focusNode: _focusNode,
+        placeholder: widget.placeholder,
+        enabled: widget.enabled,
+        minLines: widget.minLines,
+        maxLines: widget.maxLines,
         inputFormatters: widget.inputFormatters,
         onChanged: widget.onChanged,
         onSubmitted: widget.onSubmitted,

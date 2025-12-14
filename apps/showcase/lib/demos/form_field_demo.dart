@@ -16,8 +16,10 @@ class _FormFieldDemoState extends State<FormFieldDemo> {
   String street = '';
   String city = '';
   String zipCode = '';
+  String bio = '';
   String? emailError;
   String? passwordError;
+  String? bioError;
 
   String? _validateEmailValue(String value) {
     if (value.isEmpty) return 'Email is required';
@@ -28,6 +30,13 @@ class _FormFieldDemoState extends State<FormFieldDemo> {
   String? _validatePasswordValue(String value) {
     if (value.isEmpty) return 'Password is required';
     if (value.length < 8) return 'Password must be at least 8 characters';
+    return null;
+  }
+
+  String? _validateBioValue(String value) {
+    if (value.isEmpty) return 'Bio is required';
+    if (value.length < 10) return 'Bio must be at least 10 characters';
+    if (value.length > 200) return 'Bio must be less than 200 characters';
     return null;
   }
 
@@ -142,6 +151,34 @@ class _FormFieldDemoState extends State<FormFieldDemo> {
             ],
           ),
 
+          // Textarea field
+          VStack(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            gap: UiSpacing.md,
+            children: [
+              const UiText.h4('Textarea Field'),
+              UiFormFieldTextarea(
+                label: 'Bio',
+                placeholder: 'Tell us about yourself...',
+                required: true,
+                value: bio,
+                minLines: 3,
+                maxLines: 5,
+                onChanged: (value) => setState(() {
+                  bio = value;
+                  bioError = _validateBioValue(value);
+                }),
+                onBlur: (_) => setState(() {
+                  bioError = _validateBioValue(bio);
+                }),
+                errorText: bioError,
+                helperText: bioError == null
+                    ? '${bio.length}/200 characters'
+                    : null,
+              ),
+            ],
+          ),
+
           // Disabled field
           VStack(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,6 +203,7 @@ class _FormFieldDemoState extends State<FormFieldDemo> {
               UiText.small('Name: $fullName'),
               UiText.small('Email: $email'),
               UiText.small('Address: $street, $city $zipCode'),
+              UiText.small('Bio: ${bio.isEmpty ? '(empty)' : bio}'),
             ],
           ),
         ],
