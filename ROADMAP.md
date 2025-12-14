@@ -85,16 +85,29 @@ Definition of Done:
 - Controlled layout without CSS-like cascades. ✅
 - Escape hatch: accept native Widget in any slot. ✅
 
-### Phase 3B — Layout Patterns
+### Phase 3B — Layout Patterns (IN PROGRESS)
 
-- [ ] Page Scaffolds (UiPage, UiSection)
-- [ ] Form patterns (UiFormField / FieldGroup)
-- [ ] List patterns (UiList, UiListItem)
+- [x] Page Scaffolds (UiPage, UiSection)
+- [x] Form patterns (UiFormField / UiFormFieldInput / UiFormFieldTextarea)
+- [x] List patterns (UiList, UiListItem)
 
 Definition of Done:
 
-- Complex demos (Dialog, Sheet, Form) built without excessive "widget glue".
-- Patterns documented with showcase examples.
+- Complex demos (Dialog, Sheet, Form) built without excessive "widget glue". ✅
+- Patterns documented with showcase examples. ✅
+
+Completed:
+
+- `UiPage`: Full-page layout scaffold with optional AppBar, max-width, and padding
+- `UiSection`: Grouped content sections with title, description, and optional background
+- `UiFormField`: Form field wrapper combining label, input, and validation messages
+  - Supports both controlled (value + onChanged) and uncontrolled (controller) patterns
+  - Named constructors: email, password, number (with input formatters)
+  - Callbacks: onChanged, onSubmitted, onBlur
+- `UiFormFieldInput`: Text input form field with all above features
+- `UiFormFieldTextarea`: Textarea form field with all above features
+- `UiList`: List widget with consistent spacing and divider handling
+- `UiListItem`: Individual list item with leading, title, subtitle, trailing widgets
 
 ### Phase 3C — Interactive Components
 

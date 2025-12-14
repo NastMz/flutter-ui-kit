@@ -1,3 +1,59 @@
+## 0.0.7
+
+### Added
+
+- **Phase 3B — Layout Patterns (Complete)**
+
+  - `UiPage`: Full-page layout scaffold
+
+    - Optional AppBar with title
+    - Max-width constraint for wide screens
+    - Consistent padding using design tokens
+    - Background color support
+
+  - `UiSection`: Content section widget
+
+    - Title and optional description
+    - Optional background color and border radius
+    - Consistent spacing with design tokens
+
+  - `UiFormFieldInput`: Text input form field
+
+    - Controlled pattern support (value + onChanged)
+    - Named constructors: `.email()`, `.password()`, `.number()`
+    - Input formatters (e.g., digitsOnly for numbers)
+    - Validation callbacks: onChanged, onSubmitted, onBlur
+    - Built-in label and error display
+
+  - `UiFormFieldTextarea`: Textarea form field
+
+    - Same features as UiFormFieldInput
+    - Configurable min/max lines
+
+  - `UiList`: Consistent list widget
+
+    - Automatic divider handling (removed from last item)
+    - Optional spacing between items
+    - Proper handling of UiListItem children
+
+  - `UiListItem`: Individual list item widget
+    - Leading widget (icon, avatar)
+    - Title and optional subtitle
+    - Trailing widget (chevron, action button)
+    - Optional divider
+    - Tap handler support
+    - Disabled state support
+
+- **Controlled Input Pattern**
+
+  - All inputs now support shadcn-like controlled pattern
+  - Supports both value + onChanged (recommended) and controller pattern
+  - Input formatters for character restrictions
+  - Real-time and blur-time validation
+
+- **Showcase Demos**
+  - Added `layout_patterns_page_demo.dart` showcasing UiPage, UiSection, UiList patterns
+
 ## 0.0.6
 
 ### Added

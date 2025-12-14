@@ -10,6 +10,7 @@ import 'demos/form_field_demo.dart';
 import 'demos/input_additional_demo.dart';
 import 'demos/input_controls_demo.dart';
 import 'demos/input_demo.dart';
+import 'demos/layout_patterns_page_demo.dart';
 import 'demos/layout_primitives_demo.dart';
 import 'demos/ui_box_demo.dart';
 
@@ -99,6 +100,11 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
       label: 'Layout Primitives',
       icon: Icons.dashboard,
       demo: const LayoutPrimitivesDemo(),
+    ),
+    (
+      label: 'Layout Patterns',
+      icon: Icons.view_week,
+      demo: const LayoutPatternsPageDemo(),
     ),
     (label: 'Form Field', icon: Icons.input, demo: const FormFieldDemo()),
   ];
