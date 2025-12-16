@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:components/components.dart';
 
 import 'package:showcase/main.dart';
 
@@ -23,6 +24,7 @@ void main() {
 
     // Verify the main layout structure is present.
     expect(find.byType(Scaffold), findsOneWidget);
-    expect(find.byType(NavigationRail), findsOneWidget);
+    // Sidebar present
+    expect(find.byType(UiSidebar), findsOneWidget);
   });
 }

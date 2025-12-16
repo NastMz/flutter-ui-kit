@@ -181,9 +181,18 @@ class UiText extends StatelessWidget {
     final ui = UiTheme.of(context);
     final baseStyle = _getStyle(ui);
 
+    // Get the color from DefaultTextStyle if available (e.g., inside buttons)
+    final defaultTextStyle = DefaultTextStyle.of(context);
+    final finalStyle = baseStyle
+        .merge(style)
+        .copyWith(
+          color:
+              style?.color ?? defaultTextStyle.style.color ?? baseStyle.color,
+        );
+
     return Text(
       data,
-      style: baseStyle.merge(style),
+      style: finalStyle,
       textAlign: textAlign,
       overflow: overflow,
       maxLines: maxLines,

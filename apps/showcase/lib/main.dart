@@ -113,31 +113,22 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
 
-    // Navigation sidebar (Note: NavigationRail from Flutter, waiting for UiSidebar in Phase 3C)
-    final sidebar = NavigationRail(
+    // Navigation sidebar using UiSidebar
+    final sidebar = UiSidebar(
+      items: _demos
+          .map((d) => UiSidebarItem(label: d.label, icon: Icon(d.icon)))
+          .toList(),
       selectedIndex: _selectedIndex,
-      onDestinationSelected: (int index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      labelType: NavigationRailLabelType.selected,
-      backgroundColor: ui.colors.background,
-      indicatorColor: ui.colors.primary.withValues(alpha: 0.1),
-      destinations: _demos.map((demo) {
-        return NavigationRailDestination(
-          icon: Icon(demo.icon),
-          label: Text(demo.label),
-        );
-      }).toList(),
+      onSelected: (index) => setState(() => _selectedIndex = index),
     );
 
-    // Main content area (Note: Expanded, SingleChildScrollView from Flutter, waiting for Phase 3C)
+    // Main content area using UiScrollArea
     final mainContent = Expanded(
       child: UiBox(
         backgroundColor: ui.colors.background,
         child: Center(
-          child: SingleChildScrollView(
+          child: UiScrollArea(
+            axis: Axis.vertical,
             child: UiInset(
               all: UiSpacing.xl,
               child: VStack(

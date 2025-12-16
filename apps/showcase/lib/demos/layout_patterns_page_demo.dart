@@ -2,14 +2,23 @@ import 'package:components/components.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class LayoutPatternsPageDemo extends StatelessWidget {
+class LayoutPatternsPageDemo extends StatefulWidget {
   const LayoutPatternsPageDemo({super.key});
+
+  @override
+  State<LayoutPatternsPageDemo> createState() => _LayoutPatternsPageDemoState();
+}
+
+class _LayoutPatternsPageDemoState extends State<LayoutPatternsPageDemo> {
+  bool _emailNotifications = true;
+  bool _darkMode = false;
 
   @override
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
 
     return UiPage(
+      isStandalone: false,
       title: 'Layout Patterns',
       maxWidth: 900,
       child: VStack(
@@ -35,7 +44,10 @@ class LayoutPatternsPageDemo extends StatelessWidget {
                         gap: UiSpacing.sm,
                         children: [
                           UiText.small('Name'),
-                          const UiTextField(placeholder: 'John Doe'),
+                          SizedBox(
+                            height: 40,
+                            child: const UiTextField(placeholder: 'John Doe'),
+                          ),
                         ],
                       ),
                       VStack(
@@ -43,7 +55,12 @@ class LayoutPatternsPageDemo extends StatelessWidget {
                         gap: UiSpacing.sm,
                         children: [
                           UiText.small('Email'),
-                          const UiTextField(placeholder: 'john@example.com'),
+                          SizedBox(
+                            height: 40,
+                            child: const UiTextField(
+                              placeholder: 'john@example.com',
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -59,13 +76,23 @@ class LayoutPatternsPageDemo extends StatelessWidget {
                       HStack(
                         children: [
                           Expanded(child: UiText.p('Email Notifications')),
-                          UiSwitch(value: true),
+                          UiSwitch(
+                            value: _emailNotifications,
+                            onChanged: (value) {
+                              setState(() => _emailNotifications = value);
+                            },
+                          ),
                         ],
                       ),
                       HStack(
                         children: [
                           Expanded(child: UiText.p('Dark Mode')),
-                          UiSwitch(value: false),
+                          UiSwitch(
+                            value: _darkMode,
+                            onChanged: (value) {
+                              setState(() => _darkMode = value);
+                            },
+                          ),
                         ],
                       ),
                     ],

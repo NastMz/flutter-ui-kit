@@ -51,7 +51,7 @@ class ButtonDemo extends StatelessWidget {
             child: UiButton(
               onPressed: () {},
               variant: variant,
-              child: UiText.p(label),
+              child: UiText.small(label),
             ),
           ),
         ),
@@ -62,7 +62,7 @@ class ButtonDemo extends StatelessWidget {
             child: UiButton(
               onPressed: null,
               variant: variant,
-              child: UiText.p(label),
+              child: UiText.small(label),
             ),
           ),
         ),
@@ -86,17 +86,17 @@ class ButtonDemo extends StatelessWidget {
               UiButton(
                 onPressed: () {},
                 size: UiButtonSize.sm,
-                child: const UiText.p('Small'),
+                child: const UiText.small('Small'),
               ),
               UiButton(
                 onPressed: () {},
                 size: UiButtonSize.md,
-                child: const UiText.p('Default'),
+                child: const UiText.small('Default'),
               ),
               UiButton(
                 onPressed: () {},
                 size: UiButtonSize.lg,
-                child: const UiText.p('Large'),
+                child: const UiText.small('Large'),
               ),
             ],
           ),
@@ -145,7 +145,7 @@ class ButtonDemo extends StatelessWidget {
                   gap: UiSpacing.xs,
                   children: const [
                     Icon(Icons.download, size: 16),
-                    UiText.p('Download'),
+                    UiText.small('Download'),
                   ],
                 ),
               ),
@@ -156,7 +156,7 @@ class ButtonDemo extends StatelessWidget {
                   gap: UiSpacing.xs,
                   children: const [
                     Icon(Icons.edit, size: 16),
-                    UiText.p('Edit'),
+                    UiText.small('Edit'),
                   ],
                 ),
               ),
@@ -167,7 +167,7 @@ class ButtonDemo extends StatelessWidget {
                   gap: UiSpacing.xs,
                   children: const [
                     Icon(Icons.link, size: 16),
-                    UiText.p('View docs'),
+                    UiText.small('View docs'),
                   ],
                 ),
               ),

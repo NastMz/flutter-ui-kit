@@ -9,7 +9,11 @@ import 'ui_inset.dart';
 ///
 /// Useful for creating consistently-styled pages without boilerplate.
 ///
-/// Example:
+/// When [isStandalone] is true (default), creates a full Scaffold with AppBar.
+/// When false, only provides content layout without Scaffold, suitable for
+/// embedding in ScrollViews or other parent containers.
+///
+/// Example (standalone page):
 /// ```dart
 /// UiPage(
 ///   title: 'Settings',
@@ -22,8 +26,18 @@ import 'ui_inset.dart';
 ///   ),
 /// )
 /// ```
+///
+/// Example (embedded in ScrollView):
+/// ```dart
+/// UiScrollArea(
+///   child: UiPage(
+///     isStandalone: false,
+///     child: MyContent(),
+///   ),
+/// )
+/// ```
 class UiPage extends StatelessWidget {
-  /// Page title (appears in AppBar if provided)
+  /// Page title (appears in AppBar if provided and [isStandalone] is true)
   final String? title;
 
   /// Main page content
@@ -41,6 +55,10 @@ class UiPage extends StatelessWidget {
   /// Whether to show an AppBar with the title
   final bool showAppBar;
 
+  /// Whether this page is standalone (creates Scaffold) or embedded in a parent container.
+  /// When false, only provides content layout without Scaffold wrapper.
+  final bool isStandalone;
+
   /// Creates a page scaffold.
   const UiPage({
     super.key,
@@ -50,6 +68,7 @@ class UiPage extends StatelessWidget {
     this.maxWidth = 1200,
     this.backgroundColor,
     this.showAppBar = true,
+    this.isStandalone = true,
   });
 
   @override
@@ -67,7 +86,12 @@ class UiPage extends StatelessWidget {
       ),
     );
 
-    // Add AppBar if needed
+    // If not standalone, return just the content (for embedding in ScrollViews)
+    if (!isStandalone) {
+      return content;
+    }
+
+    // Add AppBar if needed (only for standalone pages)
     if (showAppBar && title != null) {
       return Scaffold(
         backgroundColor: bgColor,
