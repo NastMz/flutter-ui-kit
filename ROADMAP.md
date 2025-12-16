@@ -111,11 +111,24 @@ Completed:
 
 ### Phase 3C — Interactive Components
 
+**Current Status:**
+- [x] Badge (0.0.7)
+- [x] Avatar (0.0.7)
+- [x] Checkbox (0.0.7)
+- [x] Radio (0.0.7)
+- [x] Switch (0.0.7)
+- [x] Label (0.0.7)
+- [x] Textarea (0.0.7)
+- [x] Scroll Area (0.0.7)
+- [x] Sidebar (0.0.8)
+
+**Pending (shadcn parity):**
 - [ ] Accordion
 - [ ] Alert
 - [ ] Alert Dialog
 - [ ] Aspect Ratio
 - [ ] Breadcrumb
+- [ ] Button Group
 - [ ] Calendar
 - [ ] Carousel
 - [ ] Chart
@@ -128,26 +141,35 @@ Completed:
 - [ ] Dialog
 - [ ] Drawer
 - [ ] Dropdown Menu
+- [ ] Empty
+- [ ] Field
 - [ ] Form
 - [ ] Hover Card
+- [ ] Input Group
 - [ ] Input OTP
+- [ ] Item
+- [ ] Kbd
 - [ ] Menubar
+- [ ] Native Select
 - [ ] Navigation Menu
 - [ ] Pagination
 - [ ] Popover
 - [ ] Progress
 - [ ] Resizable
-- [ ] Scroll Area
 - [ ] Select
+- [ ] Separator
 - [ ] Sheet
-- [ ] Sidebar
+- [ ] Skeleton
 - [ ] Slider
-- [ ] Sonner / Toast
-- [ ] Steps
+- [ ] Sonner
+- [ ] Spinner
 - [ ] Table
 - [ ] Tabs
+- [ ] Toast
 - [ ] Toggle
 - [ ] Toggle Group
+- [ ] Tooltip
+- [ ] Typography
 - [ ] Tooltip
 
 ---

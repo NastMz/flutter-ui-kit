@@ -202,27 +202,27 @@
     },
     {
       "id": "badge",
-      "widget": null,
-      "status": "todo",
-      "notes": "Track design + tokens"
+      "widget": "UiBadge",
+      "status": "done",
+      "notes": "Variants: default, secondary, destructive, outline"
     },
     {
       "id": "checkbox",
-      "widget": null,
-      "status": "todo",
-      "notes": "States: checked/indeterminate/disabled; keyboard: Space"
+      "widget": "UiCheckbox",
+      "status": "done",
+      "notes": "16px fixed size, xs radius, proper token-based sizing"
     },
     {
       "id": "switch",
-      "widget": null,
-      "status": "todo",
-      "notes": "Tokens for track/thumb; focus ring; keyboard: Space"
+      "widget": "UiSwitch",
+      "status": "done",
+      "notes": "40x24px fixed size, animated thumb, token-based colors"
     },
     {
       "id": "radio",
-      "widget": null,
-      "status": "todo",
-      "notes": "Group behavior; focus management; keyboard: Arrow keys"
+      "widget": "UiRadio / UiRadioGroup",
+      "status": "done",
+      "notes": "16px fixed size, group behavior, token-based sizing"
     },
     {
       "id": "select",
@@ -262,9 +262,9 @@
     },
     {
       "id": "avatar",
-      "widget": null,
-      "status": "todo",
-      "notes": "Initials/fallback; sizes; radius"
+      "widget": "UiAvatar / UiAvatarGroup",
+      "status": "done",
+      "notes": "Initials/fallback, sizes (sm/md/lg), token-based radius and borders"
     },
     {
       "id": "button-group",
@@ -334,9 +334,9 @@
     },
     {
       "id": "label",
-      "widget": null,
-      "status": "todo",
-      "notes": "Form control labels"
+      "widget": "UiLabel",
+      "status": "done",
+      "notes": "Form control labels with required indicator and helper text"
     },
     {
       "id": "menubar",
@@ -370,9 +370,9 @@
     },
     {
       "id": "scroll-area",
-      "widget": null,
-      "status": "todo",
-      "notes": "Custom scrollbars"
+      "widget": "UiScrollArea",
+      "status": "done",
+      "notes": "Custom scrollbars with token-based styling"
     },
     {
       "id": "separator",
@@ -388,9 +388,9 @@
     },
     {
       "id": "sidebar",
-      "widget": null,
-      "status": "todo",
-      "notes": "Collapsible navigation"
+      "widget": "UiSidebar",
+      "status": "done",
+      "notes": "Sections, value selection, header/footer, token-based spacing and colors"
     },
     {
       "id": "sonner",
@@ -497,9 +497,9 @@
     },
     {
       "id": "textarea",
-      "widget": null,
-      "status": "todo",
-      "notes": "Auto-size; counters; error/helper mapping"
+      "widget": "UiTextarea",
+      "status": "done",
+      "notes": "Multi-line input with error/helper text, token-based sizing"
     },
     {
       "id": "table",
@@ -524,6 +524,54 @@
       "widget": null,
       "status": "todo",
       "notes": "Form wrapper and field context"
+    },
+    {
+      "id": "button-group",
+      "widget": null,
+      "status": "todo",
+      "notes": "Grouped buttons with proper spacing and borders"
+    },
+    {
+      "id": "empty",
+      "widget": null,
+      "status": "todo",
+      "notes": "Empty state placeholder with icon and text"
+    },
+    {
+      "id": "field",
+      "widget": null,
+      "status": "todo",
+      "notes": "Generic form field wrapper"
+    },
+    {
+      "id": "input-group",
+      "widget": null,
+      "status": "todo",
+      "notes": "Input with addons (prefix/suffix)"
+    },
+    {
+      "id": "item",
+      "widget": "UiListItem",
+      "status": "done",
+      "notes": "List item with leading/trailing, uses card surface for contrast"
+    },
+    {
+      "id": "native-select",
+      "widget": null,
+      "status": "todo",
+      "notes": "Native HTML select equivalent for Flutter"
+    },
+    {
+      "id": "spinner",
+      "widget": null,
+      "status": "todo",
+      "notes": "Loading spinner with sizes"
+    },
+    {
+      "id": "typography",
+      "widget": "UiText",
+      "status": "done",
+      "notes": "Typography component with semantic variants"
     }
   ]
 }
