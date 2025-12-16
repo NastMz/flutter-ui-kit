@@ -122,34 +122,31 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
       onSelected: (index) => setState(() => _selectedIndex = index),
     );
 
-    // Main content area using UiScrollArea
+    // Main content area using UiScrollArea (no native Center/ConstrainedBox)
     final mainContent = Expanded(
-      child: UiBox(
-        backgroundColor: ui.colors.background,
-        child: Center(
-          child: UiScrollArea(
-            axis: Axis.vertical,
-            child: UiInset(
-              all: UiSpacing.xl,
-              child: VStack(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  UiText.h2(_demos[_selectedIndex].label),
-                  const UiGap(UiSpacing.sm),
-                  const UiText.muted('Component demonstration'),
-                  const UiGap.manual(32),
-                  UiBox(
-                    borderColor: ui.colors.border,
-                    borderWidth: 1,
-                    borderRadius: ui.radius.lg,
-                    child: UiInset(
-                      all: UiSpacing.xl,
-                      child: _demos[_selectedIndex].demo,
-                    ),
-                  ),
-                ],
+      child: UiScrollArea(
+        axis: Axis.vertical,
+        child: UiPage(
+          isStandalone: false,
+          maxWidth: 900,
+          padding: UiSpacing.xl,
+          child: VStack(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              UiText.h2(_demos[_selectedIndex].label),
+              const UiGap(UiSpacing.sm),
+              const UiText.muted('Component demonstration'),
+              const UiGap.manual(32),
+              UiBox(
+                borderColor: ui.colors.border,
+                borderWidth: 1,
+                borderRadius: ui.radius.lg,
+                child: UiInset(
+                  all: UiSpacing.xl,
+                  child: _demos[_selectedIndex].demo,
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
