@@ -82,10 +82,10 @@ jobs:
 
       - name: Check Format
         run: |
-                  dart run melos run format
-                  git diff --stat -- . ':(exclude).idea/**'
-                  if ! git diff --exit-code --quiet -- . ':(exclude).idea/**'; then
-                    echo "Code formatting issues detected. Run 'dart run melos run format'"
-                    git diff -- . ':(exclude).idea/**'
-                    exit 1
-                  fi
+          dart run melos run format
+          git diff --stat -- . ':(exclude).idea/**'
+          if ! git diff --exit-code --quiet -- . ':(exclude).idea/**'; then
+            echo "Code formatting issues detected. Run 'dart run melos run format'"
+            git diff -- . ':(exclude).idea/**'
+            exit 1
+          fi
