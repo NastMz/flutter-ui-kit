@@ -1,3 +1,52 @@
+## 0.0.8
+
+### Breaking Changes
+
+- **Token Migration**
+  - All components now use component-specific size tokens
+  - `UiButton`: uses `ui.sizes.buttonSm/Default/Lg` instead of generic control sizes
+  - `UiTextField`/`UiTextarea`: uses `ui.sizes.inputMd` instead of generic padX/padY
+  - `UiCheckbox`/`UiRadio`: uses fixed `ui.sizes.checkboxSize` (16px)
+  - `UiSwitch`: uses fixed `ui.sizes.switchWidth/Height` (40x24px)
+
+### Added
+
+- **Sidebar Enhancements (`UiSidebar`)**
+
+  - Added `header` parameter for optional sidebar header widget
+  - Added `footer` parameter for optional sidebar footer widget
+  - Improved section support with visual separators
+  - Icon size now uses `ui.sizes.iconSm` token
+  - Left indicator uses `ui.sizes.iconMd` for proper proportion
+
+- **List Improvements (`UiList`/`UiListItem`)**
+  - Added `useCardSurface` parameter (defaults to `true`)
+  - Items render on `ui.colors.card` surface with border for better contrast on muted backgrounds
+  - Improves visibility in dark mode
+
+### Changed
+
+- **Component Sizing**
+
+  - `UiCheckbox`: reduced from 36px to 16px (shadcn-accurate)
+  - `UiCheckbox`: border radius changed from `sm` (4px) to `xs` (2px)
+  - `UiRadio`: reduced from 36px to 16px (shadcn-accurate)
+  - `UiSwitch`: dimensions changed to 40x24px (from 36x40px)
+  - All button variants now use token-based padding (no hardcoded values)
+
+- **Contrast Improvements**
+  - `UiTextField`: renders on `ui.colors.card` with `filled: true` for better visibility
+  - `UiTextarea`: renders on `ui.colors.card` with `filled: true` for better visibility
+  - `UiSwitch`: thumb uses `ui.colors.background` instead of hardcoded white
+  - `UiAvatar` group: border uses `ui.colors.background` instead of hardcoded white
+
+### Fixed
+
+- **Dark Mode Issues**
+  - Fixed inputs washing out on muted backgrounds
+  - Fixed list items low contrast on muted surfaces
+  - Fixed hardcoded white colors in switch and avatar components
+
 ## 0.0.7
 
 ### Added
