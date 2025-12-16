@@ -127,7 +127,7 @@ class _UiTextareaState extends State<UiTextarea> {
     final radius = ui.radius.md;
     final borderColor = ui.colors.input;
     final ringColor = ui.colors.ring;
-    final textColor = ui.colors.foreground;
+    final textColor = ui.colors.cardForeground;
     final mutedColor = ui.colors.mutedForeground;
 
     final hasError = widget.errorText != null && widget.errorText!.isNotEmpty;
@@ -185,6 +185,9 @@ class _UiTextareaState extends State<UiTextarea> {
           borderRadius: BorderRadius.circular(radius),
           borderSide: BorderSide(color: ui.colors.destructive, width: 2),
         ),
+        // Ensure contrast on muted backgrounds
+        filled: true,
+        fillColor: ui.colors.card,
       ),
     );
   }

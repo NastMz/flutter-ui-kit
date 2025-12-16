@@ -140,6 +140,8 @@ class UiAvatarGroup extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
+    final ui = UiTheme.of(context);
+
     final borderWidth = 2.0;
     final totalWidth = avatars.length * (size.size - overlap) + overlap;
 
@@ -154,7 +156,10 @@ class UiAvatarGroup extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: borderWidth),
+                  border: Border.all(
+                    color: ui.colors.foreground,
+                    width: borderWidth,
+                  ),
                 ),
                 child: avatars[i],
               ),

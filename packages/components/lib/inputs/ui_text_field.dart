@@ -51,7 +51,7 @@ class UiTextField extends StatelessWidget {
     final radius = ui.radius.md;
     final borderColor = ui.colors.input;
     final ringColor = ui.colors.ring;
-    final textColor = ui.colors.foreground;
+    final textColor = ui.colors.cardForeground;
     final mutedColor = ui.colors.mutedForeground;
 
     final hasError = errorText != null && errorText!.isNotEmpty;
@@ -113,8 +113,11 @@ class UiTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
           borderSide: BorderSide(color: ui.colors.muted.withValues(alpha: 0.5)),
         ),
-        filled: !enabled,
-        fillColor: enabled ? null : ui.colors.muted.withValues(alpha: 0.5),
+        // Ensure contrast on muted backgrounds by using card surface
+        filled: true,
+        fillColor: enabled
+            ? ui.colors.card
+            : ui.colors.muted.withValues(alpha: 0.5),
       ),
     );
   }

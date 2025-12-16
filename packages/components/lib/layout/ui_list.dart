@@ -4,6 +4,7 @@ import 'ui_gap.dart';
 import 'ui_spacing.dart';
 import 'ui_stack.dart';
 import 'ui_inset.dart';
+import 'ui_box.dart';
 
 /// A list item widget with optional leading/trailing content and divider support.
 ///
@@ -52,6 +53,9 @@ class UiListItem extends StatelessWidget {
   /// Whether the item is enabled
   final bool enabled;
 
+  /// Render item on a card-like surface for better contrast on muted backgrounds.
+  final bool useCardSurface;
+
   /// Creates a list item.
   const UiListItem({
     super.key,
@@ -66,13 +70,14 @@ class UiListItem extends StatelessWidget {
     this.dividerColor,
     this.onTap,
     this.enabled = true,
+    this.useCardSurface = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
     final opacity = enabled ? 1.0 : 0.5;
-    final divColor = dividerColor ?? ui.colors.border;
+    final divColor = dividerColor ?? ui.colors.mutedForeground;
 
     // Build the content area (title + subtitle)
     final contentStack = VStack(
@@ -99,8 +104,18 @@ class UiListItem extends StatelessWidget {
       ],
     );
 
-    // Wrap with padding
-    content = UiInset(all: padding, child: content);
+    // Wrap with optional surface and padding
+    if (useCardSurface) {
+      content = UiBox(
+        backgroundColor: ui.colors.card,
+        borderColor: ui.colors.border,
+        borderWidth: 1,
+        borderRadius: ui.radius.md,
+        child: UiInset(all: padding, child: content),
+      );
+    } else {
+      content = UiInset(all: padding, child: content);
+    }
 
     // Add tap handler if callback provided
     if (onTap != null) {
@@ -179,6 +194,7 @@ class UiList extends StatelessWidget {
           dividerColor: child.dividerColor,
           onTap: child.onTap,
           enabled: child.enabled,
+          useCardSurface: child.useCardSurface,
         );
       }
 

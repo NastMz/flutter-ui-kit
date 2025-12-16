@@ -116,9 +116,9 @@ class _SwitchWidgetState extends State<_SwitchWidget>
     final height = 24.0;
     final thumbRadius = 10.0;
 
-    final offBgColor = ui.colors.muted;
+    final offBgColor = ui.colors.mutedForeground;
     final onBgColor = ui.colors.primary;
-    final thumbColor = Colors.white;
+    final thumbColor = ui.colors.background;
 
     return GestureDetector(
       onTap: widget.enabled
@@ -160,7 +160,7 @@ class _SwitchWidgetState extends State<_SwitchWidget>
                       color: thumbColor,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.1),
+                          color: ui.colors.foreground.withValues(alpha: 0.1),
                           blurRadius: 2,
                           offset: const Offset(0, 1),
                         ),
