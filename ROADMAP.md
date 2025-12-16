@@ -112,6 +112,7 @@ Completed:
 ### Phase 3C — Interactive Components
 
 **Current Status:**
+
 - [x] Badge (0.0.7)
 - [x] Avatar (0.0.7)
 - [x] Checkbox (0.0.7)
@@ -123,6 +124,7 @@ Completed:
 - [x] Sidebar (0.0.8)
 
 **Pending (shadcn parity):**
+
 - [ ] Accordion
 - [ ] Alert
 - [ ] Alert Dialog
