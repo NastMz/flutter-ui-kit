@@ -79,6 +79,8 @@ class ShowcaseHome extends StatefulWidget {
 class _ShowcaseHomeState extends State<ShowcaseHome> {
   int _selectedIndex = 0;
 
+  String get _selectedValue => _demos[_selectedIndex].label;
+
   final List<({String label, IconData icon, Widget demo})> _demos = [
     (label: 'Buttons', icon: Icons.smart_button, demo: const ButtonDemo()),
     (label: 'Inputs', icon: Icons.input, demo: const InputDemo()),
@@ -113,16 +115,63 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
 
-    // Navigation sidebar using UiSidebar
-    final sidebar = UiSidebar(
-      items: _demos
-          .map((d) => UiSidebarItem(label: d.label, icon: Icon(d.icon)))
-          .toList(),
-      selectedIndex: _selectedIndex,
-      onSelected: (index) => setState(() => _selectedIndex = index),
+    // Theme toggle control (used in sidebar footer)
+    final themeToggle = UiInset(
+      horizontal: UiSpacing.sm,
+      vertical: UiSpacing.xs,
+      child: HStack(
+        gap: UiSpacing.sm,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.light_mode, size: 18, color: ui.colors.mutedForeground),
+          UiSwitch(
+            value: widget.isDarkMode,
+            onChanged: (_) => widget.onToggleTheme(),
+          ),
+          Icon(Icons.dark_mode, size: 18, color: ui.colors.mutedForeground),
+        ],
+      ),
     );
 
-    // Main content area using UiScrollArea (no native Center/ConstrainedBox)
+    // Navigation sidebar using UiSidebar
+    final sidebar = UiSidebar(
+      sections: [
+        UiSidebarSection(
+          label: 'Components',
+          items: _demos
+              .map(
+                (d) => UiSidebarItem(
+                  label: d.label,
+                  value: d.label,
+                  icon: Icon(d.icon),
+                ),
+              )
+              .toList(),
+        ),
+      ],
+      selectedIndex: _selectedIndex, // legacy fallback
+      onSelected: (index) => setState(() => _selectedIndex = index),
+      selectedValue: _selectedValue,
+      onSelectedValue: (value) {
+        final idx = _demos.indexWhere((d) => d.label == value);
+        if (idx != -1) setState(() => _selectedIndex = idx);
+      },
+      header: UiInset(
+        horizontal: UiSpacing.sm,
+        vertical: UiSpacing.xs,
+        child: UiText.p(
+          'Flutter UI Kit Showcase',
+          style: ui.typography.textSm.copyWith(
+            color: ui.colors.mutedForeground,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      footer: themeToggle,
+    );
+
+    // Main content area using UiScrollArea
     final mainContent = Expanded(
       child: UiScrollArea(
         axis: Axis.vertical,
@@ -152,29 +201,10 @@ class _ShowcaseHomeState extends State<ShowcaseHome> {
       ),
     );
 
-    // AppBar with theme toggle
-    final appBarContent = HStack(
-      gap: UiSpacing.sm,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(Icons.light_mode, size: 20, color: ui.colors.mutedForeground),
-        UiSwitch(
-          value: widget.isDarkMode,
-          onChanged: (_) => widget.onToggleTheme(),
-        ),
-        Icon(Icons.dark_mode, size: 20, color: ui.colors.mutedForeground),
-      ],
-    );
-
     return Scaffold(
       backgroundColor: ui.colors.background,
-      appBar: AppBar(
-        backgroundColor: ui.colors.background,
-        elevation: 0,
-        title: const UiText.p('Flutter UI Kit Showcase'),
-        actions: [UiInset(horizontal: UiSpacing.md, child: appBarContent)],
-      ),
       body: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           sidebar,
           UiSeparator(direction: UiSeparatorDirection.vertical),
