@@ -6,6 +6,7 @@ import '../tokens/radius_tokens.dart';
 import '../tokens/shadow_tokens.dart';
 import '../tokens/spacing_tokens.dart';
 import '../tokens/typography_tokens.dart';
+import '../tokens/sizes_tokens.dart';
 
 /// Holds all the design tokens for the UI system.
 @immutable
@@ -24,6 +25,9 @@ class UiThemeData {
 
   /// Typography tokens.
   final TypographyTokens typography;
+
+  /// Sizes tokens (controls/icons ergonomics).
+  final SizesTokens sizes;
 
   /// Focus tokens.
   final FocusTokens focus;
@@ -44,6 +48,7 @@ class UiThemeData {
     required this.spacing,
     required this.radius,
     required this.typography,
+    required this.sizes,
     required this.focus,
     required this.shadows,
     required this.fontSans,
@@ -61,6 +66,7 @@ class UiThemeData {
       colors: colors,
       spacing: SpacingTokens.standard(),
       radius: RadiusTokens.standard(),
+      sizes: SizesTokens.standard(),
       typography: TypographyTokens.standard(
         brightness: Brightness.light,
         fontSans: sans,
@@ -84,6 +90,7 @@ class UiThemeData {
       colors: colors,
       spacing: SpacingTokens.standard(),
       radius: RadiusTokens.standard(),
+      sizes: SizesTokens.standard(),
       typography: TypographyTokens.standard(
         brightness: Brightness.dark,
         fontSans: sans,
@@ -103,6 +110,7 @@ class UiThemeData {
     SpacingTokens? spacing,
     RadiusTokens? radius,
     TypographyTokens? typography,
+    SizesTokens? sizes,
     FocusTokens? focus,
     ShadowTokens? shadows,
     TextStyle? fontSans,
@@ -114,6 +122,7 @@ class UiThemeData {
       spacing: spacing ?? this.spacing,
       radius: radius ?? this.radius,
       typography: typography ?? this.typography,
+      sizes: sizes ?? this.sizes,
       focus: focus ?? this.focus,
       shadows: shadows ?? this.shadows,
       fontSans: fontSans ?? this.fontSans,
@@ -129,6 +138,7 @@ class UiThemeData {
       spacing: t < 0.5 ? spacing : other.spacing,
       radius: t < 0.5 ? radius : other.radius,
       typography: t < 0.5 ? typography : other.typography,
+      sizes: t < 0.5 ? sizes : other.sizes,
       focus: focus.lerp(other.focus, t),
       shadows: shadows.lerp(other.shadows, t),
       fontSans: TextStyle.lerp(fontSans, other.fontSans, t)!,

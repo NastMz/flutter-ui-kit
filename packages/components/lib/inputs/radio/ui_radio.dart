@@ -86,8 +86,8 @@ class _RadioWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
-    final size = 20.0;
-    final innerRadius = 6.0;
+    final size = ui.sizes.checkboxSize;
+    final innerRadius = (size / 2) - 4.0;
 
     final borderColor = ui.colors.input;
     final selectedBorderColor = ui.colors.primary;
@@ -104,7 +104,7 @@ class _RadioWidget extends StatelessWidget {
             color: enabled
                 ? (isSelected ? selectedBorderColor : borderColor)
                 : ui.colors.mutedForeground,
-            width: 1.5,
+            width: 1.0,
           ),
         ),
         child: isSelected
@@ -165,7 +165,7 @@ class UiRadioGroup<T> extends StatelessWidget {
     this.onChanged,
     this.enabled = true,
     this.direction = Axis.vertical,
-    this.spacing = 12,
+    this.spacing = 0,
   });
 
   @override
@@ -185,9 +185,11 @@ class UiRadioGroup<T> extends StatelessWidget {
         )
         .toList();
 
+    final s = UiTheme.of(context).spacing;
+    final gap = spacing == 0 ? s.sm : spacing;
     final spacer = SizedBox(
-      width: direction == Axis.horizontal ? spacing : 0,
-      height: direction == Axis.vertical ? spacing : 0,
+      width: direction == Axis.horizontal ? gap : 0,
+      height: direction == Axis.vertical ? gap : 0,
     );
 
     final children = <Widget>[];

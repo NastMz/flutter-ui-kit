@@ -163,14 +163,17 @@ class UiSidebar extends StatelessWidget {
         : ui.colors.accent.withValues(alpha: 0.15);
 
     final content = IconTheme(
-      data: IconThemeData(color: iconColor, size: 16),
+      data: IconThemeData(
+        color: iconColor,
+        size: UiTheme.of(context).sizes.iconSm,
+      ),
       child: HStack(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Left selected indicator
           UiBox(
             width: 3,
-            height: 24,
+            height: ui.sizes.iconMd,
             backgroundColor: selected
                 ? ui.colors.primary
                 : ui.colors.background.withValues(alpha: 0),

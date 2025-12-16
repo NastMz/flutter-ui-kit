@@ -76,8 +76,8 @@ class _CheckboxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
-    final size = 20.0;
-    final radius = ui.radius.sm;
+    final size = ui.sizes.checkboxSize;
+    final radius = ui.radius.xs;
 
     final borderColor = ui.colors.input;
     final checkedBgColor = value ? ui.colors.primary : Colors.transparent;
@@ -90,7 +90,7 @@ class _CheckboxWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: enabled ? checkedBorderColor : ui.colors.mutedForeground,
-            width: 1.5,
+            width: 1.0,
           ),
           borderRadius: BorderRadius.circular(radius),
           color: enabled ? checkedBgColor : ui.colors.muted,
@@ -99,7 +99,7 @@ class _CheckboxWidget extends StatelessWidget {
             ? Center(
                 child: Icon(
                   Icons.check,
-                  size: 14,
+                  size: ui.sizes.iconXs,
                   color: ui.colors.onPrimary,
                   weight: 700,
                 ),

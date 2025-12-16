@@ -112,9 +112,9 @@ class _SwitchWidgetState extends State<_SwitchWidget>
   @override
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
-    final width = 44.0;
-    final height = 24.0;
-    final thumbRadius = 10.0;
+    final height = ui.sizes.switchHeight;
+    final width = ui.sizes.switchWidth;
+    final thumbRadius = (height / 2) - 2.0;
 
     final offBgColor = ui.colors.mutedForeground;
     final onBgColor = ui.colors.primary;

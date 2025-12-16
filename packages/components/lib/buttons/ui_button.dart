@@ -100,14 +100,21 @@ class UiButton extends StatelessWidget {
     if (variant == UiButtonVariant.link) {
       return EdgeInsets.zero;
     }
-    return switch (size) {
-      UiButtonSize.sm => EdgeInsets.symmetric(horizontal: ui.spacing.md),
-      UiButtonSize.md => EdgeInsets.symmetric(horizontal: ui.spacing.lg),
-      UiButtonSize.lg => EdgeInsets.symmetric(
-        horizontal: ui.spacing.xl * 1.33,
-      ), // approx 32
-      UiButtonSize.icon => EdgeInsets.zero,
+    // Icon button has zero padding
+    if (size == UiButtonSize.icon) {
+      return EdgeInsets.zero;
+    }
+    // Use button-specific size tokens
+    final buttonSize = switch (size) {
+      UiButtonSize.sm => ui.sizes.buttonSm,
+      UiButtonSize.md => ui.sizes.buttonMd,
+      UiButtonSize.lg => ui.sizes.buttonLg,
+      UiButtonSize.icon => ui.sizes.buttonMd, // unused
     };
+    return EdgeInsets.symmetric(
+      horizontal: buttonSize.paddingX,
+      vertical: buttonSize.paddingY,
+    );
   }
 
   Size _minimumSize(UiThemeData ui) {
@@ -115,12 +122,15 @@ class UiButton extends StatelessWidget {
     if (variant == UiButtonVariant.link) {
       return const Size(0, 0);
     }
-    return switch (size) {
-      UiButtonSize.sm => const Size(0, 36),
-      UiButtonSize.md => const Size(0, 40),
-      UiButtonSize.lg => const Size(0, 44),
-      UiButtonSize.icon => const Size(40, 40),
+    final buttonSize = switch (size) {
+      UiButtonSize.sm => ui.sizes.buttonSm,
+      UiButtonSize.md => ui.sizes.buttonMd,
+      UiButtonSize.lg => ui.sizes.buttonLg,
+      UiButtonSize.icon => ui.sizes.buttonMd,
     };
+    return size == UiButtonSize.icon
+        ? Size(buttonSize.height, buttonSize.height)
+        : Size(0, buttonSize.height);
   }
 
   WidgetStateProperty<TextStyle?> _textStyle(UiThemeData ui) {

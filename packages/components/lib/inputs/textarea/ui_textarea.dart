@@ -157,8 +157,8 @@ class _UiTextareaState extends State<UiTextarea> {
         ),
         isDense: true,
         contentPadding: EdgeInsets.symmetric(
-          horizontal: ui.spacing.md,
-          vertical: ui.spacing.md,
+          horizontal: ui.sizes.inputMd.paddingX,
+          vertical: ui.sizes.inputMd.paddingY,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
