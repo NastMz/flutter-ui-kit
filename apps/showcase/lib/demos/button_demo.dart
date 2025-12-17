@@ -25,7 +25,7 @@ class ButtonDemo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         gap: UiSpacing.md,
         children: [
-          _buildVariantColumn('Primary', UiButtonVariant.primary),
+          _buildVariantColumn('Default', UiButtonVariant.default_),
           _buildVariantColumn('Secondary', UiButtonVariant.secondary),
           _buildVariantColumn('Destructive', UiButtonVariant.destructive),
           _buildVariantColumn('Outline', UiButtonVariant.outline),
@@ -117,11 +117,26 @@ class ButtonDemo extends StatelessWidget {
           child: HStack(
             gap: UiSpacing.sm,
             children: [
+              // Icon Small (32x32)
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.iconSm,
+                variant: UiButtonVariant.outline,
+                child: const Icon(Icons.chevron_right, size: 14),
+              ),
+              // Icon Default (40x40)
               UiButton(
                 onPressed: () {},
                 size: UiButtonSize.icon,
                 variant: UiButtonVariant.outline,
                 child: const Icon(Icons.chevron_right, size: 16),
+              ),
+              // Icon Large (48x48)
+              UiButton(
+                onPressed: () {},
+                size: UiButtonSize.iconLg,
+                variant: UiButtonVariant.outline,
+                child: const Icon(Icons.chevron_right, size: 20),
               ),
               UiButton(
                 onPressed: () {},
@@ -140,7 +155,7 @@ class ButtonDemo extends StatelessWidget {
             children: [
               UiButton(
                 onPressed: () {},
-                variant: UiButtonVariant.primary,
+                variant: UiButtonVariant.default_,
                 child: HStack(
                   gap: UiSpacing.xs,
                   children: const [

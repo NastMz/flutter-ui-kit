@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 /// Variants for [UiButton] that determine its visual style.
 enum UiButtonVariant {
-  /// Primary button style (solid background, contrasting text).
-  primary,
+  /// Default/Primary button style (solid background, contrasting text).
+  /// Maps to shadcn's "default" variant.
+  default_,
 
   /// Secondary button style (muted background, contrasting text).
   secondary,
@@ -33,8 +34,14 @@ enum UiButtonSize {
   /// Large button size.
   lg,
 
-  /// Icon button size (square).
+  /// Small icon button size (32x32 square).
+  iconSm,
+
+  /// Default icon button size (40x40 square).
   icon,
+
+  /// Large icon button size (48x48 square).
+  iconLg,
 }
 
 /// A button widget that follows the design system.
@@ -58,7 +65,7 @@ class UiButton extends StatelessWidget {
     super.key,
     required this.child,
     required this.onPressed,
-    this.variant = UiButtonVariant.primary,
+    this.variant = UiButtonVariant.default_,
     this.size = UiButtonSize.md,
   });
 
@@ -100,8 +107,10 @@ class UiButton extends StatelessWidget {
     if (variant == UiButtonVariant.link) {
       return EdgeInsets.zero;
     }
-    // Icon button has zero padding
-    if (size == UiButtonSize.icon) {
+    // Icon buttons have zero padding
+    if (size == UiButtonSize.iconSm ||
+        size == UiButtonSize.icon ||
+        size == UiButtonSize.iconLg) {
       return EdgeInsets.zero;
     }
     // Use button-specific size tokens
@@ -109,7 +118,9 @@ class UiButton extends StatelessWidget {
       UiButtonSize.sm => ui.sizes.buttonSm,
       UiButtonSize.md => ui.sizes.buttonMd,
       UiButtonSize.lg => ui.sizes.buttonLg,
-      UiButtonSize.icon => ui.sizes.buttonMd, // unused
+      UiButtonSize.iconSm ||
+      UiButtonSize.icon ||
+      UiButtonSize.iconLg => ui.sizes.buttonMd, // unused for icons
     };
     return EdgeInsets.symmetric(
       horizontal: buttonSize.paddingX,
@@ -122,15 +133,26 @@ class UiButton extends StatelessWidget {
     if (variant == UiButtonVariant.link) {
       return const Size(0, 0);
     }
+
+    // Icon buttons: use fixed square dimensions
+    if (size == UiButtonSize.iconSm) {
+      return Size(ui.sizes.iconButtonSm, ui.sizes.iconButtonSm);
+    }
+    if (size == UiButtonSize.icon) {
+      return Size(ui.sizes.iconButtonMd, ui.sizes.iconButtonMd);
+    }
+    if (size == UiButtonSize.iconLg) {
+      return Size(ui.sizes.iconButtonLg, ui.sizes.iconButtonLg);
+    }
+
+    // Text buttons: use height from buttonSize
     final buttonSize = switch (size) {
       UiButtonSize.sm => ui.sizes.buttonSm,
       UiButtonSize.md => ui.sizes.buttonMd,
       UiButtonSize.lg => ui.sizes.buttonLg,
-      UiButtonSize.icon => ui.sizes.buttonMd,
+      _ => ui.sizes.buttonMd,
     };
-    return size == UiButtonSize.icon
-        ? Size(buttonSize.height, buttonSize.height)
-        : Size(0, buttonSize.height);
+    return Size(0, buttonSize.height);
   }
 
   WidgetStateProperty<TextStyle?> _textStyle(UiThemeData ui) {
@@ -168,7 +190,7 @@ class UiButton extends StatelessWidget {
       }
 
       return switch (variant) {
-        UiButtonVariant.primary =>
+        UiButtonVariant.default_ =>
           hovered
               ? ui.colors.primary.withValues(alpha: 0.9)
               : ui.colors.primary,
@@ -198,7 +220,7 @@ class UiButton extends StatelessWidget {
       }
 
       return switch (variant) {
-        UiButtonVariant.primary => ui.colors.onPrimary,
+        UiButtonVariant.default_ => ui.colors.onPrimary,
         UiButtonVariant.secondary => ui.colors.onSecondary,
         UiButtonVariant.destructive => ui.colors.destructiveForeground,
         UiButtonVariant.outline => ui.colors.primary, // Usually foreground

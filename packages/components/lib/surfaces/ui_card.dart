@@ -31,12 +31,12 @@ class UiCard extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: ui.colors.card,
-        borderRadius: BorderRadius.circular(ui.radius.lg),
+        borderRadius: BorderRadius.circular(ui.radius.xl),
         border: Border.all(color: ui.colors.border),
         boxShadow: ui.shadows.sm,
       ),
       child: DefaultTextStyle.merge(
-        style: ui.typography.textBase.copyWith(color: ui.colors.cardForeground),
+        style: ui.typography.textSm.copyWith(color: ui.colors.cardForeground),
         child: child,
       ),
     );
@@ -46,22 +46,46 @@ class UiCard extends StatelessWidget {
 /// A header for [UiCard].
 ///
 /// Typically contains a [UiCardTitle] and optional description.
+/// Can also include an [action] widget positioned in the top-right corner.
 class UiCardHeader extends StatelessWidget {
   final Widget child;
+  final Widget? action;
   final EdgeInsetsGeometry? padding;
 
   /// Creates a card header.
-  const UiCardHeader({super.key, required this.child, this.padding});
+  const UiCardHeader({
+    super.key,
+    required this.child,
+    this.action,
+    this.padding,
+  });
 
   @override
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
+
+    if (action == null) {
+      return Padding(
+        padding: padding ?? EdgeInsets.all(ui.spacing.xl2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [child],
+        ),
+      );
+    }
+
     return Padding(
-      padding: padding ?? EdgeInsets.all(ui.spacing.lg),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [child],
+      padding: padding ?? EdgeInsets.all(ui.spacing.xl2),
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [child],
+          ),
+          Positioned(top: 0, right: 0, child: action!),
+        ],
       ),
     );
   }
@@ -80,12 +104,29 @@ class UiCardTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
     return DefaultTextStyle.merge(
-      style: ui.typography.title.copyWith(
+      style: ui.typography.textBase.copyWith(
+        fontWeight: FontWeight.w500,
         color: ui.colors.cardForeground,
         height: 1.0, // Tight line height for titles
       ),
       child: child,
     );
+  }
+}
+
+/// An action widget for [UiCardHeader].
+///
+/// Positioned in the top-right corner of the card header.
+/// Typically contains a button or icon button.
+class UiCardAction extends StatelessWidget {
+  final Widget child;
+
+  /// Creates a card action.
+  const UiCardAction({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return child;
   }
 }
 
@@ -123,8 +164,8 @@ class UiCardContent extends StatelessWidget {
       padding:
           padding ??
           EdgeInsets.symmetric(
-            horizontal: ui.spacing.lg,
-          ).copyWith(bottom: ui.spacing.lg),
+            horizontal: ui.spacing.xl2,
+          ).copyWith(bottom: ui.spacing.xl2),
       child: child,
     );
   }
@@ -140,7 +181,7 @@ class UiCardFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     final ui = UiTheme.of(context);
     return Padding(
-      padding: padding ?? EdgeInsets.all(ui.spacing.lg).copyWith(top: 0),
+      padding: padding ?? EdgeInsets.all(ui.spacing.xl2).copyWith(top: 0),
       child: child,
     );
   }

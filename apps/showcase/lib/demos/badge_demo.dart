@@ -24,7 +24,7 @@ class BadgeDemo extends StatelessWidget {
             HStack(
               gap: UiSpacing.md,
               children: [
-                UiBadge(label: 'Primary', variant: UiBadgeVariant.primary),
+                UiBadge(label: 'Default', variant: UiBadgeVariant.default_),
                 UiBadge(label: 'Secondary', variant: UiBadgeVariant.secondary),
                 UiBadge(
                   label: 'Destructive',
@@ -46,7 +46,7 @@ class BadgeDemo extends StatelessWidget {
             HStack(
               gap: UiSpacing.md,
               children: [
-                UiBadge(label: 'New', variant: UiBadgeVariant.primary),
+                UiBadge(label: 'New', variant: UiBadgeVariant.default_),
                 UiBadge(label: '5 days', variant: UiBadgeVariant.secondary),
                 UiBadge(label: 'Alert', variant: UiBadgeVariant.destructive),
                 UiBadge(label: 'Info', variant: UiBadgeVariant.outline),

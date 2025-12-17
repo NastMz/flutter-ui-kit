@@ -1,3 +1,54 @@
+## 0.0.6
+
+### Breaking Changes
+
+- **Input & Textarea Padding - CRITICAL Visual Alignment**
+  - Corrected Input padding to match shadcn exactly: `px-3` (12px), `py-1` (4px)
+  - Previous values were incorrect: `inputDefault.paddingX: 16px → 12px`, `paddingY: 10px → 4px`
+  - Added new `TextareaSizes` class for textarea-specific dimensions
+  - Textarea now uses `px-2 py-2` (8px each) with `min-h-16` (64px) per shadcn
+  - **Impact:** Input and Textarea components will now match shadcn pixel-perfectly
+
+## 0.0.5
+
+### Breaking Changes
+
+- **Size Tokens (`SizesTokens`) - CRITICAL Visual Alignment**
+  - Corrected all button and input heights to match shadcn's exact Tailwind classes
+  - **Button heights:**
+    - `buttonSm`: 36px → **32px** (shadcn h-8)
+    - `buttonDefault`: 40px → **36px** (shadcn h-9)
+    - `buttonLg`: 44px → **40px** (shadcn h-10)
+  - **Button padding:**
+    - `buttonLg.paddingX`: 20px → **24px** (shadcn px-6)
+  - **Input heights:**
+    - `inputSm`: 36px → **32px** (matches h-8)
+    - `inputDefault`: 40px → **36px** (matches h-9)
+    - `inputLg`: 44px → **40px** (matches h-10)
+  - **Input padding:**
+    - `inputLg.paddingX`: 20px → **24px** (matches px-6)
+  - **Icon button dimensions:**
+    - `iconButtonMd`: 40px → **36px** (shadcn size-9)
+    - `iconButtonLg`: 48px → **40px** (shadcn size-10)
+  - **Impact:** All components using these tokens will now render 4px shorter/smaller, matching shadcn pixel-perfectly
+
+## 0.0.4
+
+### Breaking Changes
+
+- **Radius Tokens (`RadiusTokens`)**
+  - Adjusted radius scale to match shadcn's `--radius: 0.625rem` (10px)
+  - `md`: 6px → 10px (now matches shadcn default radius)
+  - `lg`: 8px → 12px
+  - `xl`: 12px → 16px
+  - `xl2`: 16px → 20px
+
+### Added
+
+- **Size Tokens (`SizesTokens`)**
+  - Added icon button specific sizes: `iconButtonSm` (32px), `iconButtonMd` (40px), `iconButtonLg` (48px)
+  - These match shadcn's `icon-sm` (size-8), `icon` (size-10), and `icon-lg` (size-12) button variants
+
 ## 0.0.3
 
 ### Breaking Changes

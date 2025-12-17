@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 /// Defines the typography styles for the design system.
 @immutable
 class TypographyTokens {
+  /// Extra small text style (12px).
+  final TextStyle textXs;
+
   /// Small text style (14px).
   final TextStyle textSm;
 
@@ -29,6 +32,7 @@ class TypographyTokens {
 
   /// Creates a set of typography tokens.
   const TypographyTokens({
+    required this.textXs,
     required this.textSm,
     required this.textBase,
     required this.textLg,
@@ -48,6 +52,12 @@ class TypographyTokens {
     final baseColor = brightness == Brightness.dark
         ? const Color(0xFFFAFAFA)
         : const Color(0xFF09090B);
+
+    final textXs = fontSans.copyWith(
+      fontSize: 12,
+      height: 1.42,
+      color: baseColor,
+    );
 
     final textSm = fontSans.copyWith(
       fontSize: 14,
@@ -80,6 +90,7 @@ class TypographyTokens {
     );
 
     return TypographyTokens(
+      textXs: textXs,
       textSm: textSm,
       textBase: textBase,
       textLg: textLg,

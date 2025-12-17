@@ -157,8 +157,8 @@ class _UiTextareaState extends State<UiTextarea> {
         ),
         isDense: true,
         contentPadding: EdgeInsets.symmetric(
-          horizontal: ui.sizes.inputMd.paddingX,
-          vertical: ui.sizes.inputMd.paddingY,
+          horizontal: ui.sizes.textarea.paddingX,
+          vertical: ui.sizes.textarea.paddingY,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
@@ -174,7 +174,7 @@ class _UiTextareaState extends State<UiTextarea> {
           borderRadius: BorderRadius.circular(radius),
           borderSide: BorderSide(
             color: hasError ? ui.colors.destructive : ringColor,
-            width: 2,
+            width: 1, // shadcn keeps 1px border, ring is separate box-shadow
           ),
         ),
         errorBorder: OutlineInputBorder(
@@ -183,7 +183,10 @@ class _UiTextareaState extends State<UiTextarea> {
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
-          borderSide: BorderSide(color: ui.colors.destructive, width: 2),
+          borderSide: BorderSide(
+            color: ui.colors.destructive,
+            width: 1,
+          ), // consistent 1px
         ),
         // Ensure contrast on muted backgrounds
         filled: true,

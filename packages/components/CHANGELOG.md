@@ -1,3 +1,58 @@
+## 0.0.11
+
+### Changed
+
+- **TextField/Input Padding Correction (`core` v0.0.6 dependency)**
+  - Input padding now matches shadcn exactly: `px-3` (12px), `py-1` (4px)
+  - Textarea padding corrected to `px-2 py-2` (8px each)
+  - **Impact:** Input and Textarea will appear with corrected internal spacing, matching shadcn precisely
+
+## 0.0.10
+
+### Breaking Changes
+
+- **Visual Alignment with shadcn (`core` v0.0.5 dependency)**
+  - All components now inherit corrected dimensions from `SizesTokens`
+  - **Buttons are now 4px shorter** to match shadcn exactly:
+    - Small buttons: 36px → 32px height
+    - Default buttons: 40px → 36px height
+    - Large buttons: 44px → 40px height
+  - **Icon buttons adjusted:**
+    - Medium: 40px → 36px (matches shadcn's default icon button)
+    - Large: 48px → 40px
+  - **Inputs adjusted** to match button heights
+  - **Impact:** Components will appear slightly more compact, matching shadcn's visual design pixel-perfectly
+  - **Note:** Updated icon button token references in v0.0.9 now resolve to corrected sizes
+
+## 0.0.9
+
+### Breaking Changes
+
+- **Button API (`UiButton`)**
+
+  - Renamed `UiButtonVariant.primary` to `UiButtonVariant.default_` for exact shadcn parity
+  - Migration: Replace all `UiButtonVariant.primary` with `UiButtonVariant.default_`
+  - Added `UiButtonSize.iconSm` and `UiButtonSize.iconLg` for additional icon button sizes
+  - Icon button sizes now use dedicated tokens: iconSm (32x32), icon (40x40), iconLg (48x48)
+
+- **Badge API (`UiBadge`)**
+  - Renamed `UiBadgeVariant.primary` to `UiBadgeVariant.default_` for exact shadcn parity
+  - Migration: Replace all `UiBadgeVariant.primary` with `UiBadgeVariant.default_`
+
+### Added
+
+- **Card Action Support (`UiCard`)**
+
+  - Added `UiCardAction` widget for top-right header actions
+  - `UiCardHeader` now accepts optional `action` parameter
+  - Action renders in top-right corner using Stack positioning
+  - Matches shadcn's Card component API for header actions
+
+- **Avatar Customization (`UiAvatar`)**
+  - Added optional `borderRadius` parameter
+  - Supports rounded square avatars (e.g., `borderRadius: ui.radius.lg`)
+  - When `borderRadius` is null, avatar is circular (default)
+
 ## 0.0.8
 
 ### Breaking Changes

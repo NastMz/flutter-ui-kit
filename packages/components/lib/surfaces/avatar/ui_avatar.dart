@@ -19,10 +19,10 @@ enum UiAvatarSize {
 extension UiAvatarSizeValue on UiAvatarSize {
   double get size {
     return switch (this) {
-      UiAvatarSize.sm => 32,
-      UiAvatarSize.md => 40,
-      UiAvatarSize.lg => 48,
-      UiAvatarSize.xl => 56,
+      UiAvatarSize.sm => 24,
+      UiAvatarSize.md => 32,
+      UiAvatarSize.lg => 40,
+      UiAvatarSize.xl => 48,
     };
   }
 }
@@ -52,6 +52,10 @@ class UiAvatar extends StatelessWidget {
   /// Text color for the fallback text.
   final Color? textColor;
 
+  /// Border radius for the avatar. If null, avatar is circular (default).
+  /// Set to a value (e.g., ui.radius.md) to make it rounded square.
+  final double? borderRadius;
+
   /// Creates an avatar.
   const UiAvatar({
     super.key,
@@ -60,6 +64,7 @@ class UiAvatar extends StatelessWidget {
     this.size = UiAvatarSize.md,
     this.backgroundColor,
     this.textColor,
+    this.borderRadius,
   });
 
   @override
@@ -67,14 +72,17 @@ class UiAvatar extends StatelessWidget {
     final ui = UiTheme.of(context);
     final avatarSize = size.size;
 
-    final bgColor = backgroundColor ?? ui.colors.secondary;
-    final textCol = textColor ?? ui.colors.onSecondary;
+    final bgColor = backgroundColor ?? ui.colors.muted;
+    final textCol = textColor ?? ui.colors.mutedForeground;
 
     return Container(
       width: avatarSize,
       height: avatarSize,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
+        shape: borderRadius == null ? BoxShape.circle : BoxShape.rectangle,
+        borderRadius: borderRadius != null
+            ? BorderRadius.circular(borderRadius!)
+            : null,
         color: bgColor,
         image: image != null
             ? DecorationImage(
@@ -90,10 +98,7 @@ class UiAvatar extends StatelessWidget {
           ? Center(
               child: Text(
                 fallback,
-                style: ui.typography.textSm.copyWith(
-                  color: textCol,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: ui.typography.textSm.copyWith(color: textCol),
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -157,7 +162,7 @@ class UiAvatarGroup extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: ui.colors.foreground,
+                    color: ui.colors.mutedForeground,
                     width: borderWidth,
                   ),
                 ),

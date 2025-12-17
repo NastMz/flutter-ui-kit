@@ -11,12 +11,6 @@ Build a reusable Flutter UI library with token-first theming and stable public A
 - Public widgets must have predictable defaults and be documented.
 - Keep `core` independent from `components`. `components` may depend on `core`, not vice versa.
 
-## Commands
-
-- Analyze: `melos run analyze`
-- Test: `melos run test`
-- Format: `melos run format`
-
 ## Quality bar
 
 - If behavior is unclear, create an issue and add a TODO with exact intent and acceptance criteria.

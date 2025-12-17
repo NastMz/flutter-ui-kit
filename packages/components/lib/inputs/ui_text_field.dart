@@ -98,7 +98,7 @@ class UiTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
           borderSide: BorderSide(
             color: hasError ? ui.colors.destructive : ringColor,
-            width: 2,
+            width: 1, // shadcn keeps 1px border, ring is separate box-shadow
           ),
         ),
         errorBorder: OutlineInputBorder(
@@ -107,7 +107,10 @@ class UiTextField extends StatelessWidget {
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
-          borderSide: BorderSide(color: ui.colors.destructive, width: 2),
+          borderSide: BorderSide(
+            color: ui.colors.destructive,
+            width: 1,
+          ), // consistent 1px
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),

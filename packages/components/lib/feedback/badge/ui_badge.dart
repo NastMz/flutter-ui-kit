@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 /// Badge variants following shadcn design.
 enum UiBadgeVariant {
-  /// Primary brand color variant.
-  primary,
+  /// Default variant (primary brand color).
+  default_,
 
   /// Secondary variant.
   secondary,
@@ -36,7 +36,7 @@ class UiBadge extends StatelessWidget {
   const UiBadge({
     super.key,
     required this.label,
-    this.variant = UiBadgeVariant.primary,
+    this.variant = UiBadgeVariant.default_,
   });
 
   @override
@@ -47,7 +47,7 @@ class UiBadge extends StatelessWidget {
     late Color foregroundColor;
 
     switch (variant) {
-      case UiBadgeVariant.primary:
+      case UiBadgeVariant.default_:
         backgroundColor = ui.colors.primary;
         foregroundColor = ui.colors.onPrimary;
         break;
@@ -65,20 +65,31 @@ class UiBadge extends StatelessWidget {
         break;
     }
 
+    // shadcn badge: h-5 (20px), px-2 (8px), py-0.5 (2px), rounded-4xl, text-xs font-medium
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: ui.spacing.sm, vertical: 2),
+      height: 20, // h-5 = 20px
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 2,
+      ), // px-2 py-0.5
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(ui.radius.sm),
+        borderRadius: BorderRadius.circular(
+          ui.radius.xl2,
+        ), // rounded-4xl (very rounded)
         border: variant == UiBadgeVariant.outline
             ? Border.all(color: ui.colors.input)
             : null,
       ),
-      child: Text(
-        label,
-        style: ui.typography.textSm.copyWith(
-          color: foregroundColor,
-          fontWeight: FontWeight.w600,
+      child: Center(
+        child: Text(
+          label,
+          style: ui.typography.textXs.copyWith(
+            // text-xs (12px)
+            color: foregroundColor,
+            fontWeight: FontWeight.w500, // font-medium
+            height: 1, // line height tight para centrar verticalmente
+          ),
         ),
       ),
     );
